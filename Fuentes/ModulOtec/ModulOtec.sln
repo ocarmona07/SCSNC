@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulOtec.Datos", "ModulOtec.Datos\ModulOtec.Datos.csproj", "{32226D56-905F-4D45-9D4F-9CDF7F44EAF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulOtec.Negocio", "ModulOtec.Negocio\ModulOtec.Negocio.csproj", "{AB50E32F-2252-4E73-A462-6038FB174A36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulOtec.Vista", "ModulOtec.Vista\ModulOtec.Vista.csproj", "{CE36B896-78EB-48AC-BA04-39E900F953FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32226D56-905F-4D45-9D4F-9CDF7F44EAF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32226D56-905F-4D45-9D4F-9CDF7F44EAF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32226D56-905F-4D45-9D4F-9CDF7F44EAF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32226D56-905F-4D45-9D4F-9CDF7F44EAF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB50E32F-2252-4E73-A462-6038FB174A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB50E32F-2252-4E73-A462-6038FB174A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB50E32F-2252-4E73-A462-6038FB174A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB50E32F-2252-4E73-A462-6038FB174A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE36B896-78EB-48AC-BA04-39E900F953FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE36B896-78EB-48AC-BA04-39E900F953FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE36B896-78EB-48AC-BA04-39E900F953FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE36B896-78EB-48AC-BA04-39E900F953FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
