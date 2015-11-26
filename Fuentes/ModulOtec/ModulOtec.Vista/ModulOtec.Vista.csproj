@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AnalizarNoConformidad.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -74,6 +75,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalizarNoConformidad.aspx.cs">
+      <DependentUpon>AnalizarNoConformidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnalizarNoConformidad.aspx.designer.cs">
+      <DependentUpon>AnalizarNoConformidad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionIncidencias.aspx.cs">
       <DependentUpon>GestionIncidencias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
