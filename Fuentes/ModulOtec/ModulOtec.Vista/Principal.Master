@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/modulotec.css" rel="stylesheet" type="text/css" />
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -53,8 +55,7 @@
                                             </div>
                                             <div class="col-lg-8">
                                                 <p class="text-left">
-                                                    <strong>
-                                                        <asp:Label runat="server" ID="lblUsuario" /></strong>
+                                                    <strong><asp:Label runat="server" ID="lblUsuario" /></strong>
                                                 </p>
                                                 <p class="text-left small">
                                                     <asp:Label runat="server" ID="lblCargo" />
