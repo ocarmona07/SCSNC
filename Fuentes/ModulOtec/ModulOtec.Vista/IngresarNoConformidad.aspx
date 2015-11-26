@@ -7,7 +7,7 @@
     <hr />
     <form role="form" class="form-horizontal">
         <div class="form-group">
-            <label for="ddlTipoConformidad">Tipo</label>
+            <label for="ddlTipoConformidad">Tipo de incidencia</label>
             <asp:DropDownList runat="server" ID="ddlTipoConformidad" CssClass="form-control" />
         </div>
         <div class="form-group">
