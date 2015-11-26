@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulOtec.Negocio", "ModulO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulOtec.Vista", "ModulOtec.Vista\ModulOtec.Vista.csproj", "{CE36B896-78EB-48AC-BA04-39E900F953FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulOtec.Entidades", "ModulOtec.Entidades\ModulOtec.Entidades.csproj", "{6263BE5F-D0A1-449E-BEC4-7AF24777A26E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CE36B896-78EB-48AC-BA04-39E900F953FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE36B896-78EB-48AC-BA04-39E900F953FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE36B896-78EB-48AC-BA04-39E900F953FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6263BE5F-D0A1-449E-BEC4-7AF24777A26E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6263BE5F-D0A1-449E-BEC4-7AF24777A26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6263BE5F-D0A1-449E-BEC4-7AF24777A26E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6263BE5F-D0A1-449E-BEC4-7AF24777A26E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
