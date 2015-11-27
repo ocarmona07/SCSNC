@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
-    <h3>Control de Servicio No Conforme</h3>
+    <h4>Control de Servicio No Conforme</h4>
     <ul class="nav nav-tabs">
         <li role="presentation">
             <asp:LinkButton runat="server" PostBackUrl="IngresarNoConformidad.aspx" Text="Registrar No Conformidad" /></li>

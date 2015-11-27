@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
-    <h3>Ingresar No Conformidad</h3>
+    <h4>Ingresar No Conformidad</h4>
     <hr />
     <form role="form" class="form-horizontal">
         <div class="form-group">
