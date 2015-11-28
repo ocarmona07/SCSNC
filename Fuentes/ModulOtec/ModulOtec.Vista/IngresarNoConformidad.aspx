@@ -18,6 +18,10 @@
             <label for="tbFechaIdent">Fecha de identificación</label>
             <asp:TextBox runat="server" ID="tbFechaIdent" type="date" CssClass="form-control" required="required" />
         </div>
+        <div class="form-group">
+            <label for="txtAreaAfectada">Área afectada:</label>
+            <asp:TextBox runat="server" ID="txtAreaAfectada" CssClass="form-control" required="required" />
+        </div>
         <br />
         <div class="form-group">
             <label for="tbDescripcion">Descripción de la No Conformidad</label>
