@@ -15,8 +15,8 @@
 
             #region Notificaciones
 
-            var cantNotif = "2";
-            lnkNotificaciones.Text = "Notificaciones <span class=\"badge\">" + cantNotif + "</span>";
+            //var cantNotif = "2";
+            //lnkNotificaciones.Text = "Notificaciones <span class=\"badge\">" + cantNotif + "</span>";
 
             #endregion
 
