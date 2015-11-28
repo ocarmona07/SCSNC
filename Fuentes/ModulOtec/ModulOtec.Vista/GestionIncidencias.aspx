@@ -10,7 +10,7 @@
         <li role="presentation">
             <asp:LinkButton runat="server" PostBackUrl="AnalizarNoConformidad.aspx" Text="Analizar No Conformidad" /></li>
         <li role="presentation">
-            <asp:LinkButton runat="server" PostBackUrl="#" Text="Registro de Incidencias" /></li>
+            <asp:LinkButton runat="server" PostBackUrl="~/SeguimientoIncidencia.aspx" Text="Seguimiento de Incidencia" /></li>
         <li role="presentation">
             <asp:LinkButton runat="server" PostBackUrl="#" ID="lnkNotificaciones" /></li>
     </ul>
