@@ -1,17 +1,14 @@
 /****************************************************************************************
 Procedimiento			: Script_Regiones y Ciudades de Chile.sql
-Objetivo Descripcion	: Insertar las Regiones y Ciudades al sistema SisFac.
-Sistema					: SISFAC
-Base de Datos			: SisFac
+Objetivo Descripcion	: Insertar las Regiones y Ciudades al sistema.
+Sistema					: ModulOTEC
+Base de Datos			: ModulOTEC
 Tablas usadas			: Regiones, Ciudades
-Parametros entrada		: 
-Parametros salida		: 
-Cadena ejecución		: 
-Autor					: Omar Carmona, Jesús Parra, Estaban Valdevenito
-Fecha creación			: 10/06/2013
+Autor					: Omar Carmona
+Fecha creación			: 28/11/2015
 ****************************************************************************************/
 
-USE SisFac;
+USE ModulOTEC;
 
 INSERT INTO dbo.Regiones
 VALUES	('Arica y Parinacota')

@@ -42,7 +42,7 @@ GO
 /*==============================================================*/
 CREATE TABLE Ciudades
     (
-      IdCiudad INT NOT NULL ,
+      IdCiudad INT IDENTITY ,
       IdRegion INT NOT NULL ,
       Ciudad VARCHAR(15) NOT NULL ,
       CONSTRAINT PK_CIUDADES PRIMARY KEY ( IdCiudad )
@@ -54,7 +54,7 @@ GO
 /*==============================================================*/
 CREATE TABLE Documentos
     (
-      IdDocumento INT NOT NULL ,
+      IdDocumento INT IDENTITY ,
       IdAnalisisCausa INT NULL ,
       UrlDocumento VARCHAR(MAX) NOT NULL ,
       CONSTRAINT PK_DOCUMENTOS PRIMARY KEY ( IdDocumento )
@@ -123,7 +123,7 @@ GO
 /*==============================================================*/
 CREATE TABLE Regiones
     (
-      IdRegion INT NOT NULL ,
+      IdRegion INT IDENTITY ,
       Region VARCHAR(20) NOT NULL ,
       CONSTRAINT PK_REGIONES PRIMARY KEY ( IdRegion )
     )
