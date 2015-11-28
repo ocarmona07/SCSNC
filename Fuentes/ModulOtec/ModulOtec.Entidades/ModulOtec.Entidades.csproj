@@ -30,17 +30,85 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Data.Entity" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ciudades.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstadosIncidencia.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="General.cs" />
+    <Compile Include="Incidencias.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModosDeteccion.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModulOTECModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModulOTECModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModulOTECModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModulOTECModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModulOTECModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizacion.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regiones.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TiposIncidencias.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="ModulOTECModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModulOTECModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="ModulOTECModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModulOTECModel.edmx</DependentUpon>
+      <LastGenOutput>ModulOTECModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ModulOTECModel.edmx.diagram">
+      <DependentUpon>ModulOTECModel.edmx</DependentUpon>
+    </None>
+    <None Include="ModulOTECModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModulOTECModel.edmx</DependentUpon>
+      <LastGenOutput>ModulOTECModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

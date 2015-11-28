@@ -43,6 +43,12 @@
     <Compile Include="GeneralDa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModulOtec.Entidades\ModulOtec.Entidades.csproj">
+      <Project>{6263be5f-d0a1-449e-bec4-7af24777a26e}</Project>
+      <Name>ModulOtec.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
