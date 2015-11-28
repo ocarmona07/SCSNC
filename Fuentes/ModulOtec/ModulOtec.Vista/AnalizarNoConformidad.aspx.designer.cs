@@ -85,6 +85,15 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.TextBox txtDetalle;
         
         /// <summary>
+        /// Control txtMedidasInmediatas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMedidasInmediatas;
+        
+        /// <summary>
         /// Control txtEfectosDeseados.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,24 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.TextBox txtCausasPotenciales;
         
         /// <summary>
+        /// Control ddlTratamiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTratamiento;
+        
+        /// <summary>
+        /// Control calFechaLimite.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar calFechaLimite;
+        
+        /// <summary>
         /// Control fileUpload1.
         /// </summary>
         /// <remarks>
@@ -119,5 +146,32 @@ namespace ModulOtec.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button uploadBtn;
+        
+        /// <summary>
+        /// Control btnCancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        
+        /// <summary>
+        /// Control btnInvalidar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInvalidar;
+        
+        /// <summary>
+        /// Control btnIngresarAcciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnIngresarAcciones;
     }
 }

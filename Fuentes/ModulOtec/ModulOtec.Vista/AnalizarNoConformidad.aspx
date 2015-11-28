@@ -74,37 +74,69 @@
         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <p><strong>Acciones Inmediatas:</strong></p>
+                        <asp:TextBox ID="txtMedidasInmediatas" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox> 
+                    </div>
+                    <div class="col-md-4">
                         <p><strong>Efectos deseados al finalizar el proceso:</strong></p>
                         <asp:TextBox ID="txtEfectosDeseados" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox> 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <p><strong>Causas Potenciales:</strong></p>
                         <asp:TextBox ID="txtCausasPotenciales" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox> 
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+
+                    <div class="col-md-3">
+                        <p><strong>Tratamiento:</strong></p>
+                        <asp:DropDownList ID="ddlTratamiento" runat="server">
+                            <asp:ListItem>Reproceso</asp:ListItem>
+                            <asp:ListItem>Reclasificación</asp:ListItem>
+                            <asp:ListItem>Concesión</asp:ListItem>
+                            <asp:ListItem>Desecho</asp:ListItem>
+                            <asp:ListItem>Permiso de Desviación</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>Fecha Límite:</strong></p>
+                        <asp:Calendar ID="calFechaLimite" runat="server"></asp:Calendar>
+                    </div>
+                    <div class="col-md-6">
                         <strong>Expediente electrónico</strong>
                         <table class="table table-striped">
                             <tr>
                                 <td>N°</td><td>Descripción del Archivo</td>
                             </tr>
                             <tr>
-                                <td>01</td><td>Certificado de Compromiso de Dirección</td>
+                                <td>01</td><td>Certificado de Compromiso de Toma de Acciones</td>
                             </tr>
                         </table>
-                        <asp:FileUpload runat="server" id="fileUpload1" Multiple="Multiple" CssClass="btn btn-default">
-                        </asp:FileUpload><br />
-                        <asp:Button runat="server" Text="Añadir Archivos" id="uploadBtn" class="btn btn-default"/>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <asp:FileUpload runat="server" id="fileUpload1" Multiple="Multiple" CssClass="btn btn-default">
+                                </asp:FileUpload>
+                            </div>
+                            <div class="col-md-2">
+                                <asp:Button runat="server" Text="Añadir Archivos" id="uploadBtn" class="btn btn-success"/>
+                            </div>
+                        </div>
+                     </div>
                 </div>
-                
             </div>
         </div>
       </div>
 </div>
+<div class="row">
+    <div class="col-md-12 text-center" >
+        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning"/>
 
+        <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" class="btn btn-danger" />
+
+        <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" class="btn btn-success"/>
+    </div>
+</div>
 
 
 
