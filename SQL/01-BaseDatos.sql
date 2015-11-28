@@ -44,7 +44,7 @@ CREATE TABLE Ciudades
     (
       IdCiudad INT IDENTITY ,
       IdRegion INT NOT NULL ,
-      Ciudad VARCHAR(15) NOT NULL ,
+      Ciudad VARCHAR(50) NOT NULL ,
       CONSTRAINT PK_CIUDADES PRIMARY KEY ( IdCiudad )
     )
 GO
@@ -124,7 +124,7 @@ GO
 CREATE TABLE Regiones
     (
       IdRegion INT IDENTITY ,
-      Region VARCHAR(20) NOT NULL ,
+      Region VARCHAR(50) NOT NULL ,
       CONSTRAINT PK_REGIONES PRIMARY KEY ( IdRegion )
     )
 GO

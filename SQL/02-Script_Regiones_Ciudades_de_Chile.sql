@@ -8,9 +8,10 @@ Autor					: Omar Carmona
 Fecha creación			: 28/11/2015
 ****************************************************************************************/
 
-USE ModulOTEC;
+USE ModulOTEC
+GO
 
-INSERT INTO dbo.Regiones
+INSERT INTO dbo.Regiones (Region)
 VALUES	('Arica y Parinacota')
 	  , ('Tarapacá')
 	  , ('Antofagasta')
@@ -28,7 +29,7 @@ VALUES	('Arica y Parinacota')
 	  , ('Los Rios')
 GO
 
-INSERT INTO dbo.Ciudades
+INSERT INTO dbo.Ciudades (IdRegion, Ciudad)
 VALUES ( 1 ,'Arica')
 	 , ( 1 ,'Camarones')
 	 , ( 1 ,'Putre')
