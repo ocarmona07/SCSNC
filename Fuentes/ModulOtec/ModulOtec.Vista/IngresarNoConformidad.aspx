@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ModulOtec - Ingresar No Conformidad" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="IngresarNoConformidad.aspx.cs" Inherits="ModulOtec.Vista.IngresarNoConformidad" %>
+﻿<%@ Page Title="ModulOtec - Ingresar No Conformidad" Language="C#" MasterPageFile="~/Principal.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="IngresarNoConformidad.aspx.cs" Inherits="ModulOtec.Vista.IngresarNoConformidad" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

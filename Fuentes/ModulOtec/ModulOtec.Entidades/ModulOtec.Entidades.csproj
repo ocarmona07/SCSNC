@@ -39,13 +39,18 @@
     <Reference Include="System.Data.Entity" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalisisCausa.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Ciudades.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Documentos.cs">
       <DependentUpon>ModulOTECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EstadosIncidencia.cs">
       <DependentUpon>ModulOTECModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="General.cs" />
     <Compile Include="Incidencias.cs">
       <DependentUpon>ModulOTECModel.tt</DependentUpon>
     </Compile>
@@ -78,6 +83,9 @@
       <DependentUpon>ModulOTECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposIncidencias.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tratamiento.cs">
       <DependentUpon>ModulOTECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">

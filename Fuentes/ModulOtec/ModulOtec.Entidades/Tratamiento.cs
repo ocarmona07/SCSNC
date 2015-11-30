@@ -12,26 +12,17 @@ namespace ModulOtec.Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Incidencias
+    public partial class Tratamiento
     {
-        public Incidencias()
+        public Tratamiento()
         {
             this.AnalisisCausa = new HashSet<AnalisisCausa>();
         }
     
-        public int IdIncidencia { get; set; }
-        public int RutCreador { get; set; }
-        public int IdTipoIncidencia { get; set; }
-        public int IdModoDeteccion { get; set; }
-        public System.DateTime FechaIdentificacion { get; set; }
-        public string AreaAfectada { get; set; }
+        public int IdTratamiento { get; set; }
         public string Descripcion { get; set; }
-        public int IdEstadoIncidencia { get; set; }
+        public bool Estado { get; set; }
     
         public virtual ICollection<AnalisisCausa> AnalisisCausa { get; set; }
-        public virtual EstadosIncidencia EstadosIncidencia { get; set; }
-        public virtual ModosDeteccion ModosDeteccion { get; set; }
-        public virtual TiposIncidencias TiposIncidencias { get; set; }
-        public virtual Usuarios Usuarios { get; set; }
     }
 }

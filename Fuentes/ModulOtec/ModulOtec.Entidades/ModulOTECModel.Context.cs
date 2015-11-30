@@ -25,7 +25,9 @@ namespace ModulOtec.Entidades
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<AnalisisCausa> AnalisisCausa { get; set; }
         public DbSet<Ciudades> Ciudades { get; set; }
+        public DbSet<Documentos> Documentos { get; set; }
         public DbSet<EstadosIncidencia> EstadosIncidencia { get; set; }
         public DbSet<Incidencias> Incidencias { get; set; }
         public DbSet<ModosDeteccion> ModosDeteccion { get; set; }
@@ -33,6 +35,7 @@ namespace ModulOtec.Entidades
         public DbSet<Regiones> Regiones { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<TiposIncidencias> TiposIncidencias { get; set; }
+        public DbSet<Tratamiento> Tratamiento { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
     }
 }

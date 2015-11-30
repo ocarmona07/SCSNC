@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulOtec.Vista", "ModulOte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulOtec.Entidades", "ModulOtec.Entidades\ModulOtec.Entidades.csproj", "{6263BE5F-D0A1-449E-BEC4-7AF24777A26E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entidades", "Entidades", "{178FBE21-7913-46A1-9437-E9B223B497BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6263BE5F-D0A1-449E-BEC4-7AF24777A26E} = {178FBE21-7913-46A1-9437-E9B223B497BA}
 	EndGlobalSection
 EndGlobal
