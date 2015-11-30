@@ -72,7 +72,7 @@
     <Content Include="js\npm.js" />
     <Content Include="images\csnc.png" />
     <Content Include="MainModulos.aspx" />
-    <Content Include="SeguimientoIncidencia.aspx" />
+    <Content Include="RevisionCumplimiento.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -112,12 +112,12 @@
       <DependentUpon>Principal.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeguimientoIncidencia.aspx.cs">
-      <DependentUpon>SeguimientoIncidencia.aspx</DependentUpon>
+    <Compile Include="RevisionCumplimiento.aspx.cs">
+      <DependentUpon>RevisionCumplimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SeguimientoIncidencia.aspx.designer.cs">
-      <DependentUpon>SeguimientoIncidencia.aspx</DependentUpon>
+    <Compile Include="RevisionCumplimiento.aspx.designer.cs">
+      <DependentUpon>RevisionCumplimiento.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
