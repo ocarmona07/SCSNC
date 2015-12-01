@@ -85,6 +85,24 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.TextBox txtDetalle;
         
         /// <summary>
+        /// Control txtCausas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCausas;
+        
+        /// <summary>
+        /// Control txtEfectosDeseados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEfectosDeseados;
+        
+        /// <summary>
         /// Control txtAnadirAccion.
         /// </summary>
         /// <remarks>
@@ -121,40 +139,13 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.ListBox ltbAcciones;
         
         /// <summary>
-        /// Control txtEfectosDeseados.
+        /// Control btnQuitarArchivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEfectosDeseados;
-        
-        /// <summary>
-        /// Control txtCausas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCausas;
-        
-        /// <summary>
-        /// Control ddlTratamiento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTratamiento;
-        
-        /// <summary>
-        /// Control tbFechaLimite.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFechaLimite;
+        protected global::System.Web.UI.WebControls.Button btnQuitarArchivo;
         
         /// <summary>
         /// Control fileUpload1.
@@ -166,13 +157,31 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.FileUpload fileUpload1;
         
         /// <summary>
-        /// Control uploadBtn.
+        /// Control btnSubirArchivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button uploadBtn;
+        protected global::System.Web.UI.WebControls.Button btnSubirArchivo;
+        
+        /// <summary>
+        /// Control tbFechaLimite.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFechaLimite;
+        
+        /// <summary>
+        /// Control ddlTratamiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTratamiento;
         
         /// <summary>
         /// Control btnCancelar.

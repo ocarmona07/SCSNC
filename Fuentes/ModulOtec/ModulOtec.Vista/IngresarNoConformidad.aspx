@@ -22,6 +22,10 @@
             <label for="txtAreaAfectada">Área afectada:</label>
             <asp:TextBox runat="server" ID="txtAreaAfectada" CssClass="form-control" required="required" />
         </div>
+        <div class="form-group">
+            <label for="txtProcesoAfectado">Proceso afectado:</label>
+            <asp:TextBox runat="server" ID="txtProcesoAfectado" CssClass="form-control" required="required" />
+        </div>
         <br />
         <div class="form-group">
             <label for="tbDescripcion">Descripción de la No Conformidad</label>
