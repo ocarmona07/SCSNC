@@ -27,7 +27,15 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <table class="table">
+                        <tr>
+                            <th>Cod. Incidencia</th>
+                            <th>Fecha Identificación</th>
+                            <th>Área Afectada</th>
+                            <th>Detalle Incidencia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -37,17 +45,26 @@
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         <span class="badge">
                             <asp:Label runat="server" ID="lblAccionesCorrectivas" /></span>
-                        Acciones correctivas
+                        Etapa de evaluación de cumplimiento de acciones
                     </a>
                 </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <table class="table">
+                        <tr>
+                            <th>Cod. Incidencia</th>
+                            <th>Fecha Identificación</th>
+                            <th>Área Afectada</th>
+                            <th>Detalle Incidencia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </table>
+                </div>
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-success">
             <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -59,13 +76,15 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
+                    <table class="table">
+                        <tr>
+                            <th>Cod. Incidencia</th>
+                            <th>Fecha Identificación</th>
+                            <th>Área Afectada</th>
+                            <th>Detalle Incidencia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </table>                </div>
             </div>
         </div>
-    </div>
-
-    <div class="alert alert-warning" role="alert">
-        <b>Recuerda!</b> El plazo de análisis y respuesta de las incidencias es de 5 días.
-    </div>
 </asp:Content>
