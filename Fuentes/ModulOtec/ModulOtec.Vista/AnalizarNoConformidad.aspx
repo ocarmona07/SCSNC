@@ -91,8 +91,8 @@
                             <asp:TextBox ID="txtEfectosDeseados" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-md-4">
-                            <p><strong>Causas Potenciales:</strong></p>
-                            <asp:TextBox ID="txtCausasPotenciales" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox>
+                            <p><strong>Causas de No Conformidad:</strong></p>
+                            <asp:TextBox ID="txtCausas" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row">
