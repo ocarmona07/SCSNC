@@ -135,10 +135,10 @@
                             </asp:CheckBoxList>
                             <p><strong>Observaciones:</strong></p>
                             <asp:TextBox ID="txtObservaciones" runat="server" Rows="5" width="100%" TextMode="MultiLine"></asp:TextBox>
-                            <p>
-                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" />
-                                <asp:Button ID="btnReAnalizar" runat="server" Text="Ré Análisis" />
-                                <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar" />
+                            <p align="center">
+                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger btn-sm" />
+                                <asp:Button ID="btnReAnalizar" runat="server" Text="Re Análisis" CssClass="btn btn-warning btn-sm" />
+                                <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar" CssClass="btn btn-success btn-sm" />
                             </p>
                         </div>
                     </div>
