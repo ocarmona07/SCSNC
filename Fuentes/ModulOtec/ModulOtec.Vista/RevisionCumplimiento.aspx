@@ -133,10 +133,15 @@
                             <asp:CheckBoxList ID="chblAcciones" runat="server" CssClass="lift" Font-Size="Smaller" RepeatLayout="OrderedList">
                             <asp:ListItem Text="Reparación de las 4 Sillas defectuosas de la Sala" ></asp:ListItem>
                             </asp:CheckBoxList>
+                            <p><strong>Observaciones:</strong></p>
+                            <asp:TextBox ID="txtObservaciones" runat="server" Rows="5" width="100%" TextMode="MultiLine"></asp:TextBox>
+                            <p>
+                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" />
+                                <asp:Button ID="btnReAnalizar" runat="server" Text="Ré Análisis" />
+                                <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar" />
+                            </p>
                         </div>
                     </div>
-                    <p><strong>Observaciones:</strong></p>
-                    <asp:TextBox ID="txtObservaciones" runat="server" Rows="5" width="100%" TextMode="MultiLine"></asp:TextBox>
                 </div>
             </div>
         </div>
