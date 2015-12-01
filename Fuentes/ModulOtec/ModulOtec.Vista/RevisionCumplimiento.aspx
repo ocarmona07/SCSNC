@@ -9,8 +9,7 @@
             <div class="panel panel-primary">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Información de la No Conformidad
-                    </a>
+                    Información de la No Conformidad
                 </h4>
             </div>
         <div class="panel-body">
@@ -69,7 +68,12 @@
         </div>
         </div>
         <div class="col-md-6">
-
+            <div class="panel panel-success">
+                <div class="panel-heading">Acciones Correctivas</div>
+                    <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>

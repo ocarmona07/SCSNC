@@ -80,8 +80,11 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <p><strong>Acciones Inmediatas:</strong></p>
-                            <asp:TextBox ID="txtMedidasInmediatas" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox>
+                            <p><strong>Acciones Correctivas:</strong></p>
+                            <p><asp:TextBox ID="txtAnadirAccion" runat="server"></asp:TextBox> <asp:Button ID="btnAnadirAccion" runat="server" Text="Añadir" class="btn btn-success btn-xs"/> <asp:Button ID="btnQuitarAccion" runat="server" Text="Quitar" class="btn btn-danger btn-xs"/></p>
+                            <asp:ListBox ID="ltbAcciones" runat="server">
+                                <asp:ListItem>Reparación de las 4 Sillas defectuosas de la Sala</asp:ListItem>
+                            </asp:ListBox>
                         </div>
                         <div class="col-md-4">
                             <p><strong>Efectos deseados al finalizar el proceso:</strong></p>

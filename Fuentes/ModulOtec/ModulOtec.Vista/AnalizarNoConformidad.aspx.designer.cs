@@ -85,13 +85,40 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.TextBox txtDetalle;
         
         /// <summary>
-        /// Control txtMedidasInmediatas.
+        /// Control txtAnadirAccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMedidasInmediatas;
+        protected global::System.Web.UI.WebControls.TextBox txtAnadirAccion;
+        
+        /// <summary>
+        /// Control btnAnadirAccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAnadirAccion;
+        
+        /// <summary>
+        /// Control btnQuitarAccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQuitarAccion;
+        
+        /// <summary>
+        /// Control ltbAcciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox ltbAcciones;
         
         /// <summary>
         /// Control txtEfectosDeseados.
