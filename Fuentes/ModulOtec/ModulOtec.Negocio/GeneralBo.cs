@@ -31,12 +31,19 @@
         }
 
         /// <summary>
-        /// Método que obtiene un listado de ciudades por región
+        /// Método que obtiene un lista de ciudades por región
         /// </summary>
         /// <returns></returns>
         public List<Ciudades> ObtenerCiudadesPorRegion(int idRegion)
         {
-            return new GeneralDa().ObtenerCiudadesPorRegion(idRegion);
+            try
+            {
+                return ObtenerCiudades().Where(o => idRegion.Equals(o.IdRegion)).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

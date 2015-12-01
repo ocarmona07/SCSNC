@@ -24,56 +24,142 @@
         }
 
         /// <summary>
-        /// Método que obtiene un lista de regiones
+        /// Método que obtiene un lista de Roles
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Lista de Roles</returns>
+        public List<Roles> ObtenerRoles()
+        {
+            try
+            {
+                return _modulOtecEntities.Roles.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene un lista de Regiones
+        /// </summary>
+        /// <returns>Lista de Regiones</returns>
         public List<Regiones> ObtenerRegiones()
         {
             try
             {
-                var listaRetorno = _modulOtecEntities.Regiones.ToList();
-                _modulOtecEntities.Dispose();
-                return listaRetorno;
+                return _modulOtecEntities.Regiones.ToList();
             }
             catch (Exception)
             {
                 return null;
             }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
         }
 
         /// <summary>
-        /// Método que obtiene un lista de ciudades
+        /// Método que obtiene un lista de Ciudades
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Lista de Ciudades</returns>
         public List<Ciudades> ObtenerCiudades()
         {
             try
             {
-                var listaRetorno = _modulOtecEntities.Ciudades.ToList();
-                _modulOtecEntities.Dispose();
-                return listaRetorno;
+                return _modulOtecEntities.Ciudades.ToList();
             }
             catch (Exception)
             {
                 return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
             }
         }
 
         /// <summary>
-        /// Método que obtiene un lista de ciudades por región
+        /// Método que obtiene un listado de Estados de una Incidencia
         /// </summary>
-        /// <returns></returns>
-        public List<Ciudades> ObtenerCiudadesPorRegion(int idRegion)
+        /// <returns>Lista de Estados</returns>
+        public List<EstadosIncidencia> ObtenerEstadosIncidencias()
         {
             try
             {
-                var listaRetorno = _modulOtecEntities.Ciudades.Where(o => o.IdRegion == idRegion).ToList();
-                _modulOtecEntities.Dispose();
-                return listaRetorno;
+                return _modulOtecEntities.EstadosIncidencia.ToList();
             }
             catch (Exception)
             {
                 return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene un lista de Tratamientos
+        /// </summary>
+        /// <returns>Lista de Tratamientos</returns>
+        public List<Tratamiento> ObtenerTratamientos()
+        {
+            try
+            {
+                return _modulOtecEntities.Tratamiento.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene una lista de Modos de Detecciones
+        /// </summary>
+        /// <returns>Lista de Detecciones</returns>
+        public List<ModosDeteccion> ObtenerModosDetecciones()
+        {
+            try
+            {
+                return _modulOtecEntities.ModosDeteccion.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene un listado de Tipos de Incidencias
+        /// </summary>
+        /// <returns>Lista de Tipos</returns>
+        public List<TiposIncidencias> ObtenerTiposIncidencias()
+        {
+            try
+            {
+                return _modulOtecEntities.TiposIncidencias.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
             }
         }
     }
