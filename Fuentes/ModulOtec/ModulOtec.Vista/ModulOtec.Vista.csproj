@@ -74,6 +74,7 @@
     <Content Include="MainModulos.aspx" />
     <Content Include="RevisionCumplimiento.aspx" />
     <Content Include="Web.config" />
+    <Content Include="AgregarUsuario.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnalizarNoConformidad.aspx.cs">
@@ -118,6 +119,13 @@
     </Compile>
     <Compile Include="RevisionCumplimiento.aspx.designer.cs">
       <DependentUpon>RevisionCumplimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarUsuario.aspx.cs">
+      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarUsuario.aspx.designer.cs">
+      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
