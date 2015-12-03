@@ -1,25 +1,335 @@
-USE master
-GO
-
-IF ( EXISTS ( SELECT    name
-              FROM      master.dbo.sysdatabases
-              WHERE     ( '[' + name + ']' = 'ModulOTEC'
-                          OR name = 'ModulOTEC'
-                        ) ) )
-    BEGIN
-        EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'ModulOTEC'
-        ALTER DATABASE ModulOTEC
-        SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
-        DROP DATABASE ModulOTEC                      	
-    END
-GO
-
-CREATE DATABASE ModulOTEC
-GO
-
 USE ModulOTEC
 GO
 
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('AnalisisCausa')
+                    AND o.name = 'FK_ANALISIS_REFERENCE_TRATAMIE' )
+    ALTER TABLE AnalisisCausa
+    DROP CONSTRAINT FK_ANALISIS_REFERENCE_TRATAMIE
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('AnalisisCausa')
+                    AND o.name = 'FK_ANALISIS_REFERENCE_ACCIONES' )
+    ALTER TABLE AnalisisCausa
+    DROP CONSTRAINT FK_ANALISIS_REFERENCE_ACCIONES
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('AnalisisCausa')
+                    AND o.name = 'FK_ANALISIS_REFERENCE_INCIDENC' )
+    ALTER TABLE AnalisisCausa
+    DROP CONSTRAINT FK_ANALISIS_REFERENCE_INCIDENC
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Comunas')
+                    AND o.name = 'FK_COMUNAS_REFERENCE_PROVINCI' )
+    ALTER TABLE Comunas
+    DROP CONSTRAINT FK_COMUNAS_REFERENCE_PROVINCI
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Documentos')
+                    AND o.name = 'FK_DOCUMENT_REFERENCE_ANALISIS' )
+    ALTER TABLE Documentos
+    DROP CONSTRAINT FK_DOCUMENT_REFERENCE_ANALISIS
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('EvaluacionCumplimiento')
+                    AND o.name = 'FK_EVALUACI_REFERENCE_ANALISIS' )
+    ALTER TABLE EvaluacionCumplimiento
+    DROP CONSTRAINT FK_EVALUACI_REFERENCE_ANALISIS
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Incidencias')
+                    AND o.name = 'FK_INCIDENC_REF_INCID_ESTADOSI' )
+    ALTER TABLE Incidencias
+    DROP CONSTRAINT FK_INCIDENC_REF_INCID_ESTADOSI
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Incidencias')
+                    AND o.name = 'FK_INCIDENC_REF_INCID_MODOSDET' )
+    ALTER TABLE Incidencias
+    DROP CONSTRAINT FK_INCIDENC_REF_INCID_MODOSDET
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Incidencias')
+                    AND o.name = 'FK_INCIDENC_REF_INCID_TIPOSINC' )
+    ALTER TABLE Incidencias
+    DROP CONSTRAINT FK_INCIDENC_REF_INCID_TIPOSINC
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Incidencias')
+                    AND o.name = 'FK_INCIDENC_REF_INCID_USUARIOS' )
+    ALTER TABLE Incidencias
+    DROP CONSTRAINT FK_INCIDENC_REF_INCID_USUARIOS
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Organizacion')
+                    AND o.name = 'FK_ORGANIZA_REFERENCE_COMUNAS' )
+    ALTER TABLE Organizacion
+    DROP CONSTRAINT FK_ORGANIZA_REFERENCE_COMUNAS
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Provincias')
+                    AND o.name = 'FK_PROVINCI_REFERENCE_REGIONES' )
+    ALTER TABLE Provincias
+    DROP CONSTRAINT FK_PROVINCI_REFERENCE_REGIONES
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('RolAcceso')
+                    AND o.name = 'FK_ROLACCES_REFERENCE_ROLES' )
+    ALTER TABLE RolAcceso
+    DROP CONSTRAINT FK_ROLACCES_REFERENCE_ROLES
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('RolAcceso')
+                    AND o.name = 'FK_ROLACCES_REFERENCE_ACCESOS' )
+    ALTER TABLE RolAcceso
+    DROP CONSTRAINT FK_ROLACCES_REFERENCE_ACCESOS
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Usuarios')
+                    AND o.name = 'FK_USUARIOS_REFERENCE_COMUNAS' )
+    ALTER TABLE Usuarios
+    DROP CONSTRAINT FK_USUARIOS_REFERENCE_COMUNAS
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Usuarios')
+                    AND o.name = 'FK_USUARIOS_REF_USUAR_ORGANIZA' )
+    ALTER TABLE Usuarios
+    DROP CONSTRAINT FK_USUARIOS_REF_USUAR_ORGANIZA
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Usuarios')
+                    AND o.name = 'FK_USUARIOS_REF_USUAR_ROLES' )
+    ALTER TABLE Usuarios
+    DROP CONSTRAINT FK_USUARIOS_REF_USUAR_ROLES
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Accesos')
+                    AND type = 'U' )
+    DROP TABLE Accesos
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Acciones')
+                    AND type = 'U' )
+    DROP TABLE Acciones
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('AnalisisCausa')
+                    AND type = 'U' )
+    DROP TABLE AnalisisCausa
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Comunas')
+                    AND type = 'U' )
+    DROP TABLE Comunas
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Documentos')
+                    AND type = 'U' )
+    DROP TABLE Documentos
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('EstadosIncidencia')
+                    AND type = 'U' )
+    DROP TABLE EstadosIncidencia
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('EvaluacionCumplimiento')
+                    AND type = 'U' )
+    DROP TABLE EvaluacionCumplimiento
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Incidencias')
+                    AND type = 'U' )
+    DROP TABLE Incidencias
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('ModosDeteccion')
+                    AND type = 'U' )
+    DROP TABLE ModosDeteccion
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Organizacion')
+                    AND type = 'U' )
+    DROP TABLE Organizacion
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Provincias')
+                    AND type = 'U' )
+    DROP TABLE Provincias
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Regiones')
+                    AND type = 'U' )
+    DROP TABLE Regiones
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('RolAcceso')
+                    AND type = 'U' )
+    DROP TABLE RolAcceso
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Roles')
+                    AND type = 'U' )
+    DROP TABLE Roles
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('TiposIncidencias')
+                    AND type = 'U' )
+    DROP TABLE TiposIncidencias
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Tratamientos')
+                    AND type = 'U' )
+    DROP TABLE Tratamientos
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
+            WHERE   id = OBJECT_ID('Usuarios')
+                    AND type = 'U' )
+    DROP TABLE Usuarios
+GO
+
+/*==============================================================*/
+/* Table: Accesos                                               */
+/*==============================================================*/
+CREATE TABLE Accesos
+    (
+      IdAcceso INT NOT NULL ,
+      DetalleAcceso VARCHAR(100) NOT NULL ,
+      UrlAcceso VARCHAR(200) NOT NULL ,
+      CONSTRAINT PK_ACCESOS PRIMARY KEY ( IdAcceso )
+    )
+GO
+
+/*==============================================================*/
+/* Table: Acciones                                              */
+/*==============================================================*/
+CREATE TABLE Acciones
+    (
+      IdAccion INT NOT NULL ,
+      DescAccion VARCHAR(150) NOT NULL ,
+      Estado BIT NOT NULL ,
+      CONSTRAINT PK_ACCIONES PRIMARY KEY ( IdAccion )
+    )
+GO
 
 /*==============================================================*/
 /* Table: AnalisisCausa                                         */
@@ -28,24 +338,24 @@ CREATE TABLE AnalisisCausa
     (
       IdAnalisisCausa INT IDENTITY ,
       IdIncidencia INT NULL ,
-      AccionesInmediatas VARCHAR(MAX) NOT NULL ,
       EfectosDeseados VARCHAR(MAX) NOT NULL ,
       CausasPotenciales VARCHAR(MAX) NOT NULL ,
       IdTratamiento INT NULL ,
+      idAccion INT NULL ,
       FechaLimite DATE NOT NULL ,
       CONSTRAINT PK_ANALISISCAUSA PRIMARY KEY ( IdAnalisisCausa )
     )
 GO
 
 /*==============================================================*/
-/* Table: Ciudades                                              */
+/* Table: Comunas                                               */
 /*==============================================================*/
-CREATE TABLE Ciudades
+CREATE TABLE Comunas
     (
-      IdCiudad INT IDENTITY ,
-      IdRegion INT NOT NULL ,
-      Ciudad VARCHAR(50) NOT NULL ,
-      CONSTRAINT PK_CIUDADES PRIMARY KEY ( IdCiudad )
+      IdComuna INT NOT NULL ,
+      IdProvincia INT NULL ,
+      DescComuna VARCHAR(50) NOT NULL ,
+      CONSTRAINT PK_COMUNAS PRIMARY KEY ( IdComuna )
     )
 GO
 
@@ -66,10 +376,23 @@ GO
 /*==============================================================*/
 CREATE TABLE EstadosIncidencia
     (
-      IdEstadoIncidencia INT IDENTITY ,
+      IdEstadoIncidencia INT NOT NULL ,
       Descripcion VARCHAR(50) NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_ESTADOSINCIDENCIA PRIMARY KEY ( IdEstadoIncidencia )
+    )
+GO
+
+/*==============================================================*/
+/* Table: EvaluacionCumplimiento                                */
+/*==============================================================*/
+CREATE TABLE EvaluacionCumplimiento
+    (
+      IdEvaluacion INT IDENTITY ,
+      IdAnalisisCausa INT NULL ,
+      Observacion VARCHAR(MAX) NULL ,
+      FechaEv DATE NULL ,
+      CONSTRAINT PK_EVALUACIONCUMPLIMIENTO PRIMARY KEY ( IdEvaluacion )
     )
 GO
 
@@ -84,6 +407,7 @@ CREATE TABLE Incidencias
       IdModoDeteccion INT NOT NULL ,
       FechaIdentificacion DATE NOT NULL ,
       AreaAfectada VARCHAR(150) NOT NULL ,
+      ProcesoAfectado VARCHAR(150) NULL ,
       Descripcion VARCHAR(MAX) NOT NULL ,
       IdEstadoIncidencia INT NOT NULL ,
       CONSTRAINT PK_INCIDENCIAS PRIMARY KEY ( IdIncidencia )
@@ -95,7 +419,7 @@ GO
 /*==============================================================*/
 CREATE TABLE ModosDeteccion
     (
-      IdModoDeteccion INT IDENTITY ,
+      IdModoDeteccion INT NOT NULL ,
       Descripcion VARCHAR(50) NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_MODOSDETECCION PRIMARY KEY ( IdModoDeteccion )
@@ -112,9 +436,22 @@ CREATE TABLE Organizacion
       DV CHAR(1) NOT NULL ,
       RazonSocial VARCHAR(150) NOT NULL ,
       Direccion VARCHAR(100) NOT NULL ,
+      IdComuna INT NULL ,
       Telefono INT NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_ORGANIZACION PRIMARY KEY ( IdOrganizacion )
+    )
+GO
+
+/*==============================================================*/
+/* Table: Provincias                                            */
+/*==============================================================*/
+CREATE TABLE Provincias
+    (
+      IdProvincia INT NOT NULL ,
+      IdRegion INT NULL ,
+      DescProvincia VARCHAR(200) NULL ,
+      CONSTRAINT PK_PROVINCIAS PRIMARY KEY ( IdProvincia )
     )
 GO
 
@@ -123,9 +460,20 @@ GO
 /*==============================================================*/
 CREATE TABLE Regiones
     (
-      IdRegion INT IDENTITY ,
+      IdRegion INT NOT NULL ,
       Region VARCHAR(50) NOT NULL ,
       CONSTRAINT PK_REGIONES PRIMARY KEY ( IdRegion )
+    )
+GO
+
+/*==============================================================*/
+/* Table: RolAcceso                                             */
+/*==============================================================*/
+CREATE TABLE RolAcceso
+    (
+      IdRolAcceso INT IDENTITY ,
+      IdRol INT NULL ,
+      IdAcceso INT NULL
     )
 GO
 
@@ -134,7 +482,7 @@ GO
 /*==============================================================*/
 CREATE TABLE Roles
     (
-      IdRol INT IDENTITY ,
+      IdRol INT NOT NULL ,
       Descripcion VARCHAR(50) NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_ROLES PRIMARY KEY ( IdRol )
@@ -146,7 +494,7 @@ GO
 /*==============================================================*/
 CREATE TABLE TiposIncidencias
     (
-      IdTipoIncidencia INT IDENTITY ,
+      IdTipoIncidencia INT NOT NULL ,
       Descripcion VARCHAR(50) NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_TIPOSINCIDENCIAS PRIMARY KEY ( IdTipoIncidencia )
@@ -154,14 +502,14 @@ CREATE TABLE TiposIncidencias
 GO
 
 /*==============================================================*/
-/* Table: Tratamiento                                           */
+/* Table: Tratamientos                                          */
 /*==============================================================*/
-CREATE TABLE Tratamiento
+CREATE TABLE Tratamientos
     (
-      IdTratamiento INT IDENTITY ,
+      IdTratamiento INT NOT NULL ,
       Descripcion VARCHAR(50) NOT NULL ,
       Estado BIT NOT NULL ,
-      CONSTRAINT PK_TRATAMIENTO PRIMARY KEY ( IdTratamiento )
+      CONSTRAINT PK_TRATAMIENTOS PRIMARY KEY ( IdTratamiento )
     )
 GO
 
@@ -176,12 +524,13 @@ CREATE TABLE Usuarios
       ApPaterno VARCHAR(50) NOT NULL ,
       ApMaterno VARCHAR(50) NULL ,
       Direccion VARCHAR(100) NULL ,
-      IdCiudad INT NULL ,
       Telefono INT NULL ,
       Email VARCHAR(70) NOT NULL ,
+      PassUsuario VARCHAR(15) NOT NULL ,
       IdRol INT NULL ,
       EsRepresentante BIT NOT NULL ,
       IdOrganizacion INT NULL ,
+      IdComuna INT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_USUARIOS PRIMARY KEY ( RUT )
     )
@@ -189,7 +538,12 @@ GO
 
 ALTER TABLE AnalisisCausa
 ADD CONSTRAINT FK_ANALISIS_REFERENCE_TRATAMIE FOREIGN KEY (IdTratamiento)
-REFERENCES Tratamiento (IdTratamiento)
+REFERENCES Tratamientos (IdTratamiento)
+GO
+
+ALTER TABLE AnalisisCausa
+ADD CONSTRAINT FK_ANALISIS_REFERENCE_ACCIONES FOREIGN KEY (idAccion)
+REFERENCES Acciones (IdAccion)
 GO
 
 ALTER TABLE AnalisisCausa
@@ -197,13 +551,18 @@ ADD CONSTRAINT FK_ANALISIS_REFERENCE_INCIDENC FOREIGN KEY (IdIncidencia)
 REFERENCES Incidencias (IdIncidencia)
 GO
 
-ALTER TABLE Ciudades
-ADD CONSTRAINT FK_CIUDADES_REF_CIUDA_REGIONES FOREIGN KEY (IdRegion)
-REFERENCES Regiones (IdRegion)
+ALTER TABLE Comunas
+ADD CONSTRAINT FK_COMUNAS_REFERENCE_PROVINCI FOREIGN KEY (IdProvincia)
+REFERENCES Provincias (IdProvincia)
 GO
 
 ALTER TABLE Documentos
 ADD CONSTRAINT FK_DOCUMENT_REFERENCE_ANALISIS FOREIGN KEY (IdAnalisisCausa)
+REFERENCES AnalisisCausa (IdAnalisisCausa)
+GO
+
+ALTER TABLE EvaluacionCumplimiento
+ADD CONSTRAINT FK_EVALUACI_REFERENCE_ANALISIS FOREIGN KEY (IdAnalisisCausa)
 REFERENCES AnalisisCausa (IdAnalisisCausa)
 GO
 
@@ -227,9 +586,29 @@ ADD CONSTRAINT FK_INCIDENC_REF_INCID_USUARIOS FOREIGN KEY (RutCreador)
 REFERENCES Usuarios (RUT)
 GO
 
+ALTER TABLE Organizacion
+ADD CONSTRAINT FK_ORGANIZA_REFERENCE_COMUNAS FOREIGN KEY (IdComuna)
+REFERENCES Comunas (IdComuna)
+GO
+
+ALTER TABLE Provincias
+ADD CONSTRAINT FK_PROVINCI_REFERENCE_REGIONES FOREIGN KEY (IdRegion)
+REFERENCES Regiones (IdRegion)
+GO
+
+ALTER TABLE RolAcceso
+ADD CONSTRAINT FK_ROLACCES_REFERENCE_ROLES FOREIGN KEY (IdRol)
+REFERENCES Roles (IdRol)
+GO
+
+ALTER TABLE RolAcceso
+ADD CONSTRAINT FK_ROLACCES_REFERENCE_ACCESOS FOREIGN KEY (IdAcceso)
+REFERENCES Accesos (IdAcceso)
+GO
+
 ALTER TABLE Usuarios
-ADD CONSTRAINT FK_USUARIOS_REF_USUAR_CIUDADES FOREIGN KEY (IdCiudad)
-REFERENCES Ciudades (IdCiudad)
+ADD CONSTRAINT FK_USUARIOS_REFERENCE_COMUNAS FOREIGN KEY (IdComuna)
+REFERENCES Comunas (IdComuna)
 GO
 
 ALTER TABLE Usuarios
