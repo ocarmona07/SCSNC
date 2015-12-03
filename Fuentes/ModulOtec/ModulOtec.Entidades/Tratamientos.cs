@@ -12,9 +12,9 @@ namespace ModulOtec.Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Tratamiento
+    public partial class Tratamientos
     {
-        public Tratamiento()
+        public Tratamientos()
         {
             this.AnalisisCausa = new HashSet<AnalisisCausa>();
         }

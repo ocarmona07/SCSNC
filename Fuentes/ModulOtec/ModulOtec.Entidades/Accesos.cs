@@ -12,16 +12,17 @@ namespace ModulOtec.Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Regiones
+    public partial class Accesos
     {
-        public Regiones()
+        public Accesos()
         {
-            this.Provincias = new HashSet<Provincias>();
+            this.RolAcceso = new HashSet<RolAcceso>();
         }
     
-        public int IdRegion { get; set; }
-        public string Region { get; set; }
+        public int IdAcceso { get; set; }
+        public string DetalleAcceso { get; set; }
+        public string UrlAcceso { get; set; }
     
-        public virtual ICollection<Provincias> Provincias { get; set; }
+        public virtual ICollection<RolAcceso> RolAcceso { get; set; }
     }
 }

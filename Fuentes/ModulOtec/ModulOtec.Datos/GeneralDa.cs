@@ -23,25 +23,7 @@
             if (_modulOtecEntities == null) _modulOtecEntities = new ModulOTECEntities();
         }
 
-        /// <summary>
-        /// Método que obtiene un lista de Roles
-        /// </summary>
-        /// <returns>Lista de Roles</returns>
-        public List<Roles> ObtenerRoles()
-        {
-            try
-            {
-                return _modulOtecEntities.Roles.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                _modulOtecEntities.Dispose();
-            }
-        }
+        #region Regiones
 
         /// <summary>
         /// Método que obtiene un lista de Regiones
@@ -64,14 +46,14 @@
         }
 
         /// <summary>
-        /// Método que obtiene un lista de Ciudades
+        /// Método que obtiene un lista de Provincias
         /// </summary>
-        /// <returns>Lista de Ciudades</returns>
-        public List<Ciudades> ObtenerCiudades()
+        /// <returns>Lista de Provincias</returns>
+        public List<Provincias> ObtenerProvincias()
         {
             try
             {
-                return _modulOtecEntities.Ciudades.ToList();
+                return _modulOtecEntities.Provincias.ToList();
             }
             catch (Exception)
             {
@@ -83,6 +65,92 @@
             }
         }
 
+        /// <summary>
+        /// Método que obtiene un lista de Comunas
+        /// </summary>
+        /// <returns>Lista de Comunas</returns>
+        public List<Comunas> ObtenerComunas()
+        {
+            try
+            {
+                return _modulOtecEntities.Comunas.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        #endregion
+        
+        #region Roles
+
+        /// <summary>
+        /// Método que obtiene un lista de Roles
+        /// </summary>
+        /// <returns>Lista de Roles</returns>
+        public List<Roles> ObtenerRoles()
+        {
+            try
+            {
+                return _modulOtecEntities.Roles.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene un lista de Roles de Acceso
+        /// </summary>
+        /// <returns>Lista de Roles de Acceso</returns>
+        public List<RolAcceso> ObtenerRolesAcceso()
+        {
+            try
+            {
+                return _modulOtecEntities.RolAcceso.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene un lista de Accesos
+        /// </summary>
+        /// <returns>Lista de Roles</returns>
+        public List<Accesos> ObtenerAccesos()
+        {
+            try
+            {
+                return _modulOtecEntities.Accesos.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        #endregion
+        
         /// <summary>
         /// Método que obtiene un listado de Estados de una Incidencia
         /// </summary>
@@ -107,11 +175,31 @@
         /// Método que obtiene un lista de Tratamientos
         /// </summary>
         /// <returns>Lista de Tratamientos</returns>
-        public List<Tratamiento> ObtenerTratamientos()
+        public List<Tratamientos> ObtenerTratamientos()
         {
             try
             {
-                return _modulOtecEntities.Tratamiento.ToList();
+                return _modulOtecEntities.Tratamientos.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                _modulOtecEntities.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Método que obtiene un lista de Acciones
+        /// </summary>
+        /// <returns>Lista de Tratamientos</returns>
+        public List<Acciones> ObtenerAcciones()
+        {
+            try
+            {
+                return _modulOtecEntities.Acciones.ToList();
             }
             catch (Exception)
             {

@@ -25,15 +25,16 @@ namespace ModulOtec.Entidades
         public string ApPaterno { get; set; }
         public string ApMaterno { get; set; }
         public string Direccion { get; set; }
-        public Nullable<int> IdCiudad { get; set; }
         public Nullable<int> Telefono { get; set; }
         public string Email { get; set; }
+        public string PassUsuario { get; set; }
         public Nullable<int> IdRol { get; set; }
         public bool EsRepresentante { get; set; }
         public Nullable<int> IdOrganizacion { get; set; }
+        public Nullable<int> IdComuna { get; set; }
         public bool Estado { get; set; }
     
-        public virtual Ciudades Ciudades { get; set; }
+        public virtual Comunas Comunas { get; set; }
         public virtual ICollection<Incidencias> Incidencias { get; set; }
         public virtual Organizacion Organizacion { get; set; }
         public virtual Roles Roles { get; set; }

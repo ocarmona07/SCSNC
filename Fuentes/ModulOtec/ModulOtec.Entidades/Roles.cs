@@ -16,6 +16,7 @@ namespace ModulOtec.Entidades
     {
         public Roles()
         {
+            this.RolAcceso = new HashSet<RolAcceso>();
             this.Usuarios = new HashSet<Usuarios>();
         }
     
@@ -23,6 +24,7 @@ namespace ModulOtec.Entidades
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
     
+        public virtual ICollection<RolAcceso> RolAcceso { get; set; }
         public virtual ICollection<Usuarios> Usuarios { get; set; }
     }
 }

@@ -24,9 +24,11 @@ namespace ModulOtec.Entidades
         public string DV { get; set; }
         public string RazonSocial { get; set; }
         public string Direccion { get; set; }
+        public Nullable<int> IdComuna { get; set; }
         public int Telefono { get; set; }
         public bool Estado { get; set; }
     
+        public virtual Comunas Comunas { get; set; }
         public virtual ICollection<Usuarios> Usuarios { get; set; }
     }
 }

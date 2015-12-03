@@ -25,6 +25,7 @@ namespace ModulOtec.Entidades
         public int IdModoDeteccion { get; set; }
         public System.DateTime FechaIdentificacion { get; set; }
         public string AreaAfectada { get; set; }
+        public string ProcesoAfectado { get; set; }
         public string Descripcion { get; set; }
         public int IdEstadoIncidencia { get; set; }
     

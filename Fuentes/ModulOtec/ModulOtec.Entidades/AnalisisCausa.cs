@@ -17,18 +17,21 @@ namespace ModulOtec.Entidades
         public AnalisisCausa()
         {
             this.Documentos = new HashSet<Documentos>();
+            this.EvaluacionCumplimiento = new HashSet<EvaluacionCumplimiento>();
         }
     
         public int IdAnalisisCausa { get; set; }
         public Nullable<int> IdIncidencia { get; set; }
-        public string AccionesInmediatas { get; set; }
         public string EfectosDeseados { get; set; }
         public string CausasPotenciales { get; set; }
         public Nullable<int> IdTratamiento { get; set; }
+        public Nullable<int> idAccion { get; set; }
         public System.DateTime FechaLimite { get; set; }
     
+        public virtual Acciones Acciones { get; set; }
         public virtual Incidencias Incidencias { get; set; }
-        public virtual Tratamiento Tratamiento { get; set; }
+        public virtual Tratamientos Tratamientos { get; set; }
         public virtual ICollection<Documentos> Documentos { get; set; }
+        public virtual ICollection<EvaluacionCumplimiento> EvaluacionCumplimiento { get; set; }
     }
 }

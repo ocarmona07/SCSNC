@@ -12,18 +12,17 @@ namespace ModulOtec.Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Ciudades
+    public partial class Acciones
     {
-        public Ciudades()
+        public Acciones()
         {
-            this.Usuarios = new HashSet<Usuarios>();
+            this.AnalisisCausa = new HashSet<AnalisisCausa>();
         }
     
-        public int IdCiudad { get; set; }
-        public int IdRegion { get; set; }
-        public string Ciudad { get; set; }
+        public int IdAccion { get; set; }
+        public string DescAccion { get; set; }
+        public bool Estado { get; set; }
     
-        public virtual Regiones Regiones { get; set; }
-        public virtual ICollection<Usuarios> Usuarios { get; set; }
+        public virtual ICollection<AnalisisCausa> AnalisisCausa { get; set; }
     }
 }
