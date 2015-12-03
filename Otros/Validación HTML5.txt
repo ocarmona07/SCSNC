@@ -1,0 +1,15 @@
+http://www.w3schools.com/tags/att_input_type.asp
+
+- Para validar número se debe agregar lo siguiente:
+type="number"
+- Y para establecer la cantidad de números:
+min="1" max="999"
+
+Info: http://stackoverflow.com/questions/8354975/how-to-add-maxlength-for-html5-input-type-number-element
+
+
+- Para validar el dígito verificador del rut, se debe agregar lo siguiente en el control asp:TextBox:
+pattern="[0-9kK]"
+
+Info: http://www.w3schools.com/tags/att_input_pattern.asp
+
