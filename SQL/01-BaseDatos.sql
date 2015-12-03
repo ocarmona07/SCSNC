@@ -474,6 +474,7 @@ CREATE TABLE RolAcceso
       IdRolAcceso INT IDENTITY ,
       IdRol INT NULL ,
       IdAcceso INT NULL
+      CONSTRAINT PK_ROLACCESO PRIMARY KEY ( IdRolAcceso )
     )
 GO
 
