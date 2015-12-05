@@ -345,7 +345,7 @@ CREATE TABLE Acciones
       IdAccion INT IDENTITY ,
       IdAnalisisCausa INT NULL ,
       IdEstado INT NULL ,
-      DescAccion VARCHAR(150) NOT NULL ,
+      DescAccion VARCHAR(MAX) NOT NULL ,
       CONSTRAINT PK_ACCIONES PRIMARY KEY ( IdAccion )
     )
 GO
@@ -372,7 +372,7 @@ CREATE TABLE Comunas
     (
       IdComuna INT NOT NULL ,
       IdProvincia INT NULL ,
-      DescComuna VARCHAR(50) NOT NULL ,
+      Comuna VARCHAR(50) NOT NULL ,
       CONSTRAINT PK_COMUNAS PRIMARY KEY ( IdComuna )
     )
 GO
@@ -407,7 +407,7 @@ GO
 CREATE TABLE EstadosIncidencia
     (
       IdEstadoIncidencia INT NOT NULL ,
-      Descripcion VARCHAR(50) NOT NULL ,
+      Descripcion VARCHAR(150) NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_ESTADOSINCIDENCIA PRIMARY KEY ( IdEstadoIncidencia )
     )
@@ -450,7 +450,7 @@ GO
 CREATE TABLE ModosDeteccion
     (
       IdModoDeteccion INT NOT NULL ,
-      Descripcion VARCHAR(50) NOT NULL ,
+      Descripcion VARCHAR(150) NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_MODOSDETECCION PRIMARY KEY ( IdModoDeteccion )
     )
@@ -465,7 +465,7 @@ CREATE TABLE Organizacion
       RUN INT NOT NULL ,
       DV CHAR(1) NOT NULL ,
       RazonSocial VARCHAR(150) NOT NULL ,
-      Direccion VARCHAR(100) NOT NULL ,
+      Direccion VARCHAR(150) NOT NULL ,
       IdComuna INT NULL ,
       Telefono INT NOT NULL ,
       Estado BIT NOT NULL ,
@@ -480,7 +480,7 @@ CREATE TABLE Provincias
     (
       IdProvincia INT NOT NULL ,
       IdRegion INT NULL ,
-      DescProvincia VARCHAR(200) NULL ,
+      Provincia VARCHAR(50) NULL ,
       CONSTRAINT PK_PROVINCIAS PRIMARY KEY ( IdProvincia )
     )
 GO
@@ -526,7 +526,7 @@ GO
 CREATE TABLE TiposIncidencias
     (
       IdTipoIncidencia INT NOT NULL ,
-      Descripcion VARCHAR(50) NOT NULL ,
+      Descripcion VARCHAR(MAX) NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_TIPOSINCIDENCIAS PRIMARY KEY ( IdTipoIncidencia )
     )
@@ -538,7 +538,7 @@ GO
 CREATE TABLE Tratamientos
     (
       IdTratamiento INT NOT NULL ,
-      Descripcion VARCHAR(50) NOT NULL ,
+      Descripcion VARCHAR(150) NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_TRATAMIENTOS PRIMARY KEY ( IdTratamiento )
     )
@@ -554,7 +554,7 @@ CREATE TABLE Usuarios
       Nombres VARCHAR(50) NOT NULL ,
       ApPaterno VARCHAR(50) NOT NULL ,
       ApMaterno VARCHAR(50) NULL ,
-      Direccion VARCHAR(100) NULL ,
+      Direccion VARCHAR(150) NULL ,
       Telefono INT NULL ,
       Email VARCHAR(70) NOT NULL ,
       PassUsuario VARCHAR(15) NOT NULL ,
