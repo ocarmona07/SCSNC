@@ -14,7 +14,7 @@ INSERT INTO Regiones VALUES (5,'IV de Coquimbo')
 
 INSERT INTO Regiones VALUES (6,'V de Valparaíso')
 
-INSERT INTO Regiones VALUES (7,'VI del Libertador General Bernardo O'Higgins')
+INSERT INTO Regiones VALUES (7,'VI del Libertador General Bernardo O''Higgins')
 
 INSERT INTO Regiones VALUES (8,'VII del Maule')
 
