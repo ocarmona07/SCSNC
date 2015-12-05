@@ -13,3 +13,9 @@ pattern="[0-9kK]"
 
 Info: http://www.w3schools.com/tags/att_input_pattern.asp
 
+
+- Para que un botón se salte la validación se debe colocar lo siguiente:
+formnovalidate
+
+Info: http://stackoverflow.com/questions/18202784/how-not-to-validate-html5-text-box-with-required-attribute
+
