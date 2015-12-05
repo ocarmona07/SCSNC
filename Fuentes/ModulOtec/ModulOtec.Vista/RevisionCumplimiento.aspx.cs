@@ -13,5 +13,16 @@ namespace ModulOtec.Vista
         {
 
         }
+
+
+        protected void CancelarOnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("GestionIncidencias.aspx");
+        }
+
+        protected void ReAnalizarOnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("GestionIncidencias.aspx");
+        }
     }
 }

@@ -134,10 +134,10 @@
                             <asp:ListItem Text="Reparación de las 4 Sillas defectuosas de la Sala" ></asp:ListItem>
                             </asp:CheckBoxList>
                             <p><strong>Observaciones:</strong></p>
-                            <asp:TextBox ID="txtObservaciones" runat="server" Rows="5" width="100%" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtObservaciones" runat="server" Rows="5" width="100%" TextMode="MultiLine" required="required"></asp:TextBox>
                             <p align="center">
-                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger btn-sm" />
-                                <asp:Button ID="btnReAnalizar" runat="server" Text="Re Análisis" CssClass="btn btn-warning btn-sm" />
+                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger btn-sm" formnovalidate OnClientClick="return confirm('¿Está seguro de que desea cancelar?')" OnClick="CancelarOnClick" />
+                                <asp:Button ID="btnReAnalizar" runat="server" Text="Re Análisis" CssClass="btn btn-warning btn-sm" formnovalidate OnClientClick="return confirm('¿Desea hacer un Re Análisis?')" OnClick="ReAnalizarOnClick"/>
                                 <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar" CssClass="btn btn-success btn-sm" />
                             </p>
                         </div>
