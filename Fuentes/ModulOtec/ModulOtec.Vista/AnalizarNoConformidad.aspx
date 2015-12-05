@@ -81,11 +81,11 @@
                     <div class="row">
                         <div class="col-md-4">
                             <p><strong>Causas de No Conformidad:</strong></p>
-                            <asp:TextBox ID="txtCausas" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtCausas" TextMode="multiline" Width="100%" Rows="5" runat="server" requiered="requiered"></asp:TextBox>
                         </div>
                         <div class="col-md-4">
                             <p><strong>Efectos deseados al finalizar el proceso:</strong></p>
-                            <asp:TextBox ID="txtEfectosDeseados" TextMode="multiline" Width="100%" Rows="5" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtEfectosDeseados" TextMode="multiline" Width="100%" Rows="5" runat="server" requiered="requiered"></asp:TextBox>
                         </div>
                         <div class="col-md-4">
                             <p><strong>Acciones Correctivas:</strong></p>
@@ -125,7 +125,7 @@
                         </div>
                         <div class="col-md-3">
                             <p><strong>Fecha Límite:</strong></p>
-                            <asp:TextBox ID="tbFechaLimite" runat="server" type="date" />
+                            <asp:TextBox ID="tbFechaLimite" runat="server" type="date" requiered="requiered" />
                         </div>
                         <div class="col-md-3">
                             <p><strong>Tratamiento:</strong></p>

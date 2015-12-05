@@ -7,8 +7,9 @@
     <form>
         <div class="form-group">
             <label for="txtRut">RUT: </label>
-            <asp:TextBox ID="txtRut" runat="server" min="1" max="99999999" required="required" type="number" Width="100"></asp:TextBox>
-            -<asp:TextBox ID="txtDv" runat="server" MaxLength="1" required="required" Width="20"></asp:TextBox>
+            <asp:TextBox ID="txtRut" runat="server" min="1" MaxLength="8" required="required" Width="100"></asp:TextBox>
+            -<asp:TextBox ID="txtDv" runat="server" MaxLength="1" required="required" pattern="[0-9kK]" Width="20"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="regularRUT" runat="server" ErrorMessage="Sólo Números" ValidationExpression="\d*" ControlToValidate="txtRut"></asp:RegularExpressionValidator>
         </div>
         <div class="form-group">
             <label for="txtNombres">Nombres: </label>
