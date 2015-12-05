@@ -129,13 +129,7 @@
                         </div>
                         <div class="col-md-3">
                             <p><strong>Tratamiento:</strong></p>
-                            <asp:DropDownList ID="ddlTratamiento" runat="server">
-                                <asp:ListItem>Reproceso</asp:ListItem>
-                                <asp:ListItem>Reclasificación</asp:ListItem>
-                                <asp:ListItem>Concesión</asp:ListItem>
-                                <asp:ListItem>Desecho</asp:ListItem>
-                                <asp:ListItem>Permiso de Desviación</asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlTratamiento" runat="server" />
                         </div>
                     </div>
                 </div>

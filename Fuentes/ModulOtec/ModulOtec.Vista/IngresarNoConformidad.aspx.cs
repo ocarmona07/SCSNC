@@ -1,15 +1,19 @@
 ﻿namespace ModulOtec.Vista
 {
     using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Web;
-    using System.Web.UI;
     using System.Web.UI.WebControls;
+    using Negocio;
 
+    /// <summary>
+    /// Clase de ingreso de no conformidad
+    /// </summary>
     public partial class IngresarNoConformidad : System.Web.UI.Page
     {
+        /// <summary>
+        /// Método inicial de la vista
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
@@ -18,15 +22,11 @@
 
             #region Lista Tipo Conformidad
 
-            var listaTipoConformidad = new DataTable();
-            listaTipoConformidad.Columns.Add("Text");
-            listaTipoConformidad.Columns.Add("Value");
-            listaTipoConformidad.Rows.Add("No conformidad", "1");
-            listaTipoConformidad.Rows.Add("No conformidad potencial", "2");
+            var generalBo = new GeneralBo();
 
-            ddlTipoConformidad.DataSource = listaTipoConformidad;
-            ddlTipoConformidad.DataTextField = "Text";
-            ddlTipoConformidad.DataValueField = "Value";
+            ddlTipoConformidad.DataSource = generalBo.ObtenerTiposIncidencias();
+            ddlTipoConformidad.DataTextField = generalBo.Text;
+            ddlTipoConformidad.DataValueField = generalBo.Value;
             ddlTipoConformidad.DataBind();
 
             ddlTipoConformidad.Items.Insert(0, seleccione);
@@ -36,15 +36,9 @@
 
             #region Lista Modo Detección
 
-            var listaModoDeteccion = new DataTable();
-            listaModoDeteccion.Columns.Add("Text");
-            listaModoDeteccion.Columns.Add("Value");
-            listaModoDeteccion.Rows.Add("Auditoría Interna", "1");
-            listaModoDeteccion.Rows.Add("Reclamo", "2");
-
-            ddlModoDeteccion.DataSource = listaModoDeteccion;
-            ddlModoDeteccion.DataTextField = "Text";
-            ddlModoDeteccion.DataValueField = "Value";
+            ddlModoDeteccion.DataSource = generalBo.ObtenerModosDetecciones();
+            ddlModoDeteccion.DataTextField = generalBo.Text;
+            ddlModoDeteccion.DataValueField = generalBo.Value;
             ddlModoDeteccion.DataBind();
 
             ddlModoDeteccion.Items.Insert(0, seleccione);
