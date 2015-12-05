@@ -8,11 +8,11 @@
     <form role="form" class="form-horizontal">
         <div class="form-group">
             <label for="ddlTipoConformidad">Tipo de incidencia</label>
-            <asp:DropDownList runat="server" ID="ddlTipoConformidad" CssClass="form-control" />
+            <asp:DropDownList runat="server" ID="ddlTipoConformidad" CssClass="form-control" required="required"/>
         </div>
         <div class="form-group">
             <label for="ddlModoDeteccion">Modo de detección</label>
-            <asp:DropDownList runat="server" ID="ddlModoDeteccion" CssClass="form-control" />
+            <asp:DropDownList runat="server" ID="ddlModoDeteccion" CssClass="form-control" required="required"/>
         </div>
         <div class="form-group">
             <label for="tbFechaIdent">Fecha de identificación</label>
