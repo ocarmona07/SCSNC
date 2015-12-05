@@ -89,7 +89,10 @@
                         </div>
                         <div class="col-md-4">
                             <p><strong>Acciones Correctivas:</strong></p>
-                            <p><asp:TextBox ID="txtAnadirAccion" runat="server"></asp:TextBox> <asp:Button ID="btnAnadirAccion" runat="server" Text="Añadir" class="btn btn-success btn-xs"/> <asp:Button ID="btnQuitarAccion" runat="server" Text="Quitar" class="btn btn-danger btn-xs"/></p>
+                            <p>
+                                <asp:TextBox ID="txtAnadirAccion" runat="server"></asp:TextBox>
+                                <asp:Button ID="btnAnadirAccion" runat="server" Text="Añadir" class="btn btn-success btn-xs" />
+                                <asp:Button ID="btnQuitarAccion" runat="server" Text="Quitar" class="btn btn-danger btn-xs" /></p>
                             <asp:ListBox ID="ltbAcciones" runat="server">
                                 <asp:ListItem>Reparación de las 4 Sillas defectuosas de la Sala</asp:ListItem>
                             </asp:ListBox>
@@ -106,7 +109,9 @@
                                 </tr>
                                 <tr>
                                     <td>01</td>
-                                    <td>Certificado de Compromiso de Toma de Acciones</td><td><asp:Button runat="server" Text="Quitar Archivo" ID="btnQuitarArchivo" class="btn btn-danger btn-xs" /></td>
+                                    <td>Certificado de Compromiso de Toma de Acciones</td>
+                                    <td>
+                                        <asp:Button runat="server" Text="Quitar Archivo" ID="btnQuitarArchivo" class="btn btn-danger btn-xs" /></td>
                                 </tr>
                             </table>
                             <div class="row">
@@ -117,12 +122,12 @@
                                     <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" class="btn btn-success btn-xs" />
                                 </div>
                             </div>
-                            </div>
-                            <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3">
                             <p><strong>Fecha Límite:</strong></p>
                             <asp:TextBox ID="tbFechaLimite" runat="server" type="date" />
                         </div>
-                                                <div class="col-md-3">
+                        <div class="col-md-3">
                             <p><strong>Tratamiento:</strong></p>
                             <asp:DropDownList ID="ddlTratamiento" runat="server">
                                 <asp:ListItem>Reproceso</asp:ListItem>
@@ -138,18 +143,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-xs-6 col-sm-4 text-right">
             <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning" />
-
+        </div>
+        <div class="col-xs-6 col-sm-4 text-center">
             <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" class="btn btn-danger" />
-
+        </div>
+        <div class="col-xs-6 col-sm-4 text-left">
             <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" class="btn btn-success" />
         </div>
     </div>
-
-
-
-
-
-
 </asp:Content>
