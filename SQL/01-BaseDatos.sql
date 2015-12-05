@@ -6,10 +6,21 @@ IF EXISTS ( SELECT  1
                     JOIN sys.sysobjects o ON ( o.id = r.constid
                                                AND o.type = 'F'
                                              )
-            WHERE   r.fkeyid = OBJECT_ID('AnalisisCausa')
-                    AND o.name = 'FK_ANALISIS_REFERENCE_TRATAMIE' )
-    ALTER TABLE AnalisisCausa
-    DROP CONSTRAINT FK_ANALISIS_REFERENCE_TRATAMIE
+            WHERE   r.fkeyid = OBJECT_ID('Acciones')
+                    AND o.name = 'FK_ACCIONES_REFERENCE_ANALISIS' )
+    ALTER TABLE Acciones
+    DROP CONSTRAINT FK_ACCIONES_REFERENCE_ANALISIS
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sys.sysreferences r
+                    JOIN sys.sysobjects o ON ( o.id = r.constid
+                                               AND o.type = 'F'
+                                             )
+            WHERE   r.fkeyid = OBJECT_ID('Acciones')
+                    AND o.name = 'FK_ACCIONES_REFERENCE_ESTADOSA' )
+    ALTER TABLE Acciones
+    DROP CONSTRAINT FK_ACCIONES_REFERENCE_ESTADOSA
 GO
 
 IF EXISTS ( SELECT  1
@@ -18,9 +29,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('AnalisisCausa')
-                    AND o.name = 'FK_ANALISIS_REFERENCE_ACCIONES' )
+                    AND o.name = 'FK_ANALISIS_REFERENCE_TRATAMIE' )
     ALTER TABLE AnalisisCausa
-    DROP CONSTRAINT FK_ANALISIS_REFERENCE_ACCIONES
+    DROP CONSTRAINT FK_ANALISIS_REFERENCE_TRATAMIE
 GO
 
 IF EXISTS ( SELECT  1
@@ -225,6 +236,13 @@ GO
 
 IF EXISTS ( SELECT  1
             FROM    sysobjects
+            WHERE   id = OBJECT_ID('EstadosAccion')
+                    AND type = 'U' )
+    DROP TABLE EstadosAccion
+GO
+
+IF EXISTS ( SELECT  1
+            FROM    sysobjects
             WHERE   id = OBJECT_ID('EstadosIncidencia')
                     AND type = 'U' )
     DROP TABLE EstadosIncidencia
@@ -324,9 +342,10 @@ GO
 /*==============================================================*/
 CREATE TABLE Acciones
     (
-      IdAccion INT NOT NULL ,
+      IdAccion INT IDENTITY ,
+      IdAnalisisCausa INT NULL ,
+      IdEstado INT NULL ,
       DescAccion VARCHAR(150) NOT NULL ,
-      Estado BIT NOT NULL ,
       CONSTRAINT PK_ACCIONES PRIMARY KEY ( IdAccion )
     )
 GO
@@ -341,7 +360,6 @@ CREATE TABLE AnalisisCausa
       EfectosDeseados VARCHAR(MAX) NOT NULL ,
       CausasPotenciales VARCHAR(MAX) NOT NULL ,
       IdTratamiento INT NULL ,
-      idAccion INT NULL ,
       FechaLimite DATE NOT NULL ,
       CONSTRAINT PK_ANALISISCAUSA PRIMARY KEY ( IdAnalisisCausa )
     )
@@ -368,6 +386,18 @@ CREATE TABLE Documentos
       IdAnalisisCausa INT NULL ,
       UrlDocumento VARCHAR(MAX) NOT NULL ,
       CONSTRAINT PK_DOCUMENTOS PRIMARY KEY ( IdDocumento )
+    )
+GO
+
+/*==============================================================*/
+/* Table: EstadosAccion                                         */
+/*==============================================================*/
+CREATE TABLE EstadosAccion
+    (
+      IdEstado INT NOT NULL ,
+      Descripcion VARCHAR(35) NOT NULL ,
+      Estado BIT NOT NULL ,
+      CONSTRAINT PK_ESTADOSACCION PRIMARY KEY ( IdEstado )
     )
 GO
 
@@ -473,7 +503,7 @@ CREATE TABLE RolAcceso
     (
       IdRolAcceso INT IDENTITY ,
       IdRol INT NULL ,
-      IdAcceso INT NULL
+      IdAcceso INT NULL ,
       CONSTRAINT PK_ROLACCESO PRIMARY KEY ( IdRolAcceso )
     )
 GO
@@ -537,14 +567,19 @@ CREATE TABLE Usuarios
     )
 GO
 
-ALTER TABLE AnalisisCausa
-ADD CONSTRAINT FK_ANALISIS_REFERENCE_TRATAMIE FOREIGN KEY (IdTratamiento)
-REFERENCES Tratamientos (IdTratamiento)
+ALTER TABLE Acciones
+ADD CONSTRAINT FK_ACCIONES_REFERENCE_ANALISIS FOREIGN KEY (IdAnalisisCausa)
+REFERENCES AnalisisCausa (IdAnalisisCausa)
+GO
+
+ALTER TABLE Acciones
+ADD CONSTRAINT FK_ACCIONES_REFERENCE_ESTADOSA FOREIGN KEY (IdEstado)
+REFERENCES EstadosAccion (IdEstado)
 GO
 
 ALTER TABLE AnalisisCausa
-ADD CONSTRAINT FK_ANALISIS_REFERENCE_ACCIONES FOREIGN KEY (idAccion)
-REFERENCES Acciones (IdAccion)
+ADD CONSTRAINT FK_ANALISIS_REFERENCE_TRATAMIE FOREIGN KEY (IdTratamiento)
+REFERENCES Tratamientos (IdTratamiento)
 GO
 
 ALTER TABLE AnalisisCausa
