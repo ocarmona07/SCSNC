@@ -54,6 +54,9 @@
     <Compile Include="Documentos.cs">
       <DependentUpon>ModulOTECModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EstadosAccion.cs">
+      <DependentUpon>ModulOTECModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EstadosIncidencia.cs">
       <DependentUpon>ModulOTECModel.tt</DependentUpon>
     </Compile>

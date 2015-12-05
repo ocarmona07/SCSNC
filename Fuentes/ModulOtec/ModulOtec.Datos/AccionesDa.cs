@@ -6,9 +6,9 @@
     using Entidades;
 
     /// <summary>
-    /// Clase de datos para el Analisis de la causa
+    /// Clase de datos para la Acciones
     /// </summary>
-    public class AnalisisCausasDa
+    public class AccionesDa
     {
         /// <summary>
         /// Entidades de ModulOTEC
@@ -18,7 +18,7 @@
         /// <summary>
         /// Método que obtiene las entidades de ModulOTEC
         /// </summary>
-        public AnalisisCausasDa()
+        public AccionesDa()
         {
             if (_modulOtecEntities == null)
             {
@@ -27,15 +27,15 @@
         }
 
         /// <summary>
-        /// Método que crea un Análisis de la Causa
+        /// Método que crea una Acción
         /// </summary>
-        /// <param name="analisisCausa">Datos del Análisis de la Causa</param>
+        /// <param name="accion">Datos de la Acción</param>
         /// <returns>Id de confirmación</returns>
-        public int CrearAnalisisCausa(AnalisisCausa analisisCausa)
+        public int CrearAccion(Acciones accion)
         {
             try
             {
-                _modulOtecEntities.AnalisisCausa.Add(analisisCausa);
+                _modulOtecEntities.Acciones.Add(accion);
                 return _modulOtecEntities.SaveChanges();
             }
             catch (Exception)
@@ -49,14 +49,14 @@
         }
 
         /// <summary>
-        /// Método que obtiene todos los Análisis
+        /// Método que obtiene todas las Acciones
         /// </summary>
-        /// <returns>Listado de Causas</returns>
-        public List<AnalisisCausa> ObtenerAnalisisCausas()
+        /// <returns>Listado de Acciones</returns>
+        public List<Acciones> ObtenerAcciones()
         {
             try
             {
-                return _modulOtecEntities.AnalisisCausa.ToList();
+                return _modulOtecEntities.Acciones.ToList();
             }
             catch (Exception)
             {
@@ -69,15 +69,15 @@
         }
 
         /// <summary>
-        /// Método que obtiene un Análisis por su Id
+        /// Método que obtiene una Acción por su Id
         /// </summary>
-        /// <param name="idAnalisis">Id del Análisis</param>
-        /// <returns>Análisis de la Causa</returns>
-        public AnalisisCausa ObtenerAnalisisCausa(int idAnalisis)
+        /// <param name="idAccion">Id de la Acción</param>
+        /// <returns>Acción</returns>
+        public Acciones ObtenerAccion(int idAccion)
         {
             try
             {
-                return _modulOtecEntities.AnalisisCausa.Single(o => idAnalisis.Equals(o.IdAnalisisCausa));
+                return _modulOtecEntities.Acciones.Single(o => idAccion.Equals(o.IdAccion));
             }
             catch (Exception)
             {
@@ -90,17 +90,17 @@
         }
 
         /// <summary>
-        /// Método que actualiza un Análisis de la Causa
+        /// Método que actualiza una Acción
         /// </summary>
-        /// <param name="analisisCausa">Datos del Análisis</param>
+        /// <param name="accion">Datos de la Acción</param>
         /// <returns>Id de confirmación</returns>
-        public int ActualizarAnalisisCausa(AnalisisCausa analisisCausa)
+        public int ActualizarAccion(Acciones accion)
         {
             try
             {
-                var original = _modulOtecEntities.AnalisisCausa.Find(analisisCausa.IdIncidencia);
+                var original = _modulOtecEntities.Acciones.Find(accion.IdAccion);
                 if (original == null) return 0;
-                _modulOtecEntities.Entry(original).CurrentValues.SetValues(analisisCausa);
+                _modulOtecEntities.Entry(original).CurrentValues.SetValues(accion);
                 return _modulOtecEntities.SaveChanges();
             }
             catch (Exception)
@@ -114,17 +114,17 @@
         }
 
         /// <summary>
-        /// Método que elimina un Análisis de la Causa
+        /// Método que elimina una Acción
         /// </summary>
-        /// <param name="idAnalisis">Id del Análisis</param>
+        /// <param name="idAccion">Id de la Acción</param>
         /// <returns>Id de confirmación</returns>
-        public int EliminarAnalisisCausa(int idAnalisis)
+        public int EliminarAccion(int idAccion)
         {
             try
             {
-                var entidad = _modulOtecEntities.AnalisisCausa.Find(idAnalisis);
+                var entidad = _modulOtecEntities.Acciones.Find(idAccion);
                 if (entidad == null) return 0;
-                _modulOtecEntities.AnalisisCausa.Remove(entidad);
+                _modulOtecEntities.Acciones.Remove(entidad);
                 return _modulOtecEntities.SaveChanges();
             }
             catch (Exception)

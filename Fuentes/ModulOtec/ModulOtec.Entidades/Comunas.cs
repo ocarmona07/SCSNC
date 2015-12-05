@@ -22,7 +22,7 @@ namespace ModulOtec.Entidades
     
         public int IdComuna { get; set; }
         public Nullable<int> IdProvincia { get; set; }
-        public string DescComuna { get; set; }
+        public string Comuna { get; set; }
     
         public virtual Provincias Provincias { get; set; }
         public virtual ICollection<Organizacion> Organizacion { get; set; }

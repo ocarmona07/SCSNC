@@ -30,6 +30,7 @@ namespace ModulOtec.Entidades
         public DbSet<AnalisisCausa> AnalisisCausa { get; set; }
         public DbSet<Comunas> Comunas { get; set; }
         public DbSet<Documentos> Documentos { get; set; }
+        public DbSet<EstadosAccion> EstadosAccion { get; set; }
         public DbSet<EstadosIncidencia> EstadosIncidencia { get; set; }
         public DbSet<EvaluacionCumplimiento> EvaluacionCumplimiento { get; set; }
         public DbSet<Incidencias> Incidencias { get; set; }

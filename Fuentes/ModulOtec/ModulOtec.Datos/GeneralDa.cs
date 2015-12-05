@@ -192,14 +192,14 @@
         }
 
         /// <summary>
-        /// Método que obtiene un lista de Acciones
+        /// Método que obtiene un lista de Estados de Acciones
         /// </summary>
-        /// <returns>Lista de Tratamientos</returns>
-        public List<Acciones> ObtenerAcciones()
+        /// <returns>Lista de Estados</returns>
+        public List<EstadosAccion> ObtenerEstadosAccion()
         {
             try
             {
-                return _modulOtecEntities.Acciones.ToList();
+                return _modulOtecEntities.EstadosAccion.ToList();
             }
             catch (Exception)
             {

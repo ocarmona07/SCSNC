@@ -14,15 +14,12 @@ namespace ModulOtec.Entidades
     
     public partial class Acciones
     {
-        public Acciones()
-        {
-            this.AnalisisCausa = new HashSet<AnalisisCausa>();
-        }
-    
         public int IdAccion { get; set; }
+        public Nullable<int> IdAnalisisCausa { get; set; }
+        public Nullable<int> IdEstado { get; set; }
         public string DescAccion { get; set; }
-        public bool Estado { get; set; }
     
-        public virtual ICollection<AnalisisCausa> AnalisisCausa { get; set; }
+        public virtual AnalisisCausa AnalisisCausa { get; set; }
+        public virtual EstadosAccion EstadosAccion { get; set; }
     }
 }

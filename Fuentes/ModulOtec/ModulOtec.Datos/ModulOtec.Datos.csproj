@@ -43,6 +43,7 @@
     <Compile Include="GeneralDa.cs" />
     <Compile Include="AnalisisCausasDa.cs" />
     <Compile Include="EvaluacionesCumplimientoDa.cs" />
+    <Compile Include="AccionesDa.cs" />
     <Compile Include="IncidenciasDa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OrganizacionesDa.cs" />
