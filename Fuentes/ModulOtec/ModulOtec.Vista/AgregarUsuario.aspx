@@ -28,6 +28,14 @@
             <asp:TextBox ID="txtDireccion" runat="server" required="required"></asp:TextBox>
         </div>
         <div class="form-group">
+            <label for="ddlRegion">Región</label>
+            <asp:DropDownList runat="server" ID="ddlRegion" required="required" AutoPostBack="True" OnSelectedIndexChanged="ddlRegion_SelectedIndexChanged"></asp:DropDownList>
+        </div>
+        <div class="form-group">
+            <label for="ddlProvincia">Provincia</label>
+            <asp:DropDownList runat="server" ID="ddlProvincia" required="required" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
+        </div>
+        <div class="form-group">
             <label for="ddlComuna">Comuna</label>
             <asp:DropDownList runat="server" ID="ddlComuna" required="required"></asp:DropDownList>
         </div>
