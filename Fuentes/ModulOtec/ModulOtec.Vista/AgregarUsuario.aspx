@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="AgregarUsuario.aspx.cs" Inherits="ModulOtec.Vista.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="AgregarUsuario.aspx.cs" Inherits="ModulOtec.Vista.WebForm1" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
@@ -50,7 +50,7 @@
         </div>
         <div class="form-group">
         <button type="reset" class="btn btn-danger">Cancelar</button>
-        <button type="submit" class="btn btn-success">Agregar Usuario</button>
+        <asp:button runat="server" ID="AgregarUsuario" Text="Agregar Usuario" type="submit" CssClass="btn btn-success" OnClick="AgregarUsuario_Click"></asp:button>
         </div>
     </form>
 </asp:Content>
