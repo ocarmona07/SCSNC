@@ -1,10 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="AgregarUsuario.aspx.cs" Inherits="ModulOtec.Vista.WebForm1" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script type="text/javascript">
+    function confirmation() {
+        if (confirm("Está seguro que desea cancelar la operación?")) {
+            window.location.href = "MainModulos.aspx";
+        }
+        else {
+            return false;
+        }
+    }
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h4>Ingresar Nuevo Usuario</h4>
     <hr/>
-    <form>
         <table class="espacio-tabla">
             <tbody>
                 <tr>
@@ -113,11 +122,10 @@
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                        <asp:button runat="server" ID="btnCancelar" Text="Cancelar" CssClass="btn btn-danger" OnClientClick="return confirmation();"></asp:button>
                         <asp:button runat="server" ID="AgregarUsuario" Text="Agregar Usuario" type="submit" CssClass="btn btn-success" OnClick="AgregarUsuario_Click"></asp:button>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </form>
 </asp:Content>
