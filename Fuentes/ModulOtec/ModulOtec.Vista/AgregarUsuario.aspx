@@ -16,7 +16,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h4><asp:Label runat="server" ID="lblTitulo" /> Usuario</h4>
     <hr />
-    <table class="espacio-tabla">
+    <table class="espacio-tabla table-responsive">
         <tbody>
             <tr>
                 <td>
