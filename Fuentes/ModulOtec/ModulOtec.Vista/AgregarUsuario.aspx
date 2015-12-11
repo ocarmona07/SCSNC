@@ -14,7 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h4>Ingresar Nuevo Usuario</h4>
     <hr/>
-        <table class="espacio-tabla">
+        <table class="espacio-tabla table-responsive">
             <tbody>
                 <tr>
                     <td>
