@@ -28,10 +28,10 @@ namespace ModulOtec.Entidades
         public Nullable<int> Telefono { get; set; }
         public string Email { get; set; }
         public string PassUsuario { get; set; }
-        public Nullable<int> IdRol { get; set; }
+        public int IdRol { get; set; }
         public bool EsRepresentante { get; set; }
         public Nullable<int> IdOrganizacion { get; set; }
-        public Nullable<int> IdComuna { get; set; }
+        public int IdComuna { get; set; }
         public bool Estado { get; set; }
     
         public virtual Comunas Comunas { get; set; }

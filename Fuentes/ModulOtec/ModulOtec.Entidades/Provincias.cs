@@ -20,7 +20,7 @@ namespace ModulOtec.Entidades
         }
     
         public int IdProvincia { get; set; }
-        public Nullable<int> IdRegion { get; set; }
+        public int IdRegion { get; set; }
         public string Provincia { get; set; }
     
         public virtual ICollection<Comunas> Comunas { get; set; }

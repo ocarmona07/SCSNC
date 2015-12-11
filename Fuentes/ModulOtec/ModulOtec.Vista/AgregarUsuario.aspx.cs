@@ -7,6 +7,7 @@
     using System.Web.UI;
     using System.Web.UI.WebControls;
     using Negocio;
+    using Entidades;
 
     /// <summary>
     /// Clase principal para Agregar o Modificar un Usuario
@@ -21,8 +22,6 @@
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
-
-            lblTitulo.Text = Request.QueryString["IdUsuario"] != "0" ? "Actualizar" : "Ingresar Nuevo";
 
             var seleccione = new ListItem("Seleccione una opción...", "");
 
@@ -57,6 +56,46 @@
             ddlRol.Attributes.Add("required", "required");
 
             #endregion
+
+            if (!string.IsNullOrEmpty(Request.QueryString["RutUsuario"] + ""))
+            {
+                lblTitulo.Text = "Actualizar Usuario";
+                btnAgregarUsuario.Text = "Actualizar Usuario";
+                var usuario = new UsuariosBo().ObtenerUsuario(int.Parse(Request.QueryString["RutUsuario"] + ""));
+                if (usuario != null)
+                {
+                    txtRut.Enabled = false;
+                    txtRut.Text = usuario.RUT.ToString();
+                    btnAgregarUsuario.CommandArgument = usuario.RUT.ToString();
+                    txtDv.Enabled = false;
+                    txtDv.Text = usuario.DV;
+                    txtNombres.Text = usuario.Nombres;
+                    txtApellidoPaterno.Text = usuario.ApPaterno;
+                    txtApellidoMaterno.Text = usuario.ApMaterno;
+                    txtDireccion.Text = usuario.Direccion;
+
+                    var idProvincia = new GeneralBo().ObtenerComunas().First(o => usuario.IdComuna.Equals(o.IdComuna)).IdProvincia;
+                    var idRegion = new GeneralBo().ObtenerProvincias().First(o => idProvincia.Equals(o.IdProvincia)).IdRegion;
+                    ddlRegion.SelectedValue = idRegion + "";
+                    RegionSelectedIndexChanged(null, null);
+                    ddlProvincia.SelectedValue = idProvincia + "";
+                    ProvinciaSelectedIndexChanged(null, null);
+                    ddlComuna.SelectedValue = usuario.IdComuna + "";
+
+                    txtTelefono.Text = usuario.Telefono + "";
+                    txtEmail.Text = usuario.Email;
+                    ddlRol.SelectedValue = usuario.IdRol.ToString();
+                }
+                else
+                {
+                    // Usuario no encontrado
+                }
+            }
+            else
+            {
+                lblTitulo.Text = "Ingresar Nuevo Usuario";
+                btnAgregarUsuario.Text = "Agregar Usuario";
+            }
         }
 
         /// <summary>
@@ -66,7 +105,43 @@
         /// <param name="e">Argumentos del evento</param>
         protected void AgregarUsuarioClick(object sender, EventArgs e)
         {
+            var usuario = new Usuarios();
+            usuario.DV = txtDv.Text;
+            usuario.Nombres = txtNombres.Text;
+            usuario.ApPaterno = txtApellidoPaterno.Text;
+            usuario.ApMaterno = txtApellidoMaterno.Text;
+            usuario.Direccion = txtDireccion.Text;
+            usuario.IdComuna = int.Parse(ddlComuna.SelectedValue);
+            usuario.Telefono = int.Parse(txtTelefono.Text);
+            usuario.Email = txtEmail.Text;
+            usuario.IdRol = int.Parse(ddlRol.SelectedValue);
+            if (!string.IsNullOrEmpty(txtPassword.Text)) usuario.PassUsuario = txtPassword.Text;
 
+            var usuarioBo = new UsuariosBo();
+            if (!string.IsNullOrEmpty(btnAgregarUsuario.CommandArgument))
+            {
+                usuario.RUT = int.Parse(btnAgregarUsuario.CommandArgument);
+                if (usuarioBo.ActualizarUsuario(usuario) > 0)
+                {
+                    // Actualizado OK!
+                }
+                else
+                {
+                    // Error
+                }
+            }
+            else
+            {
+                usuario.RUT = int.Parse(txtRut.Text);
+                if (usuarioBo.CrearUsuario(usuario) > 0)
+                {
+                    // Creado OK!
+                }
+                else
+                {
+                    // Error
+                }
+            }
         }
 
         /// <summary>
@@ -89,6 +164,10 @@
 
             ddlProvincia.Items.Insert(0, seleccione);
             ddlProvincia.Attributes.Add("required", "required");
+
+            ddlComuna.Items.Clear();
+            ddlComuna.Items.Insert(0, seleccione);
+            ddlComuna.Attributes.Add("required", "required");
         }
 
         /// <summary>

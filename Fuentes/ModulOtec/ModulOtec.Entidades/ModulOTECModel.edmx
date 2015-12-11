@@ -38,7 +38,7 @@
             <PropertyRef Name="IdComuna" />
           </Key>
           <Property Name="IdComuna" Type="int" Nullable="false" />
-          <Property Name="IdProvincia" Type="int" />
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
           <Property Name="Comuna" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Documentos">
@@ -105,7 +105,7 @@
           <Property Name="DV" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="RazonSocial" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="IdComuna" Type="int" />
+          <Property Name="IdComuna" Type="int" Nullable="false" />
           <Property Name="Telefono" Type="int" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
@@ -114,7 +114,7 @@
             <PropertyRef Name="IdProvincia" />
           </Key>
           <Property Name="IdProvincia" Type="int" Nullable="false" />
-          <Property Name="IdRegion" Type="int" />
+          <Property Name="IdRegion" Type="int" Nullable="false" />
           <Property Name="Provincia" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Regiones">
@@ -169,10 +169,10 @@
           <Property Name="Telefono" Type="int" />
           <Property Name="Email" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="PassUsuario" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="IdRol" Type="int" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
           <Property Name="EsRepresentante" Type="bit" Nullable="false" />
           <Property Name="IdOrganizacion" Type="int" />
-          <Property Name="IdComuna" Type="int" />
+          <Property Name="IdComuna" Type="int" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ACCIONES_REFERENCE_ANALISIS">
@@ -224,7 +224,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COMUNAS_REFERENCE_PROVINCI">
-          <End Role="Provincias" Type="Self.Provincias" Multiplicity="0..1" />
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
           <End Role="Comunas" Type="Self.Comunas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Provincias">
@@ -308,7 +308,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ORGANIZA_REFERENCE_COMUNAS">
-          <End Role="Comunas" Type="Self.Comunas" Multiplicity="0..1" />
+          <End Role="Comunas" Type="Self.Comunas" Multiplicity="1" />
           <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comunas">
@@ -320,7 +320,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROVINCI_REFERENCE_REGIONES">
-          <End Role="Regiones" Type="Self.Regiones" Multiplicity="0..1" />
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="1" />
           <End Role="Provincias" Type="Self.Provincias" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Regiones">
@@ -368,7 +368,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USUARIOS_REF_USUAR_ROLES">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">
@@ -380,7 +380,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USUARIOS_REFERENCE_COMUNAS">
-          <End Role="Comunas" Type="Self.Comunas" Multiplicity="0..1" />
+          <End Role="Comunas" Type="Self.Comunas" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comunas">
@@ -620,7 +620,7 @@
             <PropertyRef Name="IdComuna" />
           </Key>
           <Property Name="IdComuna" Type="Int32" Nullable="false" />
-          <Property Name="IdProvincia" Type="Int32" />
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" />
           <Property Name="Comuna" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Provincias" Relationship="ModulOTECModel.FK_COMUNAS_REFERENCE_PROVINCI" FromRole="Comunas" ToRole="Provincias" />
           <NavigationProperty Name="Organizacion" Relationship="ModulOTECModel.FK_ORGANIZA_REFERENCE_COMUNAS" FromRole="Comunas" ToRole="Organizacion" />
@@ -700,7 +700,7 @@
           <Property Name="DV" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="IdComuna" Type="Int32" />
+          <Property Name="IdComuna" Type="Int32" Nullable="false" />
           <Property Name="Telefono" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_ORGANIZA_REFERENCE_COMUNAS" FromRole="Organizacion" ToRole="Comunas" />
@@ -711,7 +711,7 @@
             <PropertyRef Name="IdProvincia" />
           </Key>
           <Property Name="IdProvincia" Type="Int32" Nullable="false" />
-          <Property Name="IdRegion" Type="Int32" />
+          <Property Name="IdRegion" Type="Int32" Nullable="false" />
           <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_COMUNAS_REFERENCE_PROVINCI" FromRole="Provincias" ToRole="Comunas" />
           <NavigationProperty Name="Regiones" Relationship="ModulOTECModel.FK_PROVINCI_REFERENCE_REGIONES" FromRole="Provincias" ToRole="Regiones" />
@@ -775,10 +775,10 @@
           <Property Name="Telefono" Type="Int32" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
           <Property Name="PassUsuario" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="IdRol" Type="Int32" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
           <Property Name="EsRepresentante" Type="Boolean" Nullable="false" />
           <Property Name="IdOrganizacion" Type="Int32" />
-          <Property Name="IdComuna" Type="Int32" />
+          <Property Name="IdComuna" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_USUARIOS_REFERENCE_COMUNAS" FromRole="Usuarios" ToRole="Comunas" />
           <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_USUARIOS" FromRole="Usuarios" ToRole="Incidencias" />
@@ -870,7 +870,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COMUNAS_REFERENCE_PROVINCI">
-          <End Type="ModulOTECModel.Provincias" Role="Provincias" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.Provincias" Role="Provincias" Multiplicity="1" />
           <End Type="ModulOTECModel.Comunas" Role="Comunas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Provincias">
@@ -882,7 +882,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ORGANIZA_REFERENCE_COMUNAS">
-          <End Type="ModulOTECModel.Comunas" Role="Comunas" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.Comunas" Role="Comunas" Multiplicity="1" />
           <End Type="ModulOTECModel.Organizacion" Role="Organizacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comunas">
@@ -894,7 +894,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USUARIOS_REFERENCE_COMUNAS">
-          <End Type="ModulOTECModel.Comunas" Role="Comunas" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.Comunas" Role="Comunas" Multiplicity="1" />
           <End Type="ModulOTECModel.Usuarios" Role="Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comunas">
@@ -966,7 +966,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PROVINCI_REFERENCE_REGIONES">
-          <End Type="ModulOTECModel.Regiones" Role="Regiones" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.Regiones" Role="Regiones" Multiplicity="1" />
           <End Type="ModulOTECModel.Provincias" Role="Provincias" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Regiones">
@@ -990,7 +990,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USUARIOS_REF_USUAR_ROLES">
-          <End Type="ModulOTECModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.Roles" Role="Roles" Multiplicity="1" />
           <End Type="ModulOTECModel.Usuarios" Role="Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">

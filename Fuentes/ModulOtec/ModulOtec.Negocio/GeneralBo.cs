@@ -28,6 +28,17 @@
         }
 
         /// <summary>
+        /// Método que obtiene un lista de provincias
+        /// </summary>
+        /// <returns>Lista de Provincias</returns>
+        public List<Provincias> ObtenerProvincias()
+        {
+            Text = "Provincia";
+            Value = "IdProvincia";
+            return new GeneralDa().ObtenerProvincias();
+        }
+
+        /// <summary>
         /// Método que obtiene un lista de provincias por región
         /// </summary>
         /// <param name="idRegion">Id de la Región</param>
@@ -44,6 +55,17 @@
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Método que obtiene un lista de comunas
+        /// </summary>
+        /// <returns>Lista de Comunas</returns>
+        public List<Comunas> ObtenerComunas()
+        {
+            Text = "Comuna";
+            Value = "IdComuna";
+            return new GeneralDa().ObtenerComunas();
         }
 
         /// <summary>

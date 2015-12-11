@@ -14,7 +14,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <h4><asp:Label runat="server" ID="lblTitulo" /> Usuario</h4>
+    <h4><asp:Label runat="server" ID="lblTitulo" /></h4>
     <hr />
     <table class="espacio-tabla table-responsive">
         <tbody>
