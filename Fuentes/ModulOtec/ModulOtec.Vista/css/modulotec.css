@@ -31,4 +31,6 @@
 .lift {
     font-weight: normal !important;
 }
-
+.espacio-tabla { border-spacing: 5px;/*use to work like cellspacing */
+     }
+.espacio-tabla th, td { padding: 5px; }

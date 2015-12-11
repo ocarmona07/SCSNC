@@ -72,20 +72,21 @@ namespace ModulOtec.Vista
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var seleccione = new ListItem("Seleccione una opción...", "");
-            #region Lista Comunas
+                var seleccione = new ListItem("Seleccione una opción...", "");
+                #region Lista Comunas
 
-            var generalBo = new GeneralBo();
+                var generalBo = new GeneralBo();
 
-            ddlComuna.DataSource = generalBo.ObtenerComunasPorProvincia(ddlProvincia.SelectedIndex);
-            ddlComuna.DataTextField = generalBo.Text;
-            ddlComuna.DataValueField = generalBo.Value;
-            ddlComuna.DataBind();
+                ddlComuna.DataSource = generalBo.ObtenerComunasPorProvincia(ddlProvincia.SelectedIndex);
+                ddlComuna.DataTextField = generalBo.Text;
+                ddlComuna.DataValueField = generalBo.Value;
+                ddlComuna.DataBind();
 
-            ddlComuna.Items.Insert(0, seleccione);
-            ddlComuna.Attributes.Add("required", "required");
+                ddlComuna.Items.Insert(0, seleccione);
+                ddlComuna.Attributes.Add("required", "required");
 
-            #endregion
+                #endregion
+
         }
     }
 }
