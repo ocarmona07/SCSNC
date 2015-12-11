@@ -10,7 +10,16 @@
 namespace ModulOtec.Vista {
     
     
-    public partial class WebForm1 {
+    public partial class AgregarUsuario {
+        
+        /// <summary>
+        /// Control lblTitulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
         
         /// <summary>
         /// Control txtRut.
@@ -157,12 +166,12 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.Button btnCancelar;
         
         /// <summary>
-        /// Control AgregarUsuario.
+        /// Control btnAgregarUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AgregarUsuario;
+        protected global::System.Web.UI.WebControls.Button btnAgregarUsuario;
     }
 }
