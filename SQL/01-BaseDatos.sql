@@ -371,7 +371,7 @@ GO
 CREATE TABLE Comunas
     (
       IdComuna INT NOT NULL ,
-      IdProvincia INT NULL ,
+      IdProvincia INT NOT NULL ,
       Comuna VARCHAR(50) NOT NULL ,
       CONSTRAINT PK_COMUNAS PRIMARY KEY ( IdComuna )
     )
@@ -479,7 +479,7 @@ GO
 CREATE TABLE Provincias
     (
       IdProvincia INT NOT NULL ,
-      IdRegion INT NULL ,
+      IdRegion INT NOT NULL ,
       Provincia VARCHAR(50) NULL ,
       CONSTRAINT PK_PROVINCIAS PRIMARY KEY ( IdProvincia )
     )
