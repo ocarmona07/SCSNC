@@ -466,7 +466,7 @@ CREATE TABLE Organizacion
       DV CHAR(1) NOT NULL ,
       RazonSocial VARCHAR(150) NOT NULL ,
       Direccion VARCHAR(150) NOT NULL ,
-      IdComuna INT NULL ,
+      IdComuna INT NOT NULL ,
       Telefono INT NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_ORGANIZACION PRIMARY KEY ( IdOrganizacion )
@@ -558,10 +558,10 @@ CREATE TABLE Usuarios
       Telefono INT NULL ,
       Email VARCHAR(70) NOT NULL ,
       PassUsuario VARCHAR(15) NOT NULL ,
-      IdRol INT NULL ,
+      IdRol INT NOT NULL ,
       EsRepresentante BIT NOT NULL ,
       IdOrganizacion INT NULL ,
-      IdComuna INT NULL ,
+      IdComuna INT NOT NULL ,
       Estado BIT NOT NULL ,
       CONSTRAINT PK_USUARIOS PRIMARY KEY ( RUT )
     )
