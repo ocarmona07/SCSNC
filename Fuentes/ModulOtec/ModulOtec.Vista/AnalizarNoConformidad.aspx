@@ -1,6 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="AnalizarNoConformidad.aspx.cs" Inherits="ModulOtec.Vista.AnalizarNoConformidad" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function confirmation() {
+            if (confirm("Está seguro que desea cancelar la operación?")) {
+                window.location.href = "GestionIncidencias.aspx";
+            }
+            else {
+                return false;
+            }
+        }
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h4>Analisis de No Conformidad</h4>
@@ -138,7 +148,7 @@
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-4 text-right">
-            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning" />
+            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning" OnClientClick="return confirmation();"/>
         </div>
         <div class="col-xs-6 col-sm-4 text-center">
             <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" class="btn btn-danger" />
