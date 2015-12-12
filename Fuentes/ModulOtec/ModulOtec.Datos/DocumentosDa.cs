@@ -36,7 +36,8 @@
             try
             {
                 _modulOtecEntities.Documentos.Add(documento);
-                return _modulOtecEntities.SaveChanges();
+                _modulOtecEntities.SaveChanges();
+                return documento.IdDocumento;
             }
             catch (Exception)
             {

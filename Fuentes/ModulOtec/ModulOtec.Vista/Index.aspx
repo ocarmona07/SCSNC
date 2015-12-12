@@ -42,7 +42,7 @@
             </div>
             <div class="row espacio-tabla">
                 <div class="col-md-4 col-md-offset-4">
-                    <asp:LinkButton ID="lnkIngresar" runat="server" CssClass="btn btn-primary col-lg-12" Text="Ingresar" OnClick="IngresarOnClick" />
+                    <asp:LinkButton ID="lnkIngresar" runat="server" CssClass="btn btn-primary col-lg-12" Text="Ingresar" type="submit" OnClick="IngresarOnClick" />
                 </div>
             </div>
         </div>

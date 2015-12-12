@@ -36,7 +36,8 @@
             try
             {
                 _modulOtecEntities.Incidencias.Add(incidencia);
-                return _modulOtecEntities.SaveChanges();
+                _modulOtecEntities.SaveChanges();
+                return incidencia.IdIncidencia;
             }
             catch (Exception)
             {

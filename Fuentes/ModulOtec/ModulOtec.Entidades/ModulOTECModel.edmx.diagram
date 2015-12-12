@@ -4,25 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ebad5aeb628f4abbaa2a8a9bcbd45ac7" Name="Diagram1" ZoomLevel="50">
-        <EntityTypeShape EntityType="ModulOTECModel.Accesos" Width="1.5" PointX="5.875" PointY="4.75" />
-        <EntityTypeShape EntityType="ModulOTECModel.Acciones" Width="1.5" PointX="12.75" PointY="4.375" />
-        <EntityTypeShape EntityType="ModulOTECModel.AnalisisCausa" Width="1.5" PointX="10.5" PointY="4.875" />
-        <EntityTypeShape EntityType="ModulOTECModel.Comunas" Width="1.5" PointX="0.75" PointY="7.625" />
-        <EntityTypeShape EntityType="ModulOTECModel.Documentos" Width="1.5" PointX="12.75" PointY="9.875" />
-        <EntityTypeShape EntityType="ModulOTECModel.EstadosAccion" Width="1.5" PointX="13" PointY="1.5" />
-        <EntityTypeShape EntityType="ModulOTECModel.EstadosIncidencia" Width="1.5" PointX="9" PointY="9.625" />
-        <EntityTypeShape EntityType="ModulOTECModel.EvaluacionCumplimiento" Width="1.5" PointX="12.75" PointY="7.125" />
-        <EntityTypeShape EntityType="ModulOTECModel.Incidencias" Width="1.5" PointX="8.25" PointY="4.625" />
-        <EntityTypeShape EntityType="ModulOTECModel.ModosDeteccion" Width="1.5" PointX="8.125" PointY="1.625" />
-        <EntityTypeShape EntityType="ModulOTECModel.Organizacion" Width="1.5" PointX="0.875" PointY="3.5" />
-        <EntityTypeShape EntityType="ModulOTECModel.Provincias" Width="1.5" PointX="3.25" PointY="9.75" />
-        <EntityTypeShape EntityType="ModulOTECModel.Regiones" Width="1.5" PointX="0.75" PointY="10.25" />
-        <EntityTypeShape EntityType="ModulOTECModel.RolAcceso" Width="1.5" PointX="5.875" PointY="1.625" />
-        <EntityTypeShape EntityType="ModulOTECModel.Roles" Width="1.5" PointX="3.625" PointY="1.375" />
-        <EntityTypeShape EntityType="ModulOTECModel.TiposIncidencias" Width="1.5" PointX="5.875" PointY="8.875" />
-        <EntityTypeShape EntityType="ModulOTECModel.Tratamientos" Width="1.5" PointX="10.25" PointY="1.625" />
-        <EntityTypeShape EntityType="ModulOTECModel.Usuarios" Width="1.5" PointX="3.625" PointY="4" />
+      <Diagram DiagramId="ebad5aeb628f4abbaa2a8a9bcbd45ac7" Name="Diagram1" ZoomLevel="42">
+        <EntityTypeShape EntityType="ModulOTECModel.Accesos" Width="1.5" PointX="5.75" PointY="6.375" />
+        <EntityTypeShape EntityType="ModulOTECModel.Acciones" Width="1.5" PointX="13.25" PointY="4" />
+        <EntityTypeShape EntityType="ModulOTECModel.AnalisisCausa" Width="1.5" PointX="10.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ModulOTECModel.Comunas" Width="1.5" PointX="0.625" PointY="5.375" />
+        <EntityTypeShape EntityType="ModulOTECModel.Documentos" Width="1.5" PointX="12.5" PointY="9.75" />
+        <EntityTypeShape EntityType="ModulOTECModel.EstadosAccion" Width="1.5" PointX="15.75" PointY="4.25" />
+        <EntityTypeShape EntityType="ModulOTECModel.EstadosIncidencia" Width="1.5" PointX="5.625" PointY="2.25" />
+        <EntityTypeShape EntityType="ModulOTECModel.EvaluacionCumplimiento" Width="1.5" PointX="12.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ModulOTECModel.Incidencias" Width="1.5" PointX="7.875" PointY="4.125" />
+        <EntityTypeShape EntityType="ModulOTECModel.ModosDeteccion" Width="1.5" PointX="9" PointY="1.75" />
+        <EntityTypeShape EntityType="ModulOTECModel.Organizacion" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="ModulOTECModel.Provincias" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="ModulOTECModel.Regiones" Width="1.5" PointX="0.875" PointY="11" />
+        <EntityTypeShape EntityType="ModulOTECModel.RolAcceso" Width="1.5" PointX="5.5" PointY="9.625" />
+        <EntityTypeShape EntityType="ModulOTECModel.Roles" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ModulOTECModel.TiposIncidencias" Width="1.5" PointX="7.75" PointY="9.625" />
+        <EntityTypeShape EntityType="ModulOTECModel.Tratamientos" Width="1.5" PointX="11.5" PointY="1.875" />
+        <EntityTypeShape EntityType="ModulOTECModel.Usuarios" Width="1.5" PointX="3.375" PointY="3.875" />
         <AssociationConnector Association="ModulOTECModel.FK_ROLACCES_REFERENCE_ACCESOS" />
         <AssociationConnector Association="ModulOTECModel.FK_ACCIONES_REFERENCE_ANALISIS" />
         <AssociationConnector Association="ModulOTECModel.FK_ACCIONES_REFERENCE_ESTADOSA" />
@@ -30,7 +30,7 @@
         <AssociationConnector Association="ModulOTECModel.FK_ANALISIS_REFERENCE_TRATAMIE" />
         <AssociationConnector Association="ModulOTECModel.FK_DOCUMENT_REFERENCE_ANALISIS" />
         <AssociationConnector Association="ModulOTECModel.FK_EVALUACI_REFERENCE_ANALISIS" />
-        <AssociationConnector Association="ModulOTECModel.FK_COMUNAS_REFERENCE_PROVINCI" ></AssociationConnector>
+        <AssociationConnector Association="ModulOTECModel.FK_COMUNAS_REFERENCE_PROVINCI" />
         <AssociationConnector Association="ModulOTECModel.FK_ORGANIZA_REFERENCE_COMUNAS" />
         <AssociationConnector Association="ModulOTECModel.FK_USUARIOS_REFERENCE_COMUNAS" />
         <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_ESTADOSI" />

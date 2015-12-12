@@ -18,20 +18,20 @@
             <PropertyRef Name="IdAccion" />
           </Key>
           <Property Name="IdAccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdAnalisisCausa" Type="int" />
-          <Property Name="IdEstado" Type="int" />
+          <Property Name="IdAnalisisCausa" Type="int" Nullable="false" />
           <Property Name="DescAccion" Type="varchar(max)" Nullable="false" />
+          <Property Name="IdEstado" Type="int" />
         </EntityType>
         <EntityType Name="AnalisisCausa">
           <Key>
             <PropertyRef Name="IdAnalisisCausa" />
           </Key>
           <Property Name="IdAnalisisCausa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdIncidencia" Type="int" />
-          <Property Name="EfectosDeseados" Type="varchar(max)" Nullable="false" />
+          <Property Name="IdIncidencia" Type="int" Nullable="false" />
           <Property Name="CausasPotenciales" Type="varchar(max)" Nullable="false" />
-          <Property Name="IdTratamiento" Type="int" />
+          <Property Name="EfectosDeseados" Type="varchar(max)" Nullable="false" />
           <Property Name="FechaLimite" Type="date" Nullable="false" />
+          <Property Name="IdTratamiento" Type="int" />
         </EntityType>
         <EntityType Name="Comunas">
           <Key>
@@ -80,6 +80,7 @@
           </Key>
           <Property Name="IdIncidencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RutCreador" Type="int" Nullable="false" />
+          <Property Name="FechaIngreso" Type="date" Nullable="false" />
           <Property Name="IdTipoIncidencia" Type="int" Nullable="false" />
           <Property Name="IdModoDeteccion" Type="int" Nullable="false" />
           <Property Name="FechaIdentificacion" Type="date" Nullable="false" />
@@ -115,7 +116,7 @@
           </Key>
           <Property Name="IdProvincia" Type="int" Nullable="false" />
           <Property Name="IdRegion" Type="int" Nullable="false" />
-          <Property Name="Provincia" Type="varchar" MaxLength="50" />
+          <Property Name="Provincia" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Regiones">
           <Key>
@@ -176,7 +177,7 @@
           <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ACCIONES_REFERENCE_ANALISIS">
-          <End Role="AnalisisCausa" Type="Self.AnalisisCausa" Multiplicity="0..1" />
+          <End Role="AnalisisCausa" Type="Self.AnalisisCausa" Multiplicity="1" />
           <End Role="Acciones" Type="Self.Acciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalisisCausa">
@@ -200,7 +201,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ANALISIS_REFERENCE_INCIDENC">
-          <End Role="Incidencias" Type="Self.Incidencias" Multiplicity="0..1" />
+          <End Role="Incidencias" Type="Self.Incidencias" Multiplicity="1" />
           <End Role="AnalisisCausa" Type="Self.AnalisisCausa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Incidencias">
@@ -593,9 +594,9 @@
             <PropertyRef Name="IdAccion" />
           </Key>
           <Property Name="IdAccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdAnalisisCausa" Type="Int32" />
-          <Property Name="IdEstado" Type="Int32" />
+          <Property Name="IdAnalisisCausa" Type="Int32" Nullable="false" />
           <Property Name="DescAccion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int32" />
           <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ACCIONES_REFERENCE_ANALISIS" FromRole="Acciones" ToRole="AnalisisCausa" />
           <NavigationProperty Name="EstadosAccion" Relationship="ModulOTECModel.FK_ACCIONES_REFERENCE_ESTADOSA" FromRole="Acciones" ToRole="EstadosAccion" />
         </EntityType>
@@ -604,11 +605,11 @@
             <PropertyRef Name="IdAnalisisCausa" />
           </Key>
           <Property Name="IdAnalisisCausa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdIncidencia" Type="Int32" />
-          <Property Name="EfectosDeseados" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdIncidencia" Type="Int32" Nullable="false" />
           <Property Name="CausasPotenciales" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IdTratamiento" Type="Int32" />
+          <Property Name="EfectosDeseados" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FechaLimite" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdTratamiento" Type="Int32" />
           <NavigationProperty Name="Acciones" Relationship="ModulOTECModel.FK_ACCIONES_REFERENCE_ANALISIS" FromRole="AnalisisCausa" ToRole="Acciones" />
           <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_ANALISIS_REFERENCE_INCIDENC" FromRole="AnalisisCausa" ToRole="Incidencias" />
           <NavigationProperty Name="Tratamientos" Relationship="ModulOTECModel.FK_ANALISIS_REFERENCE_TRATAMIE" FromRole="AnalisisCausa" ToRole="Tratamientos" />
@@ -669,6 +670,7 @@
           </Key>
           <Property Name="IdIncidencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RutCreador" Type="Int32" Nullable="false" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdTipoIncidencia" Type="Int32" Nullable="false" />
           <Property Name="IdModoDeteccion" Type="Int32" Nullable="false" />
           <Property Name="FechaIdentificacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -712,7 +714,7 @@
           </Key>
           <Property Name="IdProvincia" Type="Int32" Nullable="false" />
           <Property Name="IdRegion" Type="Int32" Nullable="false" />
-          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Provincia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_COMUNAS_REFERENCE_PROVINCI" FromRole="Provincias" ToRole="Comunas" />
           <NavigationProperty Name="Regiones" Relationship="ModulOTECModel.FK_PROVINCI_REFERENCE_REGIONES" FromRole="Provincias" ToRole="Regiones" />
         </EntityType>
@@ -798,7 +800,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ACCIONES_REFERENCE_ANALISIS">
-          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="1" />
           <End Type="ModulOTECModel.Acciones" Role="Acciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalisisCausa">
@@ -822,7 +824,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ANALISIS_REFERENCE_INCIDENC">
-          <End Type="ModulOTECModel.Incidencias" Role="Incidencias" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.Incidencias" Role="Incidencias" Multiplicity="1" />
           <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Incidencias">
@@ -1019,8 +1021,8 @@
           <EntitySetMapping Name="Acciones">
             <EntityTypeMapping TypeName="ModulOTECModel.Acciones">
               <MappingFragment StoreEntitySet="Acciones">
-                <ScalarProperty Name="DescAccion" ColumnName="DescAccion" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="DescAccion" ColumnName="DescAccion" />
                 <ScalarProperty Name="IdAnalisisCausa" ColumnName="IdAnalisisCausa" />
                 <ScalarProperty Name="IdAccion" ColumnName="IdAccion" />
               </MappingFragment>
@@ -1029,10 +1031,10 @@
           <EntitySetMapping Name="AnalisisCausa">
             <EntityTypeMapping TypeName="ModulOTECModel.AnalisisCausa">
               <MappingFragment StoreEntitySet="AnalisisCausa">
-                <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
                 <ScalarProperty Name="IdTratamiento" ColumnName="IdTratamiento" />
-                <ScalarProperty Name="CausasPotenciales" ColumnName="CausasPotenciales" />
+                <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
                 <ScalarProperty Name="EfectosDeseados" ColumnName="EfectosDeseados" />
+                <ScalarProperty Name="CausasPotenciales" ColumnName="CausasPotenciales" />
                 <ScalarProperty Name="IdIncidencia" ColumnName="IdIncidencia" />
                 <ScalarProperty Name="IdAnalisisCausa" ColumnName="IdAnalisisCausa" />
               </MappingFragment>
@@ -1094,6 +1096,7 @@
                 <ScalarProperty Name="FechaIdentificacion" ColumnName="FechaIdentificacion" />
                 <ScalarProperty Name="IdModoDeteccion" ColumnName="IdModoDeteccion" />
                 <ScalarProperty Name="IdTipoIncidencia" ColumnName="IdTipoIncidencia" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
                 <ScalarProperty Name="RutCreador" ColumnName="RutCreador" />
                 <ScalarProperty Name="IdIncidencia" ColumnName="IdIncidencia" />
               </MappingFragment>

@@ -36,7 +36,8 @@
             try
             {
                 _modulOtecEntities.EvaluacionCumplimiento.Add(evaluacion);
-                return _modulOtecEntities.SaveChanges();
+                _modulOtecEntities.SaveChanges();
+                return evaluacion.IdEvaluacion;
             }
             catch (Exception)
             {

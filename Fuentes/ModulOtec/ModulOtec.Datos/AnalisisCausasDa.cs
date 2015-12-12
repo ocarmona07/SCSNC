@@ -36,7 +36,8 @@
             try
             {
                 _modulOtecEntities.AnalisisCausa.Add(analisisCausa);
-                return _modulOtecEntities.SaveChanges();
+                _modulOtecEntities.SaveChanges();
+                return analisisCausa.IdAnalisisCausa;
             }
             catch (Exception)
             {

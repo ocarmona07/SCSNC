@@ -21,6 +21,7 @@ namespace ModulOtec.Entidades
     
         public int IdIncidencia { get; set; }
         public int RutCreador { get; set; }
+        public System.DateTime FechaIngreso { get; set; }
         public int IdTipoIncidencia { get; set; }
         public int IdModoDeteccion { get; set; }
         public System.DateTime FechaIdentificacion { get; set; }

@@ -27,15 +27,20 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <th>Cod. Incidencia</th>
-                            <th>Fecha Identificación</th>
-                            <th>Área Afectada</th>
-                            <th>Detalle Incidencia</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </table>
+                    <asp:GridView runat="server" ID="gvEtapaAnalisis" CssClass="table table-striped table-hover" GridLines="None" AutoGenerateColumns="False" OnRowCommand="EtapaAnalisisOnRowCommand"
+                        EmptyDataText="No se han registrado nuevas incidencias">
+                        <Columns>
+                            <asp:BoundField DataField="IdIncidencia" DataFormatString="{0:00000}" HeaderText="Cod. Incidencia" />
+                            <asp:BoundField DataField="FechaIdentificacion" DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha Identificación" />
+                            <asp:BoundField DataField="AreaAfectada" HeaderText="Área Afectada" />
+                            <asp:BoundField DataField="Descripcion" HeaderText="Detalle Incidencia" />
+                            <asp:TemplateField HeaderText="Acciones" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-edit" ToolTip="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdIncidencia") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
                 </div>
             </div>
         </div>

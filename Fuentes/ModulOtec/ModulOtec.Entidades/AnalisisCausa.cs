@@ -22,11 +22,11 @@ namespace ModulOtec.Entidades
         }
     
         public int IdAnalisisCausa { get; set; }
-        public Nullable<int> IdIncidencia { get; set; }
-        public string EfectosDeseados { get; set; }
+        public int IdIncidencia { get; set; }
         public string CausasPotenciales { get; set; }
-        public Nullable<int> IdTratamiento { get; set; }
+        public string EfectosDeseados { get; set; }
         public System.DateTime FechaLimite { get; set; }
+        public Nullable<int> IdTratamiento { get; set; }
     
         public virtual ICollection<Acciones> Acciones { get; set; }
         public virtual Incidencias Incidencias { get; set; }

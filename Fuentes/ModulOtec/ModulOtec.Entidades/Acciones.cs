@@ -15,9 +15,9 @@ namespace ModulOtec.Entidades
     public partial class Acciones
     {
         public int IdAccion { get; set; }
-        public Nullable<int> IdAnalisisCausa { get; set; }
-        public Nullable<int> IdEstado { get; set; }
+        public int IdAnalisisCausa { get; set; }
         public string DescAccion { get; set; }
+        public Nullable<int> IdEstado { get; set; }
     
         public virtual AnalisisCausa AnalisisCausa { get; set; }
         public virtual EstadosAccion EstadosAccion { get; set; }

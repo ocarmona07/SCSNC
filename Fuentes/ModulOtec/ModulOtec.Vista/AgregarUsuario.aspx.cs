@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Web.UI;
     using System.Web.UI.WebControls;
     using Negocio;
     using Entidades;
@@ -11,6 +12,8 @@
     /// </summary>
     public partial class AgregarUsuario : System.Web.UI.Page
     {
+        private readonly ListItem _seleccione = new ListItem("Seleccione una opción...", "");
+
         /// <summary>
         /// Método que se llama al iniciar la vista
         /// </summary>
@@ -19,8 +22,6 @@
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
-
-            var seleccione = new ListItem("Seleccione una opción...", "");
 
             #region Lista Regiones
 
@@ -31,25 +32,23 @@
             ddlRegion.DataValueField = generalBo.Value;
             ddlRegion.DataBind();
 
-            ddlRegion.Items.Insert(0, seleccione);
+            ddlRegion.Items.Insert(0, _seleccione);
             ddlRegion.Attributes.Add("required", "required");
-            ddlProvincia.Items.Insert(0, seleccione);
+            ddlProvincia.Items.Insert(0, _seleccione);
             ddlProvincia.Attributes.Add("required", "required");
-            ddlComuna.Items.Insert(0, seleccione);
+            ddlComuna.Items.Insert(0, _seleccione);
             ddlComuna.Attributes.Add("required", "required");
 
             #endregion
 
             #region Lista Roles
 
-            var generalBo2 = new GeneralBo();
-
-            ddlRol.DataSource = generalBo2.ObtenerRoles();
-            ddlRol.DataTextField = generalBo2.Text;
-            ddlRol.DataValueField = generalBo2.Value;
+            ddlRol.DataSource = generalBo.ObtenerRoles();
+            ddlRol.DataTextField = generalBo.Text;
+            ddlRol.DataValueField = generalBo.Value;
             ddlRol.DataBind();
 
-            ddlRol.Items.Insert(0, seleccione);
+            ddlRol.Items.Insert(0, _seleccione);
             ddlRol.Attributes.Add("required", "required");
 
             #endregion
@@ -70,6 +69,9 @@
                     txtApellidoPaterno.Text = usuario.ApPaterno;
                     txtApellidoMaterno.Text = usuario.ApMaterno;
                     txtDireccion.Text = usuario.Direccion;
+                    txtTelefono.Text = usuario.Telefono + "";
+                    txtEmail.Text = usuario.Email;
+                    ddlRol.SelectedValue = usuario.IdRol.ToString();
 
                     var idProvincia = new GeneralBo().ObtenerComunas().First(o => usuario.IdComuna.Equals(o.IdComuna)).IdProvincia;
                     var idRegion = new GeneralBo().ObtenerProvincias().First(o => idProvincia.Equals(o.IdProvincia)).IdRegion;
@@ -78,14 +80,13 @@
                     ddlProvincia.SelectedValue = idProvincia + "";
                     ProvinciaSelectedIndexChanged(null, null);
                     ddlComuna.SelectedValue = usuario.IdComuna + "";
-
-                    txtTelefono.Text = usuario.Telefono + "";
-                    txtEmail.Text = usuario.Email;
-                    ddlRol.SelectedValue = usuario.IdRol.ToString();
                 }
                 else
                 {
-                    // Usuario no encontrado
+                    lblTituloModal.Text = "Usuario no encontrado";
+                    litDetalle.Text = "<p><b>Ha ocurrido un error al buscar el usuario</b></p>";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalIngresar", "$('#modalIngresar').modal();", true);
+                    upModal.Update();
                 }
             }
             else
@@ -103,6 +104,7 @@
         protected void AgregarUsuarioClick(object sender, EventArgs e)
         {
             var usuario = new Usuarios();
+            var usuarioBo = new UsuariosBo();
             usuario.DV = txtDv.Text;
             usuario.Nombres = txtNombres.Text;
             usuario.ApPaterno = txtApellidoPaterno.Text;
@@ -114,7 +116,6 @@
             usuario.IdRol = int.Parse(ddlRol.SelectedValue);
             if (!string.IsNullOrEmpty(txtPassword.Text)) usuario.PassUsuario = txtPassword.Text;
 
-            var usuarioBo = new UsuariosBo();
             if (!string.IsNullOrEmpty(btnAgregarUsuario.CommandArgument))
             {
                 usuario.RUT = int.Parse(btnAgregarUsuario.CommandArgument);
@@ -122,12 +123,14 @@
                 {
                     Session.Add("NombreUsuario", string.Format("{0} {1} {2}", usuario.Nombres, usuario.ApPaterno, usuario.ApMaterno));
                     Session.Add("RolUsuario", new GeneralBo().ObtenerRol(usuario.IdRol).Descripcion);
-                    // Actualizado OK!
-                    Response.Redirect("~/MainModulos.aspx");
+                    lblTituloModal.Text = "Actualizado correctamente";
+                    var detalle = "<p>Se ha actualizado el usuario RUT <b>" + usuario.RUT + "-" + usuario.DV.ToUpper() + "</b>.</p>";
+                    litDetalle.Text = detalle;
                 }
                 else
                 {
-                    // Error
+                    lblTituloModal.Text = "Error al actualizar";
+                    litDetalle.Text = "<p><b>Ha ocurrido un error al actualizar el usuario ó no se han realizado modificaciones</b></p>";
                 }
             }
             else
@@ -135,13 +138,19 @@
                 usuario.RUT = int.Parse(txtRut.Text);
                 if (usuarioBo.CrearUsuario(usuario) > 0)
                 {
-                    // Creado OK!
+                    lblTituloModal.Text = "Guardado correctamente";
+                    var detalle = "<p>Se ha creado al usuario RUT <b>" + usuario.RUT + "-" + usuario.DV.ToUpper() + "</b>.</p>";
+                    litDetalle.Text = detalle;
                 }
                 else
                 {
-                    // Error
+                    lblTituloModal.Text = "Error al guardar";
+                    litDetalle.Text = "<p><b>Ha ocurrido un error al guardar</b></p>";
                 }
             }
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalIngresar", "$('#modalIngresar').modal();", true);
+            upModal.Update();
         }
 
         /// <summary>
@@ -151,22 +160,26 @@
         /// <param name="e">Argumentos del evento</param>
         protected void RegionSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(ddlRegion.SelectedValue)) return;
+            ddlComuna.Items.Clear();
+            ddlComuna.Items.Insert(0, _seleccione);
+            ddlComuna.Attributes.Add("required", "required");
 
-            var seleccione = new ListItem("Seleccione una opción...", "");
+            if (string.IsNullOrEmpty(ddlRegion.SelectedValue))
+            {
+                ddlProvincia.Items.Clear();
+                ddlProvincia.Items.Insert(0, _seleccione);
+                ddlProvincia.Attributes.Add("required", "required");
+                return;
+            }
+
             var generalBo = new GeneralBo();
-
             ddlProvincia.DataSource = generalBo.ObtenerProvinciasPorRegion(int.Parse(ddlRegion.SelectedValue));
             ddlProvincia.DataTextField = generalBo.Text;
             ddlProvincia.DataValueField = generalBo.Value;
             ddlProvincia.DataBind();
 
-            ddlProvincia.Items.Insert(0, seleccione);
+            ddlProvincia.Items.Insert(0, _seleccione);
             ddlProvincia.Attributes.Add("required", "required");
-
-            ddlComuna.Items.Clear();
-            ddlComuna.Items.Insert(0, seleccione);
-            ddlComuna.Attributes.Add("required", "required");
         }
 
         /// <summary>
@@ -176,16 +189,21 @@
         /// <param name="e">Argumentos del evento</param>
         protected void ProvinciaSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(ddlRegion.SelectedValue)) return;
+            if (string.IsNullOrEmpty(ddlProvincia.SelectedValue))
+            {
+                ddlComuna.Items.Clear();
+                ddlComuna.Items.Insert(0, _seleccione);
+                ddlComuna.Attributes.Add("required", "required");
+                return;
+            }
 
-            var seleccione = new ListItem("Seleccione una opción...", "");
             var generalBo = new GeneralBo();
             ddlComuna.DataSource = generalBo.ObtenerComunasPorProvincia(int.Parse(ddlProvincia.SelectedValue));
             ddlComuna.DataTextField = generalBo.Text;
             ddlComuna.DataValueField = generalBo.Value;
             ddlComuna.DataBind();
 
-            ddlComuna.Items.Insert(0, seleccione);
+            ddlComuna.Items.Insert(0, _seleccione);
             ddlComuna.Attributes.Add("required", "required");
         }
     }

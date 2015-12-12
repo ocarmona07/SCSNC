@@ -343,9 +343,9 @@ GO
 CREATE TABLE Acciones
     (
       IdAccion INT IDENTITY ,
-      IdAnalisisCausa INT NULL ,
-      IdEstado INT NULL ,
+      IdAnalisisCausa INT NOT NULL ,
       DescAccion VARCHAR(MAX) NOT NULL ,
+      IdEstado INT NULL ,
       CONSTRAINT PK_ACCIONES PRIMARY KEY ( IdAccion )
     )
 GO
@@ -356,11 +356,11 @@ GO
 CREATE TABLE AnalisisCausa
     (
       IdAnalisisCausa INT IDENTITY ,
-      IdIncidencia INT NULL ,
-      EfectosDeseados VARCHAR(MAX) NOT NULL ,
+      IdIncidencia INT NOT NULL ,
       CausasPotenciales VARCHAR(MAX) NOT NULL ,
-      IdTratamiento INT NULL ,
+      EfectosDeseados VARCHAR(MAX) NOT NULL ,
       FechaLimite DATE NOT NULL ,
+      IdTratamiento INT NULL ,
       CONSTRAINT PK_ANALISISCAUSA PRIMARY KEY ( IdAnalisisCausa )
     )
 GO
@@ -433,6 +433,7 @@ CREATE TABLE Incidencias
     (
       IdIncidencia INT IDENTITY ,
       RutCreador INT NOT NULL ,
+      FechaIngreso DATE NOT NULL ,
       IdTipoIncidencia INT NOT NULL ,
       IdModoDeteccion INT NOT NULL ,
       FechaIdentificacion DATE NOT NULL ,
@@ -480,7 +481,7 @@ CREATE TABLE Provincias
     (
       IdProvincia INT NOT NULL ,
       IdRegion INT NOT NULL ,
-      Provincia VARCHAR(50) NULL ,
+      Provincia VARCHAR(50) NOT NULL ,
       CONSTRAINT PK_PROVINCIAS PRIMARY KEY ( IdProvincia )
     )
 GO
