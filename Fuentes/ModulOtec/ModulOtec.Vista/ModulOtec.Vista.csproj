@@ -65,6 +65,7 @@
     <Content Include="css\modulotec.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GestionIncidencias.aspx" />
+    <Content Include="Index.aspx" />
     <Content Include="IngresarNoConformidad.aspx" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -90,6 +91,13 @@
     </Compile>
     <Compile Include="GestionIncidencias.aspx.designer.cs">
       <DependentUpon>GestionIncidencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="IngresarNoConformidad.aspx.cs">
       <DependentUpon>IngresarNoConformidad.aspx</DependentUpon>

@@ -1,10 +1,7 @@
 ﻿namespace ModulOtec.Vista
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
-    using System.Web.UI;
     using System.Web.UI.WebControls;
     using Negocio;
     using Entidades;
@@ -47,7 +44,7 @@
 
             var generalBo2 = new GeneralBo();
 
-            ddlRol.DataSource = generalBo2.ObtenerTratamientos();
+            ddlRol.DataSource = generalBo2.ObtenerRoles();
             ddlRol.DataTextField = generalBo2.Text;
             ddlRol.DataValueField = generalBo2.Value;
             ddlRol.DataBind();
@@ -123,7 +120,10 @@
                 usuario.RUT = int.Parse(btnAgregarUsuario.CommandArgument);
                 if (usuarioBo.ActualizarUsuario(usuario) > 0)
                 {
+                    Session.Add("NombreUsuario", string.Format("{0} {1} {2}", usuario.Nombres, usuario.ApPaterno, usuario.ApMaterno));
+                    Session.Add("RolUsuario", new GeneralBo().ObtenerRol(usuario.IdRol).Descripcion);
                     // Actualizado OK!
+                    Response.Redirect("~/MainModulos.aspx");
                 }
                 else
                 {
@@ -154,7 +154,6 @@
             if (string.IsNullOrEmpty(ddlRegion.SelectedValue)) return;
 
             var seleccione = new ListItem("Seleccione una opción...", "");
-
             var generalBo = new GeneralBo();
 
             ddlProvincia.DataSource = generalBo.ObtenerProvinciasPorRegion(int.Parse(ddlRegion.SelectedValue));
@@ -180,7 +179,6 @@
             if (string.IsNullOrEmpty(ddlRegion.SelectedValue)) return;
 
             var seleccione = new ListItem("Seleccione una opción...", "");
-
             var generalBo = new GeneralBo();
             ddlComuna.DataSource = generalBo.ObtenerComunasPorProvincia(int.Parse(ddlProvincia.SelectedValue));
             ddlComuna.DataTextField = generalBo.Text;

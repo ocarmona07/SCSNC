@@ -103,6 +103,16 @@
         }
 
         /// <summary>
+        /// Método que obtiene un rol por su ID
+        /// </summary>
+        /// <param name="idRol">Id del Rol</param>
+        /// <returns>Rol</returns>
+        public Roles ObtenerRol(int idRol)
+        {
+            return new GeneralDa().ObtenerRoles().First(r => idRol.Equals(r.IdRol));
+        }
+
+        /// <summary>
         /// Método que valida si el usuario cumple con el rol
         /// </summary>
         /// <param name="rutUsuario">Rut del Usuario</param>

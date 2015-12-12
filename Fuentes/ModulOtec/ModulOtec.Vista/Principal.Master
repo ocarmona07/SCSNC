@@ -61,7 +61,7 @@
                                                     <asp:Label runat="server" ID="lblCargo" />
                                                 </p>
                                                 <p class="text-left">
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary btn-block btn-sm" Text="Actualizar Datos" />
+                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary btn-block btn-sm" Text="Actualizar Datos" OnClick="ActualizarUsuario" />
                                                 </p>
                                             </div>
                                         </div>

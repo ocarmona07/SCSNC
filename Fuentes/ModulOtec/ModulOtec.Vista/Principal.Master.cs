@@ -11,9 +11,6 @@
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Test user
-            Session["RutUsuario"] = "159888207";
-
             if (string.IsNullOrEmpty(Session["RutUsuario"] + ""))
             {
                 CerrarSesion(sender, e);
@@ -21,14 +18,19 @@
 
             if (IsPostBack) return;
 
-            lblUsuario.Text = "Oscar Ibáñez Tagle";
-            lblCargo.Text = "Encargado de Capacitación";
+            lblUsuario.Text = Session["NombreUsuario"] + "";
+            lblCargo.Text = Session["RolUsuario"] + "";
         }
 
         protected void CerrarSesion(object sender, EventArgs e)
         {
-            Session["RutUsuario"] = string.Empty;
-            Response.Redirect("MainModulos.aspx");
+            Session.Abandon();
+            Response.Redirect("~/Index.aspx");
+        }
+
+        protected void ActualizarUsuario(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AgregarUsuario.aspx?RutUsuario=" + Session["RutUsuario"]);
         }
     }
 }
