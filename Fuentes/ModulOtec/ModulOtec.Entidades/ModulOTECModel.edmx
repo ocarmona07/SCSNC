@@ -46,8 +46,8 @@
             <PropertyRef Name="IdDocumento" />
           </Key>
           <Property Name="IdDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdAnalisisCausa" Type="int" />
-          <Property Name="UrlDocumento" Type="varchar(max)" Nullable="false" />
+          <Property Name="IdIncidencia" Type="int" />
+          <Property Name="RutaDocumento" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="EstadosAccion">
           <Key>
@@ -176,7 +176,7 @@
           <Property Name="IdComuna" Type="int" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_ACCIONES_REFERENCE_ANALISIS">
+        <Association Name="FK_ACCIONES_REF_ACCIO_ANALISIS">
           <End Role="AnalisisCausa" Type="Self.AnalisisCausa" Multiplicity="1" />
           <End Role="Acciones" Type="Self.Acciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -188,7 +188,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ACCIONES_REFERENCE_ESTADOSA">
+        <Association Name="FK_ACCIONES_REF_ACCIO_ESTADOSA">
           <End Role="EstadosAccion" Type="Self.EstadosAccion" Multiplicity="0..1" />
           <End Role="Acciones" Type="Self.Acciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -200,7 +200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ANALISIS_REFERENCE_INCIDENC">
+        <Association Name="FK_ANALISIS_REF_ANALI_INCIDENC">
           <End Role="Incidencias" Type="Self.Incidencias" Multiplicity="1" />
           <End Role="AnalisisCausa" Type="Self.AnalisisCausa" Multiplicity="*" />
           <ReferentialConstraint>
@@ -212,7 +212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ANALISIS_REFERENCE_TRATAMIE">
+        <Association Name="FK_ANALISIS_REF_ANALI_TRATAMIE">
           <End Role="Tratamientos" Type="Self.Tratamientos" Multiplicity="0..1" />
           <End Role="AnalisisCausa" Type="Self.AnalisisCausa" Multiplicity="*" />
           <ReferentialConstraint>
@@ -224,7 +224,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_COMUNAS_REFERENCE_PROVINCI">
+        <Association Name="FK_COMUNAS_REF_COMUN_PROVINCI">
           <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
           <End Role="Comunas" Type="Self.Comunas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -236,19 +236,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DOCUMENT_REFERENCE_ANALISIS">
-          <End Role="AnalisisCausa" Type="Self.AnalisisCausa" Multiplicity="0..1" />
+        <Association Name="FK_DOCUMENT_REF_DOCUM_INCIDENC">
+          <End Role="Incidencias" Type="Self.Incidencias" Multiplicity="0..1" />
           <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AnalisisCausa">
-              <PropertyRef Name="IdAnalisisCausa" />
+            <Principal Role="Incidencias">
+              <PropertyRef Name="IdIncidencia" />
             </Principal>
             <Dependent Role="Documentos">
-              <PropertyRef Name="IdAnalisisCausa" />
+              <PropertyRef Name="IdIncidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EVALUACI_REFERENCE_ANALISIS">
+        <Association Name="FK_EVALUACI_REF_EVALU_ANALISIS">
           <End Role="AnalisisCausa" Type="Self.AnalisisCausa" Multiplicity="0..1" />
           <End Role="EvaluacionCumplimiento" Type="Self.EvaluacionCumplimiento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -308,7 +308,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ORGANIZA_REFERENCE_COMUNAS">
+        <Association Name="FK_ORGANIZA_REF_ORGAN_COMUNAS">
           <End Role="Comunas" Type="Self.Comunas" Multiplicity="1" />
           <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -320,7 +320,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PROVINCI_REFERENCE_REGIONES">
+        <Association Name="FK_PROVINCI_REF_PROVI_REGIONES">
           <End Role="Regiones" Type="Self.Regiones" Multiplicity="1" />
           <End Role="Provincias" Type="Self.Provincias" Multiplicity="*" />
           <ReferentialConstraint>
@@ -332,7 +332,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ROLACCES_REFERENCE_ACCESOS">
+        <Association Name="FK_ROLACCES_REF_ROLAC_ACCESOS">
           <End Role="Accesos" Type="Self.Accesos" Multiplicity="0..1" />
           <End Role="RolAcceso" Type="Self.RolAcceso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -344,7 +344,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ROLACCES_REFERENCE_ROLES">
+        <Association Name="FK_ROLACCES_REF_ROLAC_ROLES">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="RolAcceso" Type="Self.RolAcceso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -353,6 +353,18 @@
             </Principal>
             <Dependent Role="RolAcceso">
               <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_REF_USUAR_COMUNAS">
+          <End Role="Comunas" Type="Self.Comunas" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comunas">
+              <PropertyRef Name="IdComuna" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdComuna" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -380,18 +392,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USUARIOS_REFERENCE_COMUNAS">
-          <End Role="Comunas" Type="Self.Comunas" Multiplicity="1" />
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comunas">
-              <PropertyRef Name="IdComuna" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="IdComuna" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ModulOTECModelStoreContainer">
           <EntitySet Name="Accesos" EntityType="Self.Accesos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Acciones" EntityType="Self.Acciones" Schema="dbo" store:Type="Tables" />
@@ -411,31 +411,31 @@
           <EntitySet Name="TiposIncidencias" EntityType="Self.TiposIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tratamientos" EntityType="Self.Tratamientos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ACCIONES_REFERENCE_ANALISIS" Association="Self.FK_ACCIONES_REFERENCE_ANALISIS">
+          <AssociationSet Name="FK_ACCIONES_REF_ACCIO_ANALISIS" Association="Self.FK_ACCIONES_REF_ACCIO_ANALISIS">
             <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
             <End Role="Acciones" EntitySet="Acciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_ACCIONES_REFERENCE_ESTADOSA" Association="Self.FK_ACCIONES_REFERENCE_ESTADOSA">
+          <AssociationSet Name="FK_ACCIONES_REF_ACCIO_ESTADOSA" Association="Self.FK_ACCIONES_REF_ACCIO_ESTADOSA">
             <End Role="EstadosAccion" EntitySet="EstadosAccion" />
             <End Role="Acciones" EntitySet="Acciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_ANALISIS_REFERENCE_INCIDENC" Association="Self.FK_ANALISIS_REFERENCE_INCIDENC">
+          <AssociationSet Name="FK_ANALISIS_REF_ANALI_INCIDENC" Association="Self.FK_ANALISIS_REF_ANALI_INCIDENC">
             <End Role="Incidencias" EntitySet="Incidencias" />
             <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
           </AssociationSet>
-          <AssociationSet Name="FK_ANALISIS_REFERENCE_TRATAMIE" Association="Self.FK_ANALISIS_REFERENCE_TRATAMIE">
+          <AssociationSet Name="FK_ANALISIS_REF_ANALI_TRATAMIE" Association="Self.FK_ANALISIS_REF_ANALI_TRATAMIE">
             <End Role="Tratamientos" EntitySet="Tratamientos" />
             <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
           </AssociationSet>
-          <AssociationSet Name="FK_COMUNAS_REFERENCE_PROVINCI" Association="Self.FK_COMUNAS_REFERENCE_PROVINCI">
+          <AssociationSet Name="FK_COMUNAS_REF_COMUN_PROVINCI" Association="Self.FK_COMUNAS_REF_COMUN_PROVINCI">
             <End Role="Provincias" EntitySet="Provincias" />
             <End Role="Comunas" EntitySet="Comunas" />
           </AssociationSet>
-          <AssociationSet Name="FK_DOCUMENT_REFERENCE_ANALISIS" Association="Self.FK_DOCUMENT_REFERENCE_ANALISIS">
-            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
+          <AssociationSet Name="FK_DOCUMENT_REF_DOCUM_INCIDENC" Association="Self.FK_DOCUMENT_REF_DOCUM_INCIDENC">
+            <End Role="Incidencias" EntitySet="Incidencias" />
             <End Role="Documentos" EntitySet="Documentos" />
           </AssociationSet>
-          <AssociationSet Name="FK_EVALUACI_REFERENCE_ANALISIS" Association="Self.FK_EVALUACI_REFERENCE_ANALISIS">
+          <AssociationSet Name="FK_EVALUACI_REF_EVALU_ANALISIS" Association="Self.FK_EVALUACI_REF_EVALU_ANALISIS">
             <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
             <End Role="EvaluacionCumplimiento" EntitySet="EvaluacionCumplimiento" />
           </AssociationSet>
@@ -455,21 +455,25 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Incidencias" EntitySet="Incidencias" />
           </AssociationSet>
-          <AssociationSet Name="FK_ORGANIZA_REFERENCE_COMUNAS" Association="Self.FK_ORGANIZA_REFERENCE_COMUNAS">
+          <AssociationSet Name="FK_ORGANIZA_REF_ORGAN_COMUNAS" Association="Self.FK_ORGANIZA_REF_ORGAN_COMUNAS">
             <End Role="Comunas" EntitySet="Comunas" />
             <End Role="Organizacion" EntitySet="Organizacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_PROVINCI_REFERENCE_REGIONES" Association="Self.FK_PROVINCI_REFERENCE_REGIONES">
+          <AssociationSet Name="FK_PROVINCI_REF_PROVI_REGIONES" Association="Self.FK_PROVINCI_REF_PROVI_REGIONES">
             <End Role="Regiones" EntitySet="Regiones" />
             <End Role="Provincias" EntitySet="Provincias" />
           </AssociationSet>
-          <AssociationSet Name="FK_ROLACCES_REFERENCE_ACCESOS" Association="Self.FK_ROLACCES_REFERENCE_ACCESOS">
+          <AssociationSet Name="FK_ROLACCES_REF_ROLAC_ACCESOS" Association="Self.FK_ROLACCES_REF_ROLAC_ACCESOS">
             <End Role="Accesos" EntitySet="Accesos" />
             <End Role="RolAcceso" EntitySet="RolAcceso" />
           </AssociationSet>
-          <AssociationSet Name="FK_ROLACCES_REFERENCE_ROLES" Association="Self.FK_ROLACCES_REFERENCE_ROLES">
+          <AssociationSet Name="FK_ROLACCES_REF_ROLAC_ROLES" Association="Self.FK_ROLACCES_REF_ROLAC_ROLES">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="RolAcceso" EntitySet="RolAcceso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_REF_USUAR_COMUNAS" Association="Self.FK_USUARIOS_REF_USUAR_COMUNAS">
+            <End Role="Comunas" EntitySet="Comunas" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
           <AssociationSet Name="FK_USUARIOS_REF_USUAR_ORGANIZA" Association="Self.FK_USUARIOS_REF_USUAR_ORGANIZA">
             <End Role="Organizacion" EntitySet="Organizacion" />
@@ -477,10 +481,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_USUARIOS_REF_USUAR_ROLES" Association="Self.FK_USUARIOS_REF_USUAR_ROLES">
             <End Role="Roles" EntitySet="Roles" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USUARIOS_REFERENCE_COMUNAS" Association="Self.FK_USUARIOS_REFERENCE_COMUNAS">
-            <End Role="Comunas" EntitySet="Comunas" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
@@ -507,45 +507,45 @@
           <EntitySet Name="TiposIncidencias" EntityType="ModulOTECModel.TiposIncidencias" />
           <EntitySet Name="Tratamientos" EntityType="ModulOTECModel.Tratamientos" />
           <EntitySet Name="Usuarios" EntityType="ModulOTECModel.Usuarios" />
-          <AssociationSet Name="FK_ROLACCES_REFERENCE_ACCESOS" Association="ModulOTECModel.FK_ROLACCES_REFERENCE_ACCESOS">
+          <AssociationSet Name="FK_ROLACCES_REF_ROLAC_ACCESOS" Association="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ACCESOS">
             <End Role="Accesos" EntitySet="Accesos" />
             <End Role="RolAcceso" EntitySet="RolAcceso" />
           </AssociationSet>
-          <AssociationSet Name="FK_ACCIONES_REFERENCE_ANALISIS" Association="ModulOTECModel.FK_ACCIONES_REFERENCE_ANALISIS">
+          <AssociationSet Name="FK_ACCIONES_REF_ACCIO_ANALISIS" Association="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS">
             <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
             <End Role="Acciones" EntitySet="Acciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_ACCIONES_REFERENCE_ESTADOSA" Association="ModulOTECModel.FK_ACCIONES_REFERENCE_ESTADOSA">
+          <AssociationSet Name="FK_ACCIONES_REF_ACCIO_ESTADOSA" Association="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ESTADOSA">
             <End Role="EstadosAccion" EntitySet="EstadosAccion" />
             <End Role="Acciones" EntitySet="Acciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_ANALISIS_REFERENCE_INCIDENC" Association="ModulOTECModel.FK_ANALISIS_REFERENCE_INCIDENC">
+          <AssociationSet Name="FK_ANALISIS_REF_ANALI_INCIDENC" Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC">
             <End Role="Incidencias" EntitySet="Incidencias" />
             <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
           </AssociationSet>
-          <AssociationSet Name="FK_ANALISIS_REFERENCE_TRATAMIE" Association="ModulOTECModel.FK_ANALISIS_REFERENCE_TRATAMIE">
+          <AssociationSet Name="FK_ANALISIS_REF_ANALI_TRATAMIE" Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE">
             <End Role="Tratamientos" EntitySet="Tratamientos" />
             <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
           </AssociationSet>
-          <AssociationSet Name="FK_DOCUMENT_REFERENCE_ANALISIS" Association="ModulOTECModel.FK_DOCUMENT_REFERENCE_ANALISIS">
-            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
-            <End Role="Documentos" EntitySet="Documentos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EVALUACI_REFERENCE_ANALISIS" Association="ModulOTECModel.FK_EVALUACI_REFERENCE_ANALISIS">
+          <AssociationSet Name="FK_EVALUACI_REF_EVALU_ANALISIS" Association="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS">
             <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
             <End Role="EvaluacionCumplimiento" EntitySet="EvaluacionCumplimiento" />
           </AssociationSet>
-          <AssociationSet Name="FK_COMUNAS_REFERENCE_PROVINCI" Association="ModulOTECModel.FK_COMUNAS_REFERENCE_PROVINCI">
+          <AssociationSet Name="FK_COMUNAS_REF_COMUN_PROVINCI" Association="ModulOTECModel.FK_COMUNAS_REF_COMUN_PROVINCI">
             <End Role="Provincias" EntitySet="Provincias" />
             <End Role="Comunas" EntitySet="Comunas" />
           </AssociationSet>
-          <AssociationSet Name="FK_ORGANIZA_REFERENCE_COMUNAS" Association="ModulOTECModel.FK_ORGANIZA_REFERENCE_COMUNAS">
+          <AssociationSet Name="FK_ORGANIZA_REF_ORGAN_COMUNAS" Association="ModulOTECModel.FK_ORGANIZA_REF_ORGAN_COMUNAS">
             <End Role="Comunas" EntitySet="Comunas" />
             <End Role="Organizacion" EntitySet="Organizacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_USUARIOS_REFERENCE_COMUNAS" Association="ModulOTECModel.FK_USUARIOS_REFERENCE_COMUNAS">
+          <AssociationSet Name="FK_USUARIOS_REF_USUAR_COMUNAS" Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_COMUNAS">
             <End Role="Comunas" EntitySet="Comunas" />
             <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DOCUMENT_REF_DOCUM_INCIDENC" Association="ModulOTECModel.FK_DOCUMENT_REF_DOCUM_INCIDENC">
+            <End Role="Incidencias" EntitySet="Incidencias" />
+            <End Role="Documentos" EntitySet="Documentos" />
           </AssociationSet>
           <AssociationSet Name="FK_INCIDENC_REF_INCID_ESTADOSI" Association="ModulOTECModel.FK_INCIDENC_REF_INCID_ESTADOSI">
             <End Role="EstadosIncidencia" EntitySet="EstadosIncidencia" />
@@ -567,11 +567,11 @@
             <End Role="Organizacion" EntitySet="Organizacion" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK_PROVINCI_REFERENCE_REGIONES" Association="ModulOTECModel.FK_PROVINCI_REFERENCE_REGIONES">
+          <AssociationSet Name="FK_PROVINCI_REF_PROVI_REGIONES" Association="ModulOTECModel.FK_PROVINCI_REF_PROVI_REGIONES">
             <End Role="Regiones" EntitySet="Regiones" />
             <End Role="Provincias" EntitySet="Provincias" />
           </AssociationSet>
-          <AssociationSet Name="FK_ROLACCES_REFERENCE_ROLES" Association="ModulOTECModel.FK_ROLACCES_REFERENCE_ROLES">
+          <AssociationSet Name="FK_ROLACCES_REF_ROLAC_ROLES" Association="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ROLES">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="RolAcceso" EntitySet="RolAcceso" />
           </AssociationSet>
@@ -587,7 +587,7 @@
           <Property Name="IdAcceso" Type="Int32" Nullable="false" />
           <Property Name="DetalleAcceso" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UrlAcceso" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RolAcceso" Relationship="ModulOTECModel.FK_ROLACCES_REFERENCE_ACCESOS" FromRole="Accesos" ToRole="RolAcceso" />
+          <NavigationProperty Name="RolAcceso" Relationship="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ACCESOS" FromRole="Accesos" ToRole="RolAcceso" />
         </EntityType>
         <EntityType Name="Acciones">
           <Key>
@@ -597,8 +597,8 @@
           <Property Name="IdAnalisisCausa" Type="Int32" Nullable="false" />
           <Property Name="DescAccion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IdEstado" Type="Int32" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ACCIONES_REFERENCE_ANALISIS" FromRole="Acciones" ToRole="AnalisisCausa" />
-          <NavigationProperty Name="EstadosAccion" Relationship="ModulOTECModel.FK_ACCIONES_REFERENCE_ESTADOSA" FromRole="Acciones" ToRole="EstadosAccion" />
+          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS" FromRole="Acciones" ToRole="AnalisisCausa" />
+          <NavigationProperty Name="EstadosAccion" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ESTADOSA" FromRole="Acciones" ToRole="EstadosAccion" />
         </EntityType>
         <EntityType Name="AnalisisCausa">
           <Key>
@@ -610,11 +610,10 @@
           <Property Name="EfectosDeseados" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FechaLimite" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdTratamiento" Type="Int32" />
-          <NavigationProperty Name="Acciones" Relationship="ModulOTECModel.FK_ACCIONES_REFERENCE_ANALISIS" FromRole="AnalisisCausa" ToRole="Acciones" />
-          <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_ANALISIS_REFERENCE_INCIDENC" FromRole="AnalisisCausa" ToRole="Incidencias" />
-          <NavigationProperty Name="Tratamientos" Relationship="ModulOTECModel.FK_ANALISIS_REFERENCE_TRATAMIE" FromRole="AnalisisCausa" ToRole="Tratamientos" />
-          <NavigationProperty Name="Documentos" Relationship="ModulOTECModel.FK_DOCUMENT_REFERENCE_ANALISIS" FromRole="AnalisisCausa" ToRole="Documentos" />
-          <NavigationProperty Name="EvaluacionCumplimiento" Relationship="ModulOTECModel.FK_EVALUACI_REFERENCE_ANALISIS" FromRole="AnalisisCausa" ToRole="EvaluacionCumplimiento" />
+          <NavigationProperty Name="Acciones" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS" FromRole="AnalisisCausa" ToRole="Acciones" />
+          <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC" FromRole="AnalisisCausa" ToRole="Incidencias" />
+          <NavigationProperty Name="Tratamientos" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE" FromRole="AnalisisCausa" ToRole="Tratamientos" />
+          <NavigationProperty Name="EvaluacionCumplimiento" Relationship="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS" FromRole="AnalisisCausa" ToRole="EvaluacionCumplimiento" />
         </EntityType>
         <EntityType Name="Comunas">
           <Key>
@@ -623,18 +622,18 @@
           <Property Name="IdComuna" Type="Int32" Nullable="false" />
           <Property Name="IdProvincia" Type="Int32" Nullable="false" />
           <Property Name="Comuna" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Provincias" Relationship="ModulOTECModel.FK_COMUNAS_REFERENCE_PROVINCI" FromRole="Comunas" ToRole="Provincias" />
-          <NavigationProperty Name="Organizacion" Relationship="ModulOTECModel.FK_ORGANIZA_REFERENCE_COMUNAS" FromRole="Comunas" ToRole="Organizacion" />
-          <NavigationProperty Name="Usuarios" Relationship="ModulOTECModel.FK_USUARIOS_REFERENCE_COMUNAS" FromRole="Comunas" ToRole="Usuarios" />
+          <NavigationProperty Name="Provincias" Relationship="ModulOTECModel.FK_COMUNAS_REF_COMUN_PROVINCI" FromRole="Comunas" ToRole="Provincias" />
+          <NavigationProperty Name="Organizacion" Relationship="ModulOTECModel.FK_ORGANIZA_REF_ORGAN_COMUNAS" FromRole="Comunas" ToRole="Organizacion" />
+          <NavigationProperty Name="Usuarios" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_COMUNAS" FromRole="Comunas" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Documentos">
           <Key>
             <PropertyRef Name="IdDocumento" />
           </Key>
           <Property Name="IdDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdAnalisisCausa" Type="Int32" />
-          <Property Name="UrlDocumento" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_DOCUMENT_REFERENCE_ANALISIS" FromRole="Documentos" ToRole="AnalisisCausa" />
+          <Property Name="IdIncidencia" Type="Int32" />
+          <Property Name="RutaDocumento" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_DOCUMENT_REF_DOCUM_INCIDENC" FromRole="Documentos" ToRole="Incidencias" />
         </EntityType>
         <EntityType Name="EstadosAccion">
           <Key>
@@ -643,7 +642,7 @@
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Acciones" Relationship="ModulOTECModel.FK_ACCIONES_REFERENCE_ESTADOSA" FromRole="EstadosAccion" ToRole="Acciones" />
+          <NavigationProperty Name="Acciones" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ESTADOSA" FromRole="EstadosAccion" ToRole="Acciones" />
         </EntityType>
         <EntityType Name="EstadosIncidencia">
           <Key>
@@ -662,7 +661,7 @@
           <Property Name="IdAnalisisCausa" Type="Int32" />
           <Property Name="Observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FechaEv" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_EVALUACI_REFERENCE_ANALISIS" FromRole="EvaluacionCumplimiento" ToRole="AnalisisCausa" />
+          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS" FromRole="EvaluacionCumplimiento" ToRole="AnalisisCausa" />
         </EntityType>
         <EntityType Name="Incidencias">
           <Key>
@@ -678,7 +677,8 @@
           <Property Name="ProcesoAfectado" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IdEstadoIncidencia" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ANALISIS_REFERENCE_INCIDENC" FromRole="Incidencias" ToRole="AnalisisCausa" />
+          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC" FromRole="Incidencias" ToRole="AnalisisCausa" />
+          <NavigationProperty Name="Documentos" Relationship="ModulOTECModel.FK_DOCUMENT_REF_DOCUM_INCIDENC" FromRole="Incidencias" ToRole="Documentos" />
           <NavigationProperty Name="EstadosIncidencia" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_ESTADOSI" FromRole="Incidencias" ToRole="EstadosIncidencia" />
           <NavigationProperty Name="ModosDeteccion" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_MODOSDET" FromRole="Incidencias" ToRole="ModosDeteccion" />
           <NavigationProperty Name="TiposIncidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_TIPOSINC" FromRole="Incidencias" ToRole="TiposIncidencias" />
@@ -705,7 +705,7 @@
           <Property Name="IdComuna" Type="Int32" Nullable="false" />
           <Property Name="Telefono" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_ORGANIZA_REFERENCE_COMUNAS" FromRole="Organizacion" ToRole="Comunas" />
+          <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_ORGANIZA_REF_ORGAN_COMUNAS" FromRole="Organizacion" ToRole="Comunas" />
           <NavigationProperty Name="Usuarios" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_ORGANIZA" FromRole="Organizacion" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Provincias">
@@ -715,8 +715,8 @@
           <Property Name="IdProvincia" Type="Int32" Nullable="false" />
           <Property Name="IdRegion" Type="Int32" Nullable="false" />
           <Property Name="Provincia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_COMUNAS_REFERENCE_PROVINCI" FromRole="Provincias" ToRole="Comunas" />
-          <NavigationProperty Name="Regiones" Relationship="ModulOTECModel.FK_PROVINCI_REFERENCE_REGIONES" FromRole="Provincias" ToRole="Regiones" />
+          <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_COMUNAS_REF_COMUN_PROVINCI" FromRole="Provincias" ToRole="Comunas" />
+          <NavigationProperty Name="Regiones" Relationship="ModulOTECModel.FK_PROVINCI_REF_PROVI_REGIONES" FromRole="Provincias" ToRole="Regiones" />
         </EntityType>
         <EntityType Name="Regiones">
           <Key>
@@ -724,7 +724,7 @@
           </Key>
           <Property Name="IdRegion" Type="Int32" Nullable="false" />
           <Property Name="Region" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Provincias" Relationship="ModulOTECModel.FK_PROVINCI_REFERENCE_REGIONES" FromRole="Regiones" ToRole="Provincias" />
+          <NavigationProperty Name="Provincias" Relationship="ModulOTECModel.FK_PROVINCI_REF_PROVI_REGIONES" FromRole="Regiones" ToRole="Provincias" />
         </EntityType>
         <EntityType Name="RolAcceso">
           <Key>
@@ -733,8 +733,8 @@
           <Property Name="IdRolAcceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdRol" Type="Int32" />
           <Property Name="IdAcceso" Type="Int32" />
-          <NavigationProperty Name="Accesos" Relationship="ModulOTECModel.FK_ROLACCES_REFERENCE_ACCESOS" FromRole="RolAcceso" ToRole="Accesos" />
-          <NavigationProperty Name="Roles" Relationship="ModulOTECModel.FK_ROLACCES_REFERENCE_ROLES" FromRole="RolAcceso" ToRole="Roles" />
+          <NavigationProperty Name="Accesos" Relationship="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ACCESOS" FromRole="RolAcceso" ToRole="Accesos" />
+          <NavigationProperty Name="Roles" Relationship="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ROLES" FromRole="RolAcceso" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -743,7 +743,7 @@
           <Property Name="IdRol" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="RolAcceso" Relationship="ModulOTECModel.FK_ROLACCES_REFERENCE_ROLES" FromRole="Roles" ToRole="RolAcceso" />
+          <NavigationProperty Name="RolAcceso" Relationship="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ROLES" FromRole="Roles" ToRole="RolAcceso" />
           <NavigationProperty Name="Usuarios" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_ROLES" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="TiposIncidencias">
@@ -762,7 +762,7 @@
           <Property Name="IdTratamiento" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ANALISIS_REFERENCE_TRATAMIE" FromRole="Tratamientos" ToRole="AnalisisCausa" />
+          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE" FromRole="Tratamientos" ToRole="AnalisisCausa" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -782,12 +782,12 @@
           <Property Name="IdOrganizacion" Type="Int32" />
           <Property Name="IdComuna" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_USUARIOS_REFERENCE_COMUNAS" FromRole="Usuarios" ToRole="Comunas" />
+          <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_COMUNAS" FromRole="Usuarios" ToRole="Comunas" />
           <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_USUARIOS" FromRole="Usuarios" ToRole="Incidencias" />
           <NavigationProperty Name="Organizacion" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_ORGANIZA" FromRole="Usuarios" ToRole="Organizacion" />
           <NavigationProperty Name="Roles" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_ROLES" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
-        <Association Name="FK_ROLACCES_REFERENCE_ACCESOS">
+        <Association Name="FK_ROLACCES_REF_ROLAC_ACCESOS">
           <End Type="ModulOTECModel.Accesos" Role="Accesos" Multiplicity="0..1" />
           <End Type="ModulOTECModel.RolAcceso" Role="RolAcceso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -799,7 +799,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ACCIONES_REFERENCE_ANALISIS">
+        <Association Name="FK_ACCIONES_REF_ACCIO_ANALISIS">
           <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="1" />
           <End Type="ModulOTECModel.Acciones" Role="Acciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -811,7 +811,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ACCIONES_REFERENCE_ESTADOSA">
+        <Association Name="FK_ACCIONES_REF_ACCIO_ESTADOSA">
           <End Type="ModulOTECModel.EstadosAccion" Role="EstadosAccion" Multiplicity="0..1" />
           <End Type="ModulOTECModel.Acciones" Role="Acciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -823,7 +823,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ANALISIS_REFERENCE_INCIDENC">
+        <Association Name="FK_ANALISIS_REF_ANALI_INCIDENC">
           <End Type="ModulOTECModel.Incidencias" Role="Incidencias" Multiplicity="1" />
           <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="*" />
           <ReferentialConstraint>
@@ -835,7 +835,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ANALISIS_REFERENCE_TRATAMIE">
+        <Association Name="FK_ANALISIS_REF_ANALI_TRATAMIE">
           <End Type="ModulOTECModel.Tratamientos" Role="Tratamientos" Multiplicity="0..1" />
           <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="*" />
           <ReferentialConstraint>
@@ -847,19 +847,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DOCUMENT_REFERENCE_ANALISIS">
-          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="0..1" />
-          <End Type="ModulOTECModel.Documentos" Role="Documentos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AnalisisCausa">
-              <PropertyRef Name="IdAnalisisCausa" />
-            </Principal>
-            <Dependent Role="Documentos">
-              <PropertyRef Name="IdAnalisisCausa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EVALUACI_REFERENCE_ANALISIS">
+        <Association Name="FK_EVALUACI_REF_EVALU_ANALISIS">
           <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="0..1" />
           <End Type="ModulOTECModel.EvaluacionCumplimiento" Role="EvaluacionCumplimiento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -871,7 +859,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_COMUNAS_REFERENCE_PROVINCI">
+        <Association Name="FK_COMUNAS_REF_COMUN_PROVINCI">
           <End Type="ModulOTECModel.Provincias" Role="Provincias" Multiplicity="1" />
           <End Type="ModulOTECModel.Comunas" Role="Comunas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -883,7 +871,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ORGANIZA_REFERENCE_COMUNAS">
+        <Association Name="FK_ORGANIZA_REF_ORGAN_COMUNAS">
           <End Type="ModulOTECModel.Comunas" Role="Comunas" Multiplicity="1" />
           <End Type="ModulOTECModel.Organizacion" Role="Organizacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -895,7 +883,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USUARIOS_REFERENCE_COMUNAS">
+        <Association Name="FK_USUARIOS_REF_USUAR_COMUNAS">
           <End Type="ModulOTECModel.Comunas" Role="Comunas" Multiplicity="1" />
           <End Type="ModulOTECModel.Usuarios" Role="Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -904,6 +892,18 @@
             </Principal>
             <Dependent Role="Usuarios">
               <PropertyRef Name="IdComuna" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DOCUMENT_REF_DOCUM_INCIDENC">
+          <End Type="ModulOTECModel.Incidencias" Role="Incidencias" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.Documentos" Role="Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Incidencias">
+              <PropertyRef Name="IdIncidencia" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="IdIncidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -967,7 +967,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PROVINCI_REFERENCE_REGIONES">
+        <Association Name="FK_PROVINCI_REF_PROVI_REGIONES">
           <End Type="ModulOTECModel.Regiones" Role="Regiones" Multiplicity="1" />
           <End Type="ModulOTECModel.Provincias" Role="Provincias" Multiplicity="*" />
           <ReferentialConstraint>
@@ -979,7 +979,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ROLACCES_REFERENCE_ROLES">
+        <Association Name="FK_ROLACCES_REF_ROLAC_ROLES">
           <End Type="ModulOTECModel.Roles" Role="Roles" Multiplicity="0..1" />
           <End Type="ModulOTECModel.RolAcceso" Role="RolAcceso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1052,8 +1052,8 @@
           <EntitySetMapping Name="Documentos">
             <EntityTypeMapping TypeName="ModulOTECModel.Documentos">
               <MappingFragment StoreEntitySet="Documentos">
-                <ScalarProperty Name="UrlDocumento" ColumnName="UrlDocumento" />
-                <ScalarProperty Name="IdAnalisisCausa" ColumnName="IdAnalisisCausa" />
+                <ScalarProperty Name="RutaDocumento" ColumnName="RutaDocumento" />
+                <ScalarProperty Name="IdIncidencia" ColumnName="IdIncidencia" />
                 <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
               </MappingFragment>
             </EntityTypeMapping>

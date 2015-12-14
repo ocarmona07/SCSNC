@@ -183,5 +183,69 @@
         }
 
         #endregion
+
+        #region Obtiene entidad por Id
+
+        /// <summary>
+        /// Método que obtiene el estado de una incidencia
+        /// </summary>
+        /// <param name="idEstado">Id Estado Incidencia</param>
+        /// <returns>Estados de Incidencia</returns>
+        public EstadosIncidencia ObtenerEstadoIncidencia(int idEstado)
+        {
+            Text = "Descripcion";
+            Value = "IdEstadoIncidencia";
+            return new GeneralDa().ObtenerEstadosIncidencias().First(o => idEstado.Equals(o.IdEstadoIncidencia));
+        }
+
+        /// <summary>
+        /// Método que obtiene un Tratamiento
+        /// </summary>
+        /// <param name="idTratamiento">Id Tratamiento</param>
+        /// <returns>Tratamiento</returns>
+        public Tratamientos ObtenerTratamiento(int idTratamiento)
+        {
+            Text = "Descripcion";
+            Value = "IdTratamiento";
+            return new GeneralDa().ObtenerTratamientos().First(o => idTratamiento.Equals(o.IdTratamiento));
+        }
+
+        /// <summary>
+        /// Método que obtiene un Estado de Acción
+        /// </summary>
+        /// <param name="idEstado">Id Estado Acción</param>
+        /// <returns>Estado Acción</returns>
+        public EstadosAccion ObtenerEstadoAccion(int idEstado)
+        {
+            Text = "Descripcion";
+            Value = "IdEstado";
+            return new GeneralDa().ObtenerEstadosAccion().First(o => idEstado.Equals(o.IdEstado));
+        }
+
+        /// <summary>
+        /// Método que obtiene un Modo de Detección
+        /// </summary>
+        /// <param name="idModo">Id Modo Detección</param>
+        /// <returns>Modo de Detección</returns>
+        public ModosDeteccion ObtenerModoDeteccion(int idModo)
+        {
+            Text = "Descripcion";
+            Value = "IdModoDeteccion";
+            return new GeneralDa().ObtenerModosDetecciones().First(o => idModo.Equals(o.IdModoDeteccion));
+        }
+
+        /// <summary>
+        /// Método que obtiene un Tipo de Incidencia
+        /// </summary>
+        /// <param name="idTipo">Id Tipo de Incidencia</param>
+        /// <returns>Tipo de Incidencia</returns>
+        public TiposIncidencias ObtenerTipoIncidencia(int idTipo)
+        {
+            Text = "Descripcion";
+            Value = "IdTipoIncidencia";
+            return new GeneralDa().ObtenerTiposIncidencias().First(o => idTipo.Equals(o.IdTipoIncidencia));
+        }
+
+        #endregion
     }
 }

@@ -6,10 +6,15 @@
     using Negocio;
 
     /// <summary>
-    /// 
+    /// Clase principal de Gestión de Incidencias
     /// </summary>
     public partial class GestionIncidencias : System.Web.UI.Page
     {
+        /// <summary>
+        /// Método que se llama al iniciar la vista
+        /// </summary>
+        /// <param name="sender">Objeto del evento</param>
+        /// <param name="e">Argumentos del evento</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
@@ -44,6 +49,10 @@
             {
                 case "Editar":
 
+                    break;
+
+                case "Analizar":
+                    Response.Redirect("AnalizarNoConformidad.aspx?IdIncidencia=" + e.CommandArgument);
                     break;
             }
         }

@@ -21,14 +21,13 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         <span class="badge">
                             <asp:Label runat="server" ID="lblEtapaAnalisis" /></span>
-                        Etapa de análisis
+                        <span>Etapa de análisis</span>
                     </a>
                 </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                    <asp:GridView runat="server" ID="gvEtapaAnalisis" CssClass="table table-striped table-hover" GridLines="None" AutoGenerateColumns="False" OnRowCommand="EtapaAnalisisOnRowCommand"
-                        EmptyDataText="No se han registrado nuevas incidencias">
+                    <asp:GridView runat="server" ID="gvEtapaAnalisis" CssClass="table table-striped table-hover" GridLines="None" AutoGenerateColumns="False" OnRowCommand="EtapaAnalisisOnRowCommand">
                         <Columns>
                             <asp:BoundField DataField="IdIncidencia" DataFormatString="{0:00000}" HeaderText="Cod. Incidencia" />
                             <asp:BoundField DataField="FechaIdentificacion" DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha Identificación" />
@@ -37,6 +36,7 @@
                             <asp:TemplateField HeaderText="Acciones" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-edit" ToolTip="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdIncidencia") %>' />
+                                    <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-list-alt" ToolTip="Analizar" CommandName="Analizar" CommandArgument='<%# Eval("IdIncidencia") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -66,30 +66,31 @@
                         </tr>
                     </table>
                 </div>
-                </div>
             </div>
         </div>
-        <div class="panel panel-success">
-            <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <span class="badge">
-                            <asp:Label runat="server" ID="lblIncidenciasSolucionadas" /></span>
-                        Incidencias solucionadas
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <th>Cod. Incidencia</th>
-                            <th>Fecha Identificación</th>
-                            <th>Área Afectada</th>
-                            <th>Detalle Incidencia</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </table>                </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <span class="badge">
+                        <asp:Label runat="server" ID="lblIncidenciasSolucionadas" /></span>
+                    Incidencias solucionadas
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>Cod. Incidencia</th>
+                        <th>Fecha Identificación</th>
+                        <th>Área Afectada</th>
+                        <th>Detalle Incidencia</th>
+                        <th>Acciones</th>
+                    </tr>
+                </table>
             </div>
         </div>
+    </div>
 </asp:Content>

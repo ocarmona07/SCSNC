@@ -70,7 +70,7 @@
         }
 
         /// <summary>
-        /// Método que obtiene un documento por su RUT
+        /// Método que obtiene un documento por su Id
         /// </summary>
         /// <param name="idDocumento">Id del Documento</param>
         /// <returns>Documento</returns>

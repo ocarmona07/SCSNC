@@ -3,14 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         function confirmation() {
-            if (confirm("Está seguro que desea cancelar la operación?")) {
+            if (confirm("¿Está seguro que desea cancelar la operación?")) {
                 window.location.href = "GestionIncidencias.aspx";
+                return true;
             }
             else {
                 return false;
             }
         }
-</script>
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h4>Analisis de No Conformidad</h4>
@@ -25,55 +26,54 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                    <!-- Área de desglose de la no conformidad ingresada desde "IngresarNoConformidad" -->
                     <p>
                         <strong>Código Servicio No Conforme:</strong>
-                        <asp:Label ID="lblCodSNC" runat="server" Text="SNC0000"></asp:Label>
+                        <asp:Label ID="lblCodSNC" runat="server" Text="00000" />
                     </p>
                     <div class="row">
                         <div class="col-md-4">
                             <p>
                                 <strong>Fecha de Ingreso:</strong>
-                                <asp:Label ID="lblFechaIngreso" runat="server" Text="00/00/0000"></asp:Label>
+                                <asp:Label ID="lblFechaIngreso" runat="server" Text="00/00/0000" />
                             </p>
                         </div>
                         <div class="col-md-4">
                             <p>
                                 <strong>Fecha Identificación:</strong>
-                                <asp:Label ID="lblFechaIdentificacion" runat="server" Text="00/00/0000"></asp:Label>
+                                <asp:Label ID="lblFechaIdentificacion" runat="server" Text="00/00/0000" />
                             </p>
                         </div>
                         <div class="col-md-4">
                             <p>
                                 <strong>Estado:</strong>
-                                <asp:Label ID="lblEstado" runat="server" Text="Análisis"></asp:Label>
+                                <asp:Label ID="lblEstado" runat="server" Text="Análisis" />
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <p>
-                                <strong>Tipo:</strong>
-                                <asp:Label ID="lblTipo" runat="server" Text="No conformidad"></asp:Label>
+                                <strong>Tipo de Incidencia:</strong>
+                                <asp:Label ID="lblTipo" runat="server" Text="No conformidad" />
                             </p>
                         </div>
                         <div class="col-md-4">
                             <p>
                                 <strong>Modo de Detección:</strong>
-                                <asp:Label ID="lblModoDetect" runat="server" Text="Auditoría Interna"></asp:Label>
+                                <asp:Label ID="lblModoDetect" runat="server" Text="Auditoría Interna" />
                             </p>
                         </div>
                         <div class="col-md-4">
                             <p>
                                 <strong>Área afectada:</strong>
-                                <asp:Label ID="lblAreaAfectada" runat="server" Text="Departamento de Finanzas"></asp:Label>
+                                <asp:Label ID="lblAreaAfectada" runat="server" Text="Departamento de Finanzas" />
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <p class="vertical-align"><strong>Detalle de la No Conformidad:</strong></p>
-                            <asp:TextBox ID="txtDetalle" TextMode="MultiLine" Width="100%" Rows="5" runat="server" ReadOnly="True"></asp:TextBox>
+                            <asp:TextBox ID="txtDetalle" TextMode="MultiLine" Width="100%" Rows="5" runat="server" />
                         </div>
                     </div>
                 </div>
@@ -91,18 +91,19 @@
                     <div class="row">
                         <div class="col-md-4">
                             <p><strong>Causas de No Conformidad:</strong></p>
-                            <asp:TextBox ID="txtCausas" TextMode="multiline" Width="100%" Rows="5" runat="server" required="required"></asp:TextBox>
+                            <asp:TextBox ID="txtCausas" TextMode="multiline" Width="100%" Rows="5" runat="server" required="required" />
                         </div>
                         <div class="col-md-4">
                             <p><strong>Efectos deseados al finalizar el proceso:</strong></p>
-                            <asp:TextBox ID="txtEfectosDeseados" TextMode="multiline" Width="100%" Rows="5" runat="server" required="required"></asp:TextBox>
+                            <asp:TextBox ID="txtEfectosDeseados" TextMode="multiline" Width="100%" Rows="5" runat="server" required="required" />
                         </div>
                         <div class="col-md-4">
                             <p><strong>Acciones Correctivas:</strong></p>
                             <p>
-                                <asp:TextBox ID="txtAnadirAccion" runat="server"></asp:TextBox>
-                                <asp:Button ID="btnAnadirAccion" runat="server" Text="Añadir" class="btn btn-success btn-xs" />
-                                <asp:Button ID="btnQuitarAccion" runat="server" Text="Quitar" class="btn btn-danger btn-xs" /></p>
+                                <asp:TextBox ID="txtAnadirAccion" runat="server" CssClass="col-md-8" CausesValidation="False" />&nbsp;
+                                <asp:Button ID="btnAnadirAccion" runat="server" Text="Añadir" CssClass="btn btn-success btn-xs" formnovalidate />
+                                <asp:Button ID="btnQuitarAccion" runat="server" Text="Quitar" CssClass="btn btn-danger btn-xs" formnovalidate />
+                            </p>
                             <asp:ListBox ID="ltbAcciones" runat="server">
                                 <asp:ListItem>Reparación de las 4 Sillas defectuosas de la Sala</asp:ListItem>
                             </asp:ListBox>
@@ -111,31 +112,29 @@
                     <div class="row">
                         <div class="col-md-6">
                             <strong>Expediente electrónico</strong>
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>N°</th>
-                                    <th>Descripción del Archivo</th>
-                                    <th>Acciones</th>
-                                </tr>
-                                <tr>
-                                    <td>01</td>
-                                    <td>Certificado de Compromiso de Toma de Acciones</td>
-                                    <td>
-                                        <asp:Button runat="server" Text="Quitar Archivo" ID="btnQuitarArchivo" class="btn btn-danger btn-xs" /></td>
-                                </tr>
-                            </table>
+                            <asp:GridView runat="server" ID="gvDocumentos" CssClass="table table-striped" GridLines="None" AutoGenerateColumns="False" OnRowCommand="DocumentosOnRowCommand"
+                                EmptyDataText="No existen archivos registrados" ShowHeaderWhenEmpty="True">
+                                <Columns>
+                                    <asp:BoundField DataField="Descripcion" HeaderText="Descripción del Archivo" />
+                                    <asp:TemplateField HeaderText="Acciones">
+                                        <ItemTemplate>
+                                            <asp:Button runat="server" Text="Quitar Archivo" CssClass="btn btn-danger btn-xs" formnovalidate CommandName="Quitar" CommandArgument='<%# Eval("IdDocumento") %>' />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
                             <div class="row">
                                 <div class="col-md-7">
-                                    <asp:FileUpload runat="server" ID="fileUpload1" Multiple="Multiple" CssClass="btn btn-default"></asp:FileUpload>
+                                    <asp:FileUpload runat="server" ID="fupDocumentos" Multiple="Multiple" CssClass="btn btn-default" />
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" class="btn btn-success btn-xs" />
+                                    <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" formnovalidate class="btn btn-success btn-xs" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <p><strong>Fecha Límite:</strong></p>
-                            <asp:TextBox ID="tbFechaLimite" runat="server" type="date" required="required"/>
+                            <asp:TextBox ID="tbFechaLimite" runat="server" type="date" required="required" />
                         </div>
                         <div class="col-md-3">
                             <p><strong>Tratamiento:</strong></p>
@@ -148,13 +147,13 @@
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-4 text-right">
-            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning" OnClientClick="return confirmation();"/>
+            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-warning" formnovalidate OnClientClick="return confirmation();" />
         </div>
         <div class="col-xs-6 col-sm-4 text-center">
-            <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" class="btn btn-danger" />
+            <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" CssClass="btn btn-danger" />
         </div>
         <div class="col-xs-6 col-sm-4 text-left">
-            <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" class="btn btn-success" />
+            <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" CssClass="btn btn-success" />
         </div>
     </div>
 </asp:Content>

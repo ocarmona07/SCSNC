@@ -7,9 +7,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('Acciones')
-                    AND o.name = 'FK_ACCIONES_REFERENCE_ANALISIS' )
+                    AND o.name = 'FK_ACCIONES_REF_ACCIO_ANALISIS' )
     ALTER TABLE Acciones
-    DROP CONSTRAINT FK_ACCIONES_REFERENCE_ANALISIS
+    DROP CONSTRAINT FK_ACCIONES_REF_ACCIO_ANALISIS
 GO
 
 IF EXISTS ( SELECT  1
@@ -18,9 +18,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('Acciones')
-                    AND o.name = 'FK_ACCIONES_REFERENCE_ESTADOSA' )
+                    AND o.name = 'FK_ACCIONES_REF_ACCIO_ESTADOSA' )
     ALTER TABLE Acciones
-    DROP CONSTRAINT FK_ACCIONES_REFERENCE_ESTADOSA
+    DROP CONSTRAINT FK_ACCIONES_REF_ACCIO_ESTADOSA
 GO
 
 IF EXISTS ( SELECT  1
@@ -29,9 +29,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('AnalisisCausa')
-                    AND o.name = 'FK_ANALISIS_REFERENCE_TRATAMIE' )
+                    AND o.name = 'FK_ANALISIS_REF_ANALI_INCIDENC' )
     ALTER TABLE AnalisisCausa
-    DROP CONSTRAINT FK_ANALISIS_REFERENCE_TRATAMIE
+    DROP CONSTRAINT FK_ANALISIS_REF_ANALI_INCIDENC
 GO
 
 IF EXISTS ( SELECT  1
@@ -40,9 +40,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('AnalisisCausa')
-                    AND o.name = 'FK_ANALISIS_REFERENCE_INCIDENC' )
+                    AND o.name = 'FK_ANALISIS_REF_ANALI_TRATAMIE' )
     ALTER TABLE AnalisisCausa
-    DROP CONSTRAINT FK_ANALISIS_REFERENCE_INCIDENC
+    DROP CONSTRAINT FK_ANALISIS_REF_ANALI_TRATAMIE
 GO
 
 IF EXISTS ( SELECT  1
@@ -51,9 +51,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('Comunas')
-                    AND o.name = 'FK_COMUNAS_REFERENCE_PROVINCI' )
+                    AND o.name = 'FK_COMUNAS_REF_COMUN_PROVINCI' )
     ALTER TABLE Comunas
-    DROP CONSTRAINT FK_COMUNAS_REFERENCE_PROVINCI
+    DROP CONSTRAINT FK_COMUNAS_REF_COMUN_PROVINCI
 GO
 
 IF EXISTS ( SELECT  1
@@ -62,9 +62,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('Documentos')
-                    AND o.name = 'FK_DOCUMENT_REFERENCE_ANALISIS' )
+                    AND o.name = 'FK_DOCUMENT_REF_DOCUM_INCIDENC' )
     ALTER TABLE Documentos
-    DROP CONSTRAINT FK_DOCUMENT_REFERENCE_ANALISIS
+    DROP CONSTRAINT FK_DOCUMENT_REF_DOCUM_INCIDENC
 GO
 
 IF EXISTS ( SELECT  1
@@ -73,9 +73,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('EvaluacionCumplimiento')
-                    AND o.name = 'FK_EVALUACI_REFERENCE_ANALISIS' )
+                    AND o.name = 'FK_EVALUACI_REF_EVALU_ANALISIS' )
     ALTER TABLE EvaluacionCumplimiento
-    DROP CONSTRAINT FK_EVALUACI_REFERENCE_ANALISIS
+    DROP CONSTRAINT FK_EVALUACI_REF_EVALU_ANALISIS
 GO
 
 IF EXISTS ( SELECT  1
@@ -128,9 +128,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('Organizacion')
-                    AND o.name = 'FK_ORGANIZA_REFERENCE_COMUNAS' )
+                    AND o.name = 'FK_ORGANIZA_REF_ORGAN_COMUNAS' )
     ALTER TABLE Organizacion
-    DROP CONSTRAINT FK_ORGANIZA_REFERENCE_COMUNAS
+    DROP CONSTRAINT FK_ORGANIZA_REF_ORGAN_COMUNAS
 GO
 
 IF EXISTS ( SELECT  1
@@ -139,9 +139,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('Provincias')
-                    AND o.name = 'FK_PROVINCI_REFERENCE_REGIONES' )
+                    AND o.name = 'FK_PROVINCI_REF_PROVI_REGIONES' )
     ALTER TABLE Provincias
-    DROP CONSTRAINT FK_PROVINCI_REFERENCE_REGIONES
+    DROP CONSTRAINT FK_PROVINCI_REF_PROVI_REGIONES
 GO
 
 IF EXISTS ( SELECT  1
@@ -150,9 +150,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('RolAcceso')
-                    AND o.name = 'FK_ROLACCES_REFERENCE_ROLES' )
+                    AND o.name = 'FK_ROLACCES_REF_ROLAC_ACCESOS' )
     ALTER TABLE RolAcceso
-    DROP CONSTRAINT FK_ROLACCES_REFERENCE_ROLES
+    DROP CONSTRAINT FK_ROLACCES_REF_ROLAC_ACCESOS
 GO
 
 IF EXISTS ( SELECT  1
@@ -161,9 +161,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('RolAcceso')
-                    AND o.name = 'FK_ROLACCES_REFERENCE_ACCESOS' )
+                    AND o.name = 'FK_ROLACCES_REF_ROLAC_ROLES' )
     ALTER TABLE RolAcceso
-    DROP CONSTRAINT FK_ROLACCES_REFERENCE_ACCESOS
+    DROP CONSTRAINT FK_ROLACCES_REF_ROLAC_ROLES
 GO
 
 IF EXISTS ( SELECT  1
@@ -172,9 +172,9 @@ IF EXISTS ( SELECT  1
                                                AND o.type = 'F'
                                              )
             WHERE   r.fkeyid = OBJECT_ID('Usuarios')
-                    AND o.name = 'FK_USUARIOS_REFERENCE_COMUNAS' )
+                    AND o.name = 'FK_USUARIOS_REF_USUAR_COMUNAS' )
     ALTER TABLE Usuarios
-    DROP CONSTRAINT FK_USUARIOS_REFERENCE_COMUNAS
+    DROP CONSTRAINT FK_USUARIOS_REF_USUAR_COMUNAS
 GO
 
 IF EXISTS ( SELECT  1
@@ -383,8 +383,8 @@ GO
 CREATE TABLE Documentos
     (
       IdDocumento INT IDENTITY ,
-      IdAnalisisCausa INT NULL ,
-      UrlDocumento VARCHAR(MAX) NOT NULL ,
+      IdIncidencia INT NULL ,
+      RutaDocumento VARCHAR(MAX) NOT NULL ,
       CONSTRAINT PK_DOCUMENTOS PRIMARY KEY ( IdDocumento )
     )
 GO
@@ -569,37 +569,37 @@ CREATE TABLE Usuarios
 GO
 
 ALTER TABLE Acciones
-ADD CONSTRAINT FK_ACCIONES_REFERENCE_ANALISIS FOREIGN KEY (IdAnalisisCausa)
+ADD CONSTRAINT FK_ACCIONES_REF_ACCIO_ANALISIS FOREIGN KEY (IdAnalisisCausa)
 REFERENCES AnalisisCausa (IdAnalisisCausa)
 GO
 
 ALTER TABLE Acciones
-ADD CONSTRAINT FK_ACCIONES_REFERENCE_ESTADOSA FOREIGN KEY (IdEstado)
+ADD CONSTRAINT FK_ACCIONES_REF_ACCIO_ESTADOSA FOREIGN KEY (IdEstado)
 REFERENCES EstadosAccion (IdEstado)
 GO
 
 ALTER TABLE AnalisisCausa
-ADD CONSTRAINT FK_ANALISIS_REFERENCE_TRATAMIE FOREIGN KEY (IdTratamiento)
-REFERENCES Tratamientos (IdTratamiento)
-GO
-
-ALTER TABLE AnalisisCausa
-ADD CONSTRAINT FK_ANALISIS_REFERENCE_INCIDENC FOREIGN KEY (IdIncidencia)
+ADD CONSTRAINT FK_ANALISIS_REF_ANALI_INCIDENC FOREIGN KEY (IdIncidencia)
 REFERENCES Incidencias (IdIncidencia)
 GO
 
+ALTER TABLE AnalisisCausa
+ADD CONSTRAINT FK_ANALISIS_REF_ANALI_TRATAMIE FOREIGN KEY (IdTratamiento)
+REFERENCES Tratamientos (IdTratamiento)
+GO
+
 ALTER TABLE Comunas
-ADD CONSTRAINT FK_COMUNAS_REFERENCE_PROVINCI FOREIGN KEY (IdProvincia)
+ADD CONSTRAINT FK_COMUNAS_REF_COMUN_PROVINCI FOREIGN KEY (IdProvincia)
 REFERENCES Provincias (IdProvincia)
 GO
 
 ALTER TABLE Documentos
-ADD CONSTRAINT FK_DOCUMENT_REFERENCE_ANALISIS FOREIGN KEY (IdAnalisisCausa)
-REFERENCES AnalisisCausa (IdAnalisisCausa)
+ADD CONSTRAINT FK_DOCUMENT_REF_DOCUM_INCIDENC FOREIGN KEY (IdIncidencia)
+REFERENCES Incidencias (IdIncidencia)
 GO
 
 ALTER TABLE EvaluacionCumplimiento
-ADD CONSTRAINT FK_EVALUACI_REFERENCE_ANALISIS FOREIGN KEY (IdAnalisisCausa)
+ADD CONSTRAINT FK_EVALUACI_REF_EVALU_ANALISIS FOREIGN KEY (IdAnalisisCausa)
 REFERENCES AnalisisCausa (IdAnalisisCausa)
 GO
 
@@ -624,27 +624,27 @@ REFERENCES Usuarios (RUT)
 GO
 
 ALTER TABLE Organizacion
-ADD CONSTRAINT FK_ORGANIZA_REFERENCE_COMUNAS FOREIGN KEY (IdComuna)
+ADD CONSTRAINT FK_ORGANIZA_REF_ORGAN_COMUNAS FOREIGN KEY (IdComuna)
 REFERENCES Comunas (IdComuna)
 GO
 
 ALTER TABLE Provincias
-ADD CONSTRAINT FK_PROVINCI_REFERENCE_REGIONES FOREIGN KEY (IdRegion)
+ADD CONSTRAINT FK_PROVINCI_REF_PROVI_REGIONES FOREIGN KEY (IdRegion)
 REFERENCES Regiones (IdRegion)
 GO
 
 ALTER TABLE RolAcceso
-ADD CONSTRAINT FK_ROLACCES_REFERENCE_ROLES FOREIGN KEY (IdRol)
-REFERENCES Roles (IdRol)
-GO
-
-ALTER TABLE RolAcceso
-ADD CONSTRAINT FK_ROLACCES_REFERENCE_ACCESOS FOREIGN KEY (IdAcceso)
+ADD CONSTRAINT FK_ROLACCES_REF_ROLAC_ACCESOS FOREIGN KEY (IdAcceso)
 REFERENCES Accesos (IdAcceso)
 GO
 
+ALTER TABLE RolAcceso
+ADD CONSTRAINT FK_ROLACCES_REF_ROLAC_ROLES FOREIGN KEY (IdRol)
+REFERENCES Roles (IdRol)
+GO
+
 ALTER TABLE Usuarios
-ADD CONSTRAINT FK_USUARIOS_REFERENCE_COMUNAS FOREIGN KEY (IdComuna)
+ADD CONSTRAINT FK_USUARIOS_REF_USUAR_COMUNAS FOREIGN KEY (IdComuna)
 REFERENCES Comunas (IdComuna)
 GO
 

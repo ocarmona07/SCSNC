@@ -139,22 +139,22 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.ListBox ltbAcciones;
         
         /// <summary>
-        /// Control btnQuitarArchivo.
+        /// Control gvDocumentos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnQuitarArchivo;
+        protected global::System.Web.UI.WebControls.GridView gvDocumentos;
         
         /// <summary>
-        /// Control fileUpload1.
+        /// Control fupDocumentos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUpload1;
+        protected global::System.Web.UI.WebControls.FileUpload fupDocumentos;
         
         /// <summary>
         /// Control btnSubirArchivo.

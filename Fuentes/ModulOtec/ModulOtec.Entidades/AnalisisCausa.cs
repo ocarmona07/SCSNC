@@ -17,7 +17,6 @@ namespace ModulOtec.Entidades
         public AnalisisCausa()
         {
             this.Acciones = new HashSet<Acciones>();
-            this.Documentos = new HashSet<Documentos>();
             this.EvaluacionCumplimiento = new HashSet<EvaluacionCumplimiento>();
         }
     
@@ -31,7 +30,6 @@ namespace ModulOtec.Entidades
         public virtual ICollection<Acciones> Acciones { get; set; }
         public virtual Incidencias Incidencias { get; set; }
         public virtual Tratamientos Tratamientos { get; set; }
-        public virtual ICollection<Documentos> Documentos { get; set; }
         public virtual ICollection<EvaluacionCumplimiento> EvaluacionCumplimiento { get; set; }
     }
 }

@@ -15,9 +15,9 @@ namespace ModulOtec.Entidades
     public partial class Documentos
     {
         public int IdDocumento { get; set; }
-        public Nullable<int> IdAnalisisCausa { get; set; }
-        public string UrlDocumento { get; set; }
+        public Nullable<int> IdIncidencia { get; set; }
+        public string RutaDocumento { get; set; }
     
-        public virtual AnalisisCausa AnalisisCausa { get; set; }
+        public virtual Incidencias Incidencias { get; set; }
     }
 }

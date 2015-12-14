@@ -17,6 +17,7 @@ namespace ModulOtec.Entidades
         public Incidencias()
         {
             this.AnalisisCausa = new HashSet<AnalisisCausa>();
+            this.Documentos = new HashSet<Documentos>();
         }
     
         public int IdIncidencia { get; set; }
@@ -31,6 +32,7 @@ namespace ModulOtec.Entidades
         public int IdEstadoIncidencia { get; set; }
     
         public virtual ICollection<AnalisisCausa> AnalisisCausa { get; set; }
+        public virtual ICollection<Documentos> Documentos { get; set; }
         public virtual EstadosIncidencia EstadosIncidencia { get; set; }
         public virtual ModosDeteccion ModosDeteccion { get; set; }
         public virtual TiposIncidencias TiposIncidencias { get; set; }
