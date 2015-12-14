@@ -14,6 +14,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+    <asp:ScriptManager runat="server" />
     <h4>Analisis de No Conformidad</h4>
     <hr />
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -115,20 +116,21 @@
                             <asp:GridView runat="server" ID="gvDocumentos" CssClass="table table-striped" GridLines="None" AutoGenerateColumns="False" OnRowCommand="DocumentosOnRowCommand"
                                 EmptyDataText="No existen archivos registrados" ShowHeaderWhenEmpty="True">
                                 <Columns>
-                                    <asp:BoundField DataField="Descripcion" HeaderText="Descripción del Archivo" />
+                                    <asp:BoundField DataField="RutaDocumento" HeaderText="Nombre del Archivo" />
                                     <asp:TemplateField HeaderText="Acciones">
                                         <ItemTemplate>
-                                            <asp:Button runat="server" Text="Quitar Archivo" CssClass="btn btn-danger btn-xs" formnovalidate CommandName="Quitar" CommandArgument='<%# Eval("IdDocumento") %>' />
+                                            <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-download-alt" formnovalidate CommandName="Descargar" ToolTip="Descargar Archivo" CommandArgument='<%# Eval("RutaDocumento") %>' />
+                                            <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-remove" formnovalidate CommandName="Quitar" ToolTip="Eliminar Archivo" CommandArgument='<%# Eval("IdDocumento") %>' />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
                             <div class="row">
-                                <div class="col-md-7">
-                                    <asp:FileUpload runat="server" ID="fupDocumentos" Multiple="Multiple" CssClass="btn btn-default" />
+                                <div class="col-md-9">
+                                    <asp:FileUpload runat="server" ID="fupDocumentos" CssClass="btn btn-default" />
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" formnovalidate class="btn btn-success btn-xs" />
+                                    <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" formnovalidate class="btn btn-success btn-xs" OnClick="SubirArchivo" />
                                 </div>
                             </div>
                         </div>
@@ -154,6 +156,26 @@
         </div>
         <div class="col-xs-6 col-sm-4 text-left">
             <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" CssClass="btn btn-success" />
+        </div>
+    </div>
+    <div id="modalAlerta" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <asp:Label runat="server" ID="lblTituloModal" /></h4>
+                        </div>
+                        <div class="modal-body">
+                            <asp:Literal runat="server" ID="litDetalle" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </div>
 </asp:Content>
