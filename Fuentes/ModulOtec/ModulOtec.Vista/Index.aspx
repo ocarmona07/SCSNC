@@ -32,12 +32,12 @@
             </div>--%>
             <div class="row espacio-tabla">
                 <div class="col-md-4 col-md-offset-4">
-                    <asp:TextBox ID="txtUsuario" runat="server" PlaceHolder="Usuario" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtUsuario" runat="server" PlaceHolder="Usuario" CssClass="form-control" min="1" MaxLength="8" required="required" type="number"></asp:TextBox>
                 </div>
             </div>
             <div class="row espacio-tabla">
                 <div class="col-md-4 col-md-offset-4">
-                    <asp:TextBox ID="txtPassword" runat="server" PlaceHolder="Password" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" runat="server" PlaceHolder="Password" CssClass="form-control" TextMode="Password" required="required"></asp:TextBox>
                 </div>
             </div>
             <div class="row espacio-tabla">
