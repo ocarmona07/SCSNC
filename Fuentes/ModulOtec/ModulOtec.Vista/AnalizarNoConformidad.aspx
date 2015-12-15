@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="AnalizarNoConformidad.aspx.cs" Inherits="ModulOtec.Vista.AnalizarNoConformidad" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="AnalizarNoConformidad.aspx.cs" Inherits="ModulOtec.Vista.AnalizarNoConformidad" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
@@ -10,6 +10,34 @@
             else {
                 return false;
             }
+        }
+
+        function AddValues() {
+            var txtValue = document.getElementById("<%= txtAnadirAccion.ClientID %>");
+            if (txtValue.value.trim() === "") return false;
+            var listBox = document.getElementById("<%= lbxAcciones.ClientID %>");
+            var option = document.createElement("OPTION");
+            option.innerHTML = txtValue.value;
+            option.value = txtValue.value;
+            listBox.appendChild(option);
+            txtValue.value = "";
+            return false;
+        }
+
+        function DeleteValues() {
+            var listBox = document.getElementById("<%= lbxAcciones.ClientID %>");
+            for (var i = listBox.options.length - 1; i >= 0; i--) {
+                if (listBox.options[i].selected) {
+                    listBox.removeChild(listBox.options[i]);
+                }
+            }
+            return false;
+        }
+
+        function ObtenerItems() {
+            var items = $("#<%= lbxAcciones.ClientID %> option").map(function () { return $(this).val(); }).get().join("|");
+            $("#<%= hdnItems.ClientID %>").val(items);
+            return true;
         }
     </script>
 </asp:Content>
@@ -74,7 +102,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p class="vertical-align"><strong>Detalle de la No Conformidad:</strong></p>
-                            <asp:TextBox ID="txtDetalle" TextMode="MultiLine" Width="100%" Rows="5" runat="server" />
+                            <asp:TextBox runat="server" ID="txtDetalle" CssClass="form-control" BackColor="white" ForeColor="black" TextMode="MultiLine" Width="100%" Rows="5" />
                         </div>
                     </div>
                 </div>
@@ -92,29 +120,29 @@
                     <div class="row">
                         <div class="col-md-4">
                             <p><strong>Causas de No Conformidad:</strong></p>
-                            <asp:TextBox ID="txtCausas" TextMode="multiline" Width="100%" Rows="5" runat="server" required="required" />
+                            <asp:TextBox ID="txtCausas" runat="server" CssClass="form-control" TextMode="MultiLine" Width="100%" Rows="5" required="required" />
                         </div>
                         <div class="col-md-4">
                             <p><strong>Efectos deseados al finalizar el proceso:</strong></p>
-                            <asp:TextBox ID="txtEfectosDeseados" TextMode="multiline" Width="100%" Rows="5" runat="server" required="required" />
+                            <asp:TextBox ID="txtEfectosDeseados" runat="server" CssClass="form-control" TextMode="MultiLine" Width="100%" Rows="5" required="required" />
                         </div>
                         <div class="col-md-4">
                             <p><strong>Acciones Correctivas:</strong></p>
                             <p>
-                                <asp:TextBox ID="txtAnadirAccion" runat="server" CssClass="col-md-8" CausesValidation="False" />&nbsp;
-                                <asp:Button ID="btnAnadirAccion" runat="server" Text="Añadir" CssClass="btn btn-success btn-xs" formnovalidate />
-                                <asp:Button ID="btnQuitarAccion" runat="server" Text="Quitar" CssClass="btn btn-danger btn-xs" formnovalidate />
+                                <asp:TextBox ID="txtAnadirAccion" runat="server" CssClass="col-md-8" />&nbsp;
+                                <asp:Button ID="btnAnadirAccion" runat="server" Text="Añadir" CssClass="btn btn-success btn-xs" formnovalidate OnClientClick="return AddValues();" />
+                                <asp:Button ID="btnQuitarAccion" runat="server" Text="Quitar" CssClass="btn btn-danger btn-xs" formnovalidate OnClientClick="return DeleteValues();" />
                             </p>
-                            <asp:ListBox ID="ltbAcciones" runat="server">
-                                <asp:ListItem>Reparación de las 4 Sillas defectuosas de la Sala</asp:ListItem>
-                            </asp:ListBox>
+                            <asp:HiddenField runat="server" ID="hdnItems" />
+                            <asp:ListBox ID="lbxAcciones" runat="server" CssClass="form-control" EnableViewState="True" />
                         </div>
                     </div>
+                    <br />
                     <div class="row">
                         <div class="col-md-6">
-                            <strong>Expediente electrónico</strong>
+                            <strong>Expediente electrónico:</strong>
                             <asp:GridView runat="server" ID="gvDocumentos" CssClass="table table-striped" GridLines="None" AutoGenerateColumns="False" OnRowCommand="DocumentosOnRowCommand"
-                                EmptyDataText="No existen archivos registrados" ShowHeaderWhenEmpty="True">
+                                EmptyDataText="No existen archivos registrados" ShowHeaderWhenEmpty="True" AllowPaging="True" PageSize="5">
                                 <Columns>
                                     <asp:BoundField DataField="RutaDocumento" HeaderText="Nombre del Archivo" />
                                     <asp:TemplateField HeaderText="Acciones">
@@ -124,23 +152,24 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
+                                <PagerSettings Mode="NextPrevious" PreviousPageText="Atrás" NextPageText="Siguiente" />
                             </asp:GridView>
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <asp:FileUpload runat="server" ID="fupDocumentos" CssClass="btn btn-default" />
                                 </div>
-                                <div class="col-md-2">
-                                    <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" formnovalidate class="btn btn-success btn-xs" OnClick="SubirArchivo" />
+                                <div class="col-md-4">
+                                    <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" formnovalidate class="btn btn-success" OnClick="SubirArchivo" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <p><strong>Fecha Límite:</strong></p>
-                            <asp:TextBox ID="tbFechaLimite" runat="server" type="date" required="required" />
+                            <asp:TextBox ID="txtFechaLimite" runat="server" CssClass="form-control" type="date" required="required" />
                         </div>
                         <div class="col-md-3">
                             <p><strong>Tratamiento:</strong></p>
-                            <asp:DropDownList ID="ddlTratamiento" runat="server" />
+                            <asp:DropDownList ID="ddlTratamiento" runat="server" CssClass="form-control" required="required" />
                         </div>
                     </div>
                 </div>
@@ -155,7 +184,7 @@
             <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" CssClass="btn btn-danger" />
         </div>
         <div class="col-xs-6 col-sm-4 text-left">
-            <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" CssClass="btn btn-success" />
+            <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" CssClass="btn btn-success" OnClientClick="return ObtenerItems();" OnClick="IngresarAnalisis" />
         </div>
     </div>
     <div id="modalAlerta" class="modal fade" tabindex="-1" role="dialog">
@@ -171,7 +200,7 @@
                             <asp:Literal runat="server" ID="litDetalle" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            <asp:Button ID="btnModalAceptar" runat="server" CssClass="btn btn-primary" data-dismiss="modal" Text="Aceptar" />
                         </div>
                     </div>
                 </ContentTemplate>

@@ -130,13 +130,22 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.Button btnQuitarAccion;
         
         /// <summary>
-        /// Control ltbAcciones.
+        /// Control hdnItems.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ltbAcciones;
+        protected global::System.Web.UI.WebControls.HiddenField hdnItems;
+        
+        /// <summary>
+        /// Control lbxAcciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbxAcciones;
         
         /// <summary>
         /// Control gvDocumentos.
@@ -166,13 +175,13 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.Button btnSubirArchivo;
         
         /// <summary>
-        /// Control tbFechaLimite.
+        /// Control txtFechaLimite.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFechaLimite;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaLimite;
         
         /// <summary>
         /// Control ddlTratamiento.
@@ -236,5 +245,14 @@ namespace ModulOtec.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litDetalle;
+        
+        /// <summary>
+        /// Control btnModalAceptar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModalAceptar;
     }
 }

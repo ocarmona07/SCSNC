@@ -66,7 +66,7 @@
                 AreaAfectada = txtAreaAfectada.Text,
                 ProcesoAfectado = txtProcesoAfectado.Text,
                 Descripcion = txtDescripcion.Text,
-                IdEstadoIncidencia = 2
+                IdEstadoIncidencia = 1
             };
 
             var idIncidencia = new IncidenciasBo().CrearIncidencia(incidencia);
