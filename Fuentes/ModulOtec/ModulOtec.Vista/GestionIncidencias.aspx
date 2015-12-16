@@ -7,10 +7,6 @@
     <ul class="nav nav-tabs">
         <li role="presentation">
             <asp:LinkButton runat="server" PostBackUrl="IngresarNoConformidad.aspx" Text="Registrar No Conformidad" /></li>
-        <li role="presentation">
-            <asp:LinkButton runat="server" PostBackUrl="AnalizarNoConformidad.aspx" Text="Analizar No Conformidad" /></li>
-        <li role="presentation">
-            <asp:LinkButton runat="server" PostBackUrl="~/RevisionCumplimiento.aspx" Text="Revisión de Cumplimiento" /></li>
     </ul>
     <br />
 

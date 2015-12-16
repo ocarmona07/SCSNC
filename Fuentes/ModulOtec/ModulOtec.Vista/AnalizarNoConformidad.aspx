@@ -2,23 +2,33 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
-        function Confirmacion() {
-            return confirm("¿Está seguro que desea volver al menú de gestión?");
-        }
+        $(document).ready(function () {
+            var valItems = $("#<%= hdnItems.ClientID %>").val();
+            if (valItems !== "") {
+                var items = valItems.split("|");
+                $.each(items, function (item) {
+                    $("#<%= lbxAcciones.ClientID %>").append('<option value="' + items[item] + '">' + items[item] + '</option>');
+                });
+                }
+        });
 
-        function Invalidar() {
-            if ($("#<%= txtCausas.ClientID %>").val() === "") {
-                $("#<%= lblTituloModal.ClientID %>").html("Invalidar incidencia");
-                $('#modalAlerta').find('.modal-body').html("<p><b>Debe ingresar una causa para invalidar la incidencia</b></p>");
-                $('#modalAlerta').modal();
-                return false;
+            function Confirmacion() {
+                return confirm("¿Está seguro que desea volver al menú de gestión?");
             }
 
-            return confirm("¿Está seguro que desea invalidar la incidencia?");
-        }
+            function Invalidar() {
+                if ($("#<%= txtCausas.ClientID %>").val() === "") {
+                    $("#<%= lblTituloModal.ClientID %>").html("Invalidar incidencia");
+                    $('#modalAlerta').find('.modal-body').html("<p><b>Debe ingresar una causa para invalidar la incidencia</b></p>");
+                    $('#modalAlerta').modal();
+                    return false;
+                }
 
-        function AddValues() {
-            var txtValue = document.getElementById("<%= txtAnadirAccion.ClientID %>");
+                return confirm("¿Está seguro que desea invalidar la incidencia?");
+            }
+
+            function AddValues() {
+                var txtValue = document.getElementById("<%= txtAnadirAccion.ClientID %>");
             if (txtValue.value.trim() === "") return false;
             var listBox = document.getElementById("<%= lbxAcciones.ClientID %>");
             var option = document.createElement("OPTION");
@@ -166,7 +176,7 @@
                                     <asp:FileUpload runat="server" ID="fupDocumentos" CssClass="btn btn-default" />
                                 </div>
                                 <div class="col-md-4">
-                                    <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" formnovalidate class="btn btn-success" OnClick="SubirArchivo" />
+                                    <asp:Button runat="server" Text="Añadir Archivo" ID="btnSubirArchivo" formnovalidate class="btn btn-success" OnClientClick="return ObtenerItems();" OnClick="SubirArchivo" />
                                 </div>
                             </div>
                         </div>
