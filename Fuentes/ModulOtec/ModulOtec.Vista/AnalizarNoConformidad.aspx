@@ -3,13 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         function confirmation() {
-            if (confirm("¿Está seguro que desea cancelar la operación?")) {
-                window.location.href = "GestionIncidencias.aspx";
-                return true;
-            }
-            else {
-                return false;
-            }
+            return confirm("¿Está seguro que desea volver al menú de gestión?");
         }
 
         function AddValues() {
@@ -31,6 +25,7 @@
                     listBox.removeChild(listBox.options[i]);
                 }
             }
+
             return false;
         }
 
@@ -178,7 +173,7 @@
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-4 text-right">
-            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-warning" formnovalidate OnClientClick="return confirmation();" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-warning" formnovalidate OnClientClick="return confirmation();" OnClick="VolverOnClick" />
         </div>
         <div class="col-xs-6 col-sm-4 text-center">
             <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" CssClass="btn btn-danger" />

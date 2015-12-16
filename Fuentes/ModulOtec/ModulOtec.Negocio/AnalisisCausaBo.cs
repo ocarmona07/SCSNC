@@ -46,7 +46,7 @@
         /// </summary>
         /// <param name="idAnalisis">Id del Análisis</param>
         /// <returns>Análisis</returns>
-        public AnalisisCausa ObtenerDocumento(int idAnalisis)
+        public AnalisisCausa ObtenerAnalisisCausa(int idAnalisis)
         {
             return _analisisCausasDa.ObtenerAnalisisCausa(idAnalisis);
         }

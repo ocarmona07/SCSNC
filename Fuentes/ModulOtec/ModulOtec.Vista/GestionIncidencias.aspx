@@ -27,7 +27,8 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                    <asp:GridView runat="server" ID="gvEtapaAnalisis" CssClass="table table-striped table-hover" GridLines="None" AutoGenerateColumns="False" OnRowCommand="EtapaAnalisisOnRowCommand">
+                    <asp:GridView runat="server" ID="gvEtapaAnalisis" CssClass="table table-striped table-hover" GridLines="None" AutoGenerateColumns="False"
+                        OnRowCommand="EtapaAnalisisOnRowCommand" EmptyDataText="No hay incidencias por analizar" ShowHeaderWhenEmpty="True">
                         <Columns>
                             <asp:BoundField DataField="IdIncidencia" DataFormatString="{0:00000}" HeaderText="Cod. Incidencia" />
                             <asp:BoundField DataField="FechaIdentificacion" DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha Identificación" />
@@ -35,7 +36,6 @@
                             <asp:BoundField DataField="Descripcion" HeaderText="Detalle Incidencia" />
                             <asp:TemplateField HeaderText="Acciones" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-edit" ToolTip="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdIncidencia") %>' />
                                     <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-list-alt" ToolTip="Analizar" CommandName="Analizar" CommandArgument='<%# Eval("IdIncidencia") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -56,40 +56,50 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <th>Cod. Incidencia</th>
-                            <th>Fecha Identificación</th>
-                            <th>Área Afectada</th>
-                            <th>Detalle Incidencia</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </table>
+                    <asp:GridView runat="server" ID="gvEtapaEvaluacion" CssClass="table table-striped table-hover" GridLines="None" AutoGenerateColumns="False"
+                        OnRowCommand="EtapaEvaluacionOnRowCommandOnRowCommand" EmptyDataText="No existen incidencias por revisar" ShowHeaderWhenEmpty="True">
+                        <Columns>
+                            <asp:BoundField DataField="IdIncidencia" DataFormatString="{0:00000}" HeaderText="Cod. Incidencia" />
+                            <asp:BoundField DataField="FechaIdentificacion" DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha Identificación" />
+                            <asp:BoundField DataField="AreaAfectada" HeaderText="Área Afectada" />
+                            <asp:BoundField DataField="Descripcion" HeaderText="Detalle Incidencia" />
+                            <asp:TemplateField HeaderText="Acciones" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-list-alt" ToolTip="Evaluar" CommandName="Evaluar" CommandArgument='<%# Eval("IdIncidencia") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="panel panel-success">
-        <div class="panel-heading" role="tab" id="headingThree">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <span class="badge">
-                        <asp:Label runat="server" ID="lblIncidenciasSolucionadas" /></span>
-                    Incidencias solucionadas
-                </a>
-            </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-            <div class="panel-body">
-                <table class="table">
-                    <tr>
-                        <th>Cod. Incidencia</th>
-                        <th>Fecha Identificación</th>
-                        <th>Área Afectada</th>
-                        <th>Detalle Incidencia</th>
-                        <th>Acciones</th>
-                    </tr>
-                </table>
+        <div class="panel panel-success">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <span class="badge">
+                            <asp:Label runat="server" ID="lblTotalIncidencias" /></span>
+                        Total Incidencias
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                    <asp:GridView runat="server" ID="gvTotalIncidencias" CssClass="table table-striped table-hover" GridLines="None" AutoGenerateColumns="False"
+                        EmptyDataText="No existen incidencias" ShowHeaderWhenEmpty="True" OnRowDataBound="TotalIncidenciasOnDataBound">
+                        <Columns>
+                            <asp:BoundField DataField="IdIncidencia" DataFormatString="{0:00000}" HeaderText="Cod. Incidencia" />
+                            <asp:BoundField DataField="FechaIdentificacion" DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha Identificación" />
+                            <asp:BoundField DataField="AreaAfectada" HeaderText="Área Afectada" />
+                            <asp:BoundField DataField="Descripcion" HeaderText="Detalle Incidencia" />
+                            <asp:TemplateField HeaderText="Estado" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" ID="txtEstadoIncidencia" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div>

@@ -43,8 +43,15 @@
             <label for="txtDescripcion">Descripción de la No Conformidad:</label>
             <asp:TextBox runat="server" ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" Rows="4" required="required" />
         </div>
-        <button type="button" class="btn btn-danger" onclick="return Cancelar();">Cancelar</button>
-        <asp:Button runat="server" ID="btnIngresar" Text="Ingresar" CssClass="btn btn-primary" OnClick="IngresarIncidencia" />
+        <div class="form-group">
+            <div class="col-md-3"></div>
+            <button type="button" class="btn btn-danger col-md-2" onclick="return Cancelar();">Cancelar</button>
+            <div class="col-md-1"></div>
+            <asp:Button runat="server" ID="btnIngresar" CssClass="btn btn-primary col-md-2" OnClick="IngresarIncidencia" Text="Ingresar" />
+        </div>
+        <br />
+        <br />
+        <br />
     </form>
     <div id="modalIngresar" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
         <div class="modal-dialog">

@@ -197,5 +197,10 @@
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalAlerta", "$('#modalAlerta').modal();", true);
             upModal.Update();
         }
+
+        protected void VolverOnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("GestionIncidencias.aspx");
+        }
     }
 }

@@ -1,12 +1,13 @@
 ﻿namespace ModulOtec.Vista
 {
     using System;
+    using System.Web.UI;
     using Negocio;
 
     /// <summary>
     /// Clase principal para ingreso
     /// </summary>
-    public partial class Index : System.Web.UI.Page
+    public partial class Index : Page
     {
         /// <summary>
         /// Método que se llama al iniciar la vista
@@ -36,8 +37,12 @@
             }
             else
             {
-                // Error
+                lblTituloModal.Text = "Error de ingreso";
+                litDetalle.Text = "<p><b>Usuario o Contraseña no válida</b></p>";
             }
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalAlerta", "$('#modalAlerta').modal();", true);
+            upModal.Update();
         }
     }
 }
