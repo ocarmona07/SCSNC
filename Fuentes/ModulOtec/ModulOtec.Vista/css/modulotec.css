@@ -3,34 +3,40 @@
 
 .brand1 {
 }
+
 .brand2 {
     color: #0489B1;
     font-weight: bold;
 }
-.navbar-login
-{
+
+.navbar-login {
     width: 310px;
     padding: 10px;
     padding-bottom: 0px;
 }
 
-.navbar-login-session
-{
+.navbar-login-session {
     padding: 10px;
     padding-bottom: 0px;
     padding-top: 0px;
 }
 
-.icon-size
-{
+.icon-size {
     font-size: 87px;
 }
+
 .top-align {
     vertical-align: top;
 }
+
 .lift {
     font-weight: normal !important;
 }
-.espacio-tabla { border-spacing: 5px;/*use to work like cellspacing */
-     }
-.espacio-tabla th, td { padding: 5px; }
+
+.espacio-tabla {
+    border-spacing: 5px; /*use to work like cellspacing */
+}
+
+    .espacio-tabla th, td {
+        padding: 5px;
+    }

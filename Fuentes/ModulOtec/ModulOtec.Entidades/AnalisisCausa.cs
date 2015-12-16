@@ -25,7 +25,7 @@ namespace ModulOtec.Entidades
         public string CausasPotenciales { get; set; }
         public string EfectosDeseados { get; set; }
         public System.DateTime FechaLimite { get; set; }
-        public Nullable<int> IdTratamiento { get; set; }
+        public int IdTratamiento { get; set; }
     
         public virtual ICollection<Acciones> Acciones { get; set; }
         public virtual Incidencias Incidencias { get; set; }

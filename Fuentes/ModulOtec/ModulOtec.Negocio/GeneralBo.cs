@@ -193,9 +193,16 @@
         /// <returns>Estados de Incidencia</returns>
         public EstadosIncidencia ObtenerEstadoIncidencia(int idEstado)
         {
-            Text = "Descripcion";
-            Value = "IdEstadoIncidencia";
-            return new GeneralDa().ObtenerEstadosIncidencias().First(o => idEstado.Equals(o.IdEstadoIncidencia));
+            try
+            {
+                Text = "Descripcion";
+                Value = "IdEstadoIncidencia";
+                return new GeneralDa().ObtenerEstadosIncidencias().First(o => idEstado.Equals(o.IdEstadoIncidencia));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -205,9 +212,16 @@
         /// <returns>Tratamiento</returns>
         public Tratamientos ObtenerTratamiento(int idTratamiento)
         {
-            Text = "Descripcion";
-            Value = "IdTratamiento";
-            return new GeneralDa().ObtenerTratamientos().First(o => idTratamiento.Equals(o.IdTratamiento));
+            try
+            {
+                Text = "Descripcion";
+                Value = "IdTratamiento";
+                return new GeneralDa().ObtenerTratamientos().First(o => idTratamiento.Equals(o.IdTratamiento));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -217,9 +231,16 @@
         /// <returns>Estado Acción</returns>
         public EstadosAccion ObtenerEstadoAccion(int idEstado)
         {
-            Text = "Descripcion";
-            Value = "IdEstado";
-            return new GeneralDa().ObtenerEstadosAccion().First(o => idEstado.Equals(o.IdEstado));
+            try
+            {
+                Text = "Descripcion";
+                Value = "IdEstado";
+                return new GeneralDa().ObtenerEstadosAccion().First(o => idEstado.Equals(o.IdEstado));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -229,9 +250,16 @@
         /// <returns>Modo de Detección</returns>
         public ModosDeteccion ObtenerModoDeteccion(int idModo)
         {
-            Text = "Descripcion";
-            Value = "IdModoDeteccion";
-            return new GeneralDa().ObtenerModosDetecciones().First(o => idModo.Equals(o.IdModoDeteccion));
+            try
+            {
+                Text = "Descripcion";
+                Value = "IdModoDeteccion";
+                return new GeneralDa().ObtenerModosDetecciones().First(o => idModo.Equals(o.IdModoDeteccion));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -241,9 +269,16 @@
         /// <returns>Tipo de Incidencia</returns>
         public TiposIncidencias ObtenerTipoIncidencia(int idTipo)
         {
-            Text = "Descripcion";
-            Value = "IdTipoIncidencia";
-            return new GeneralDa().ObtenerTiposIncidencias().First(o => idTipo.Equals(o.IdTipoIncidencia));
+            try
+            {
+                Text = "Descripcion";
+                Value = "IdTipoIncidencia";
+                return new GeneralDa().ObtenerTiposIncidencias().First(o => idTipo.Equals(o.IdTipoIncidencia));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         #endregion

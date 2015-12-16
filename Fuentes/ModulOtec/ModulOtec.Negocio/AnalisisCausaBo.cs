@@ -1,5 +1,7 @@
 ﻿namespace ModulOtec.Negocio
 {
+    using System;
+    using System.Linq;
     using System.Collections.Generic;
     using Datos;
     using Entidades;
@@ -49,6 +51,23 @@
         public AnalisisCausa ObtenerAnalisisCausa(int idAnalisis)
         {
             return _analisisCausasDa.ObtenerAnalisisCausa(idAnalisis);
+        }
+
+        /// <summary>
+        /// Método que obtiene un análisis por el Id de la Incidencia
+        /// </summary>
+        /// <param name="idIncidencia">Id de la Incidencia</param>
+        /// <returns>Análisis</returns>
+        public AnalisisCausa ObtenerAnalisisExistente(int idIncidencia)
+        {
+            try
+            {
+                return _analisisCausasDa.ObtenerAnalisisCausas().First(o => idIncidencia.Equals(o.IdIncidencia));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>

@@ -45,7 +45,7 @@ namespace ModulOtec.Vista
                 gvEtapaEvaluacion.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
 
-            // Total Incidenciasvar listaRevision = new IncidenciasBo().ObtenerIncidenciasEnRevision();
+            // Total Incidencias
             var listaIncidencias = new IncidenciasBo().ObtenerIncidencias();
             gvTotalIncidencias.DataSource = listaIncidencias;
             gvTotalIncidencias.DataBind();
@@ -89,7 +89,7 @@ namespace ModulOtec.Vista
                     break;
 
                 case "Evaluar":
-                    Response.Redirect("RevisionCumplimiento.aspx?IdAnalisis=" + e.CommandArgument);
+                    Response.Redirect("RevisionCumplimiento.aspx?IdIncidencia=" + e.CommandArgument);
                     break;
             }
         }

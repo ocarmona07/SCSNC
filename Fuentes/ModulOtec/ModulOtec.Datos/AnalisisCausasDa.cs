@@ -99,7 +99,7 @@
         {
             try
             {
-                var original = _modulOtecEntities.AnalisisCausa.Find(analisisCausa.IdIncidencia);
+                var original = _modulOtecEntities.AnalisisCausa.Find(analisisCausa.IdAnalisisCausa);
                 if (original == null) return 0;
                 _modulOtecEntities.Entry(original).CurrentValues.SetValues(analisisCausa);
                 return _modulOtecEntities.SaveChanges();

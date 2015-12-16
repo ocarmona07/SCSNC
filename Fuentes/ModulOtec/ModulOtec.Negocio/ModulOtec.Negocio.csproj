@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AccionesBo.cs" />
     <Compile Include="AnalisisCausaBo.cs" />
+    <Compile Include="EvaluacionesCumplimientoBo.cs" />
     <Compile Include="GeneralBo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IncidenciasBo.cs" />

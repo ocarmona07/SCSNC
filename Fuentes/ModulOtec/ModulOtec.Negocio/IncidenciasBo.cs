@@ -1,7 +1,6 @@
-﻿using System.Linq;
-
-namespace ModulOtec.Negocio
+﻿namespace ModulOtec.Negocio
 {
+    using System.Linq;
     using System.Collections.Generic;
     using Datos;
     using Entidades;
@@ -49,16 +48,18 @@ namespace ModulOtec.Negocio
         /// <returns>Lista de Incidencias</returns>
         public List<Incidencias> ObtenerIncidenciasEnAnalisis()
         {
-            return _incidenciasDa.ObtenerIncidencias().Where(o => o.IdEstadoIncidencia == 1).ToList();
+            return _incidenciasDa.ObtenerIncidencias().Where(o => o.IdEstadoIncidencia == 1
+                || o.IdEstadoIncidencia == 5).ToList();
         }
 
         /// <summary>
-        /// Método que obtiene todas las Incidencias que estén en análisis
+        /// Método que obtiene todas las Incidencias que estén en estado de revisión
         /// </summary>
         /// <returns>Lista de Incidencias</returns>
         public List<Incidencias> ObtenerIncidenciasEnRevision()
         {
-            return _incidenciasDa.ObtenerIncidencias().Where(o => o.IdEstadoIncidencia == 4).ToList();
+            return _incidenciasDa.ObtenerIncidencias().Where(o => o.IdEstadoIncidencia == 3
+                || o.IdEstadoIncidencia == 4).ToList();
         }
 
         /// <summary>

@@ -2,8 +2,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
-        function confirmation() {
+        function Confirmacion() {
             return confirm("¿Está seguro que desea volver al menú de gestión?");
+        }
+
+        function Invalidar() {
+            if ($("#<%= txtCausas.ClientID %>").val() === "") {
+                $("#<%= lblTituloModal.ClientID %>").html("Invalidar incidencia");
+                $('#modalAlerta').find('.modal-body').html("<p><b>Debe ingresar una causa para invalidar la incidencia</b></p>");
+                $('#modalAlerta').modal();
+                return false;
+            }
+
+            return confirm("¿Está seguro que desea invalidar la incidencia?");
         }
 
         function AddValues() {
@@ -134,15 +145,16 @@
                     </div>
                     <br />
                     <div class="row">
-                        <div class="col-md-6">
-                            <strong>Expediente electrónico:</strong>
+                        <div class="col-md-6 form-group">
+                            <label><strong>Expediente electrónico:</strong></label>
                             <asp:GridView runat="server" ID="gvDocumentos" CssClass="table table-striped" GridLines="None" AutoGenerateColumns="False" OnRowCommand="DocumentosOnRowCommand"
                                 EmptyDataText="No existen archivos registrados" ShowHeaderWhenEmpty="True" AllowPaging="True" PageSize="5">
                                 <Columns>
                                     <asp:BoundField DataField="RutaDocumento" HeaderText="Nombre del Archivo" />
-                                    <asp:TemplateField HeaderText="Acciones">
+                                    <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="90px" ItemStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
                                             <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-download-alt" formnovalidate CommandName="Descargar" ToolTip="Descargar Archivo" CommandArgument='<%# Eval("RutaDocumento") %>' />
+                                            &nbsp;
                                             <asp:LinkButton runat="server" CssClass="glyphicon glyphicon-remove" formnovalidate CommandName="Quitar" ToolTip="Eliminar Archivo" CommandArgument='<%# Eval("IdDocumento") %>' />
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -172,14 +184,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-6 col-sm-4 text-right">
-            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-warning" formnovalidate OnClientClick="return confirmation();" OnClick="VolverOnClick" />
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-warning col-md-6" formnovalidate OnClientClick="return Confirmacion();" OnClick="VolverOnClick" />
         </div>
-        <div class="col-xs-6 col-sm-4 text-center">
-            <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" CssClass="btn btn-danger" />
+        <div class="col-md-3">
+            <asp:Button ID="btnInvalidar" runat="server" Text="Invalidar" CssClass="btn btn-danger col-md-6" formnovalidate OnClientClick="return Invalidar();" OnClick="InvalidarOnClick" />
         </div>
-        <div class="col-xs-6 col-sm-4 text-left">
-            <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" CssClass="btn btn-success" OnClientClick="return ObtenerItems();" OnClick="IngresarAnalisis" />
+        <div class="col-md-3">
+            <asp:Button ID="btnIngresarAcciones" runat="server" Text="Ingresar" CssClass="btn btn-success col-md-6" OnClientClick="return ObtenerItems();" OnClick="IngresarAnalisis" />
         </div>
     </div>
     <div id="modalAlerta" class="modal fade" tabindex="-1" role="dialog">

@@ -15,9 +15,9 @@ namespace ModulOtec.Entidades
     public partial class EvaluacionCumplimiento
     {
         public int IdEvaluacion { get; set; }
-        public Nullable<int> IdAnalisisCausa { get; set; }
+        public int IdAnalisisCausa { get; set; }
         public string Observacion { get; set; }
-        public Nullable<System.DateTime> FechaEv { get; set; }
+        public System.DateTime FechaEv { get; set; }
     
         public virtual AnalisisCausa AnalisisCausa { get; set; }
     }

@@ -1,5 +1,7 @@
 ﻿namespace ModulOtec.Negocio
 {
+    using System;
+    using System.Linq;
     using System.Collections.Generic;
     using Datos;
     using Entidades;
@@ -39,6 +41,23 @@
         public List<Documentos> ObtenerDocumentos()
         {
             return _documentosDa.ObtenerDocumentos();
+        }
+
+        /// <summary>
+        /// Método que obtiene todos los Documentos por el Id de la incidencia
+        /// </summary>
+        /// <param name="idIncidencia">Id de la incidencia</param>
+        /// <returns>Lista de Documentos</returns>
+        public List<Documentos> ObtenerDocumentosPorIncidencia(int idIncidencia)
+        {
+            try
+            {
+                return _documentosDa.ObtenerDocumentos().Where(o => idIncidencia.Equals(o.IdIncidencia)).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>

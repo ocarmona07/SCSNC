@@ -123,9 +123,6 @@
       <DependentUpon>ModulOTECModel.edmx</DependentUpon>
       <LastGenOutput>ModulOTECModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="ModulOTECModel.edmx.diagram">
-      <DependentUpon>ModulOTECModel.edmx</DependentUpon>
-    </None>
     <None Include="ModulOTECModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModulOTECModel.edmx</DependentUpon>

@@ -4,7 +4,6 @@
     using System.Configuration;
     using System.IO;
     using System.Linq;
-    using System.Web;
     using System.Web.UI;
     using System.Web.UI.WebControls;
     using Negocio;
@@ -24,7 +23,7 @@
         {
             if (IsPostBack) return;
 
-            #region Lista Tipo Conformidad
+            #region Carga DDL Tratamientos
 
             var generalBo = new GeneralBo();
             ddlTratamiento.DataSource = generalBo.ObtenerTratamientos();
@@ -45,18 +44,31 @@
             lblCodSNC.Text = string.Format("{0:00000}", incidencia.IdIncidencia);
             lblFechaIngreso.Text = incidencia.FechaIngreso.ToString("dd-MM-yyyy");
             lblFechaIdentificacion.Text = incidencia.FechaIdentificacion.ToString("dd-MM-yyyy");
-            lblEstado.Text = new GeneralBo().ObtenerEstadoAccion(incidencia.IdEstadoIncidencia).Descripcion;
+            lblEstado.Text = new GeneralBo().ObtenerEstadoIncidencia(incidencia.IdEstadoIncidencia).Descripcion;
             lblTipo.Text = new GeneralBo().ObtenerTipoIncidencia(incidencia.IdEstadoIncidencia).Descripcion;
             lblModoDetect.Text = new GeneralBo().ObtenerModoDeteccion(incidencia.IdModoDeteccion).Descripcion;
             lblAreaAfectada.Text = incidencia.AreaAfectada;
             txtDetalle.Text = incidencia.Descripcion;
             txtDetalle.Attributes.Add("readonly", "readonly");
 
-            gvDocumentos.DataSource = new DocumentosBo().ObtenerDocumentos();
+            var reanalisis = new AnalisisCausasBo().ObtenerAnalisisExistente(incidencia.IdIncidencia);
+            if (reanalisis != null && incidencia.IdEstadoIncidencia == 5)
+            {
+                txtCausas.Text = reanalisis.CausasPotenciales;
+                txtEfectosDeseados.Text = reanalisis.EfectosDeseados;
+                txtFechaLimite.Text = reanalisis.FechaLimite.ToString("yyy-MM-dd");
+                ddlTratamiento.SelectedValue = reanalisis.IdTratamiento.ToString();
+                lbxAcciones.DataSource = new AccionesBo().ObtenerAccionesPorAnalisis(reanalisis.IdAnalisisCausa);
+                lbxAcciones.DataTextField = "DescAccion";
+                lbxAcciones.DataValueField = "DescAccion";
+                lbxAcciones.DataBind();
+
+                btnIngresarAcciones.CommandName = reanalisis.IdAnalisisCausa + "";
+            }
+
+            gvDocumentos.DataSource = new DocumentosBo().ObtenerDocumentosPorIncidencia(incidencia.IdIncidencia);
             gvDocumentos.DataBind();
         }
-
-
 
         /// <summary>
         /// Método que realiza acciones en la grilla de documentos
@@ -91,7 +103,7 @@
                         litDetalle.Text = "<p><b>Ha ocurrido un error al eliminar el documento</b></p>";
                     }
 
-                    gvDocumentos.DataSource = new DocumentosBo().ObtenerDocumentos();
+                    gvDocumentos.DataSource = new DocumentosBo().ObtenerDocumentosPorIncidencia(int.Parse(btnIngresarAcciones.CommandArgument));
                     gvDocumentos.DataBind();
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalAlerta", "$('#modalAlerta').modal();", true);
                     upModal.Update();
@@ -136,7 +148,7 @@
                 litDetalle.Text = "<p><b>Ha ocurrido un error al guardar el documento:</b></p><p>" + ex.Message + "</p>";
             }
 
-            gvDocumentos.DataSource = new DocumentosBo().ObtenerDocumentos();
+            gvDocumentos.DataSource = new DocumentosBo().ObtenerDocumentosPorIncidencia(int.Parse(btnIngresarAcciones.CommandArgument));
             gvDocumentos.DataBind();
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalAlerta", "$('#modalAlerta').modal();", true);
             upModal.Update();
@@ -149,16 +161,20 @@
         /// <param name="e">Argumentos del evento</param>
         protected void IngresarAnalisis(object sender, EventArgs e)
         {
+            var incidencia = new IncidenciasBo().ObtenerIncidencia(int.Parse(btnIngresarAcciones.CommandArgument));
             var analisis = new AnalisisCausa
             {
-                IdIncidencia = int.Parse(btnIngresarAcciones.CommandArgument),
+                IdIncidencia = incidencia.IdIncidencia,
                 CausasPotenciales = txtCausas.Text,
                 EfectosDeseados = txtEfectosDeseados.Text,
                 FechaLimite = DateTime.Parse(txtFechaLimite.Text),
                 IdTratamiento = int.Parse(ddlTratamiento.SelectedValue)
             };
-
-            var ingresoAnalisis = new AnalisisCausasBo().CrearAnalisisCausa(analisis);
+            if (!string.IsNullOrEmpty(btnIngresarAcciones.CommandName))
+                analisis.IdAnalisisCausa = int.Parse(btnIngresarAcciones.CommandName);
+            var ingresoAnalisis = string.IsNullOrEmpty(btnIngresarAcciones.CommandName)
+                ? new AnalisisCausasBo().CrearAnalisisCausa(analisis)
+                : new AnalisisCausasBo().ActualizarAnalisisCausa(analisis);
             if (ingresoAnalisis > 0)
             {
                 var items = "";
@@ -169,6 +185,9 @@
                     items += item + "<br/>";
                 }
 
+                incidencia.IdEstadoIncidencia = 3;
+                new IncidenciasBo().ActualizarIncidencia(incidencia);
+
                 lblTituloModal.Text = "Análisis ingresado";
                 var detalle = "<p><b>Se ha ingresado el análisis correctamente:</b></p>";
                 detalle += "<p><b>Causas de No Conformidad:</b> " + txtCausas.Text + "</p>";
@@ -177,7 +196,8 @@
                 detalle += "<p><b>Tratamiento:</b> " + ddlTratamiento.SelectedItem.Text + "</p>";
                 detalle += "<p><b>Acciones Correctivas:</b> " + items + "</p>";
                 detalle += "<p><b>Expediente electrónico:</b> ";
-                var documentos = new DocumentosBo().ObtenerDocumentos().Where(o => btnIngresarAcciones.CommandArgument.Equals(o.IdIncidencia + "")).ToList();
+                var documentos = new DocumentosBo().ObtenerDocumentos()
+                    .Where(o => incidencia.IdIncidencia.Equals(o.IdIncidencia)).ToList();
                 foreach (var doc in documentos)
                 {
                     detalle += doc.RutaDocumento + "<br/>";
@@ -198,9 +218,43 @@
             upModal.Update();
         }
 
+        /// <summary>
+        /// Método que redirecciona al menú de gestión
+        /// </summary>
+        /// <param name="sender">Objeto del evento</param>
+        /// <param name="e">Argumentos del evento</param>
         protected void VolverOnClick(object sender, EventArgs e)
         {
             Response.Redirect("GestionIncidencias.aspx");
+        }
+
+        /// <summary>
+        /// Método que invalida el análisis
+        /// </summary>
+        /// <param name="sender">Objeto del evento</param>
+        /// <param name="e">Argumentos del evento</param>
+        protected void InvalidarOnClick(object sender, EventArgs e)
+        {
+            var incidencia = new IncidenciasBo().ObtenerIncidencia(int.Parse(btnIngresarAcciones.CommandArgument));
+            incidencia.IdEstadoIncidencia = 2;
+            incidencia.Descripcion += "\nInvalida: " + txtCausas.Text;
+            if (new IncidenciasBo().ActualizarIncidencia(incidencia) > 0)
+            {
+                lblTituloModal.Text = "Incidencia invalidada";
+                var detalle = string.Format("<p><b>Se ha invalidado la incidencia {0:00000} </b></p>", incidencia.IdIncidencia);
+                litDetalle.Text = detalle + "<p><b>La causa es:</b> " + txtCausas.Text + "</p>";
+                btnModalAceptar.Attributes.Add("formnovalidate", "");
+                btnModalAceptar.Attributes.Remove("data-dismiss");
+                btnModalAceptar.PostBackUrl = "~/GestionIncidencias.aspx";
+            }
+            else
+            {
+                lblTituloModal.Text = "Error al actualizar la incidencia";
+                litDetalle.Text = "<p><b>Ha ocurrido un error al actualizar</b></p>";
+            }
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalAlerta", "$('#modalAlerta').modal();", true);
+            upModal.Update();
         }
     }
 }

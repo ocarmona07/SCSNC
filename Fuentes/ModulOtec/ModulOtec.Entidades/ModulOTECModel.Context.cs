@@ -32,7 +32,6 @@ namespace ModulOtec.Entidades
         public DbSet<Documentos> Documentos { get; set; }
         public DbSet<EstadosAccion> EstadosAccion { get; set; }
         public DbSet<EstadosIncidencia> EstadosIncidencia { get; set; }
-        public DbSet<EvaluacionCumplimiento> EvaluacionCumplimiento { get; set; }
         public DbSet<Incidencias> Incidencias { get; set; }
         public DbSet<ModosDeteccion> ModosDeteccion { get; set; }
         public DbSet<Organizacion> Organizacion { get; set; }
@@ -43,5 +42,6 @@ namespace ModulOtec.Entidades
         public DbSet<TiposIncidencias> TiposIncidencias { get; set; }
         public DbSet<Tratamientos> Tratamientos { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<EvaluacionCumplimiento> EvaluacionCumplimiento { get; set; }
     }
 }
