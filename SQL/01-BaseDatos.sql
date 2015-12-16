@@ -360,7 +360,7 @@ CREATE TABLE AnalisisCausa
       CausasPotenciales VARCHAR(MAX) NOT NULL ,
       EfectosDeseados VARCHAR(MAX) NOT NULL ,
       FechaLimite DATE NOT NULL ,
-      IdTratamiento INT NULL ,
+      IdTratamiento INT NOT NULL ,
       CONSTRAINT PK_ANALISISCAUSA PRIMARY KEY ( IdAnalisisCausa )
     )
 GO
@@ -419,9 +419,9 @@ GO
 CREATE TABLE EvaluacionCumplimiento
     (
       IdEvaluacion INT IDENTITY ,
-      IdAnalisisCausa INT NULL ,
-      Observacion VARCHAR(MAX) NULL ,
-      FechaEv DATE NULL ,
+      IdAnalisisCausa INT NOT NULL ,
+      Observacion VARCHAR(MAX) NOT NULL ,
+      FechaEv DATE NOT NULL ,
       CONSTRAINT PK_EVALUACIONCUMPLIMIENTO PRIMARY KEY ( IdEvaluacion )
     )
 GO
