@@ -27,12 +27,10 @@ namespace ModulOtec.Entidades
     
         public DbSet<Accesos> Accesos { get; set; }
         public DbSet<Acciones> Acciones { get; set; }
-        public DbSet<AnalisisCausa> AnalisisCausa { get; set; }
         public DbSet<Comunas> Comunas { get; set; }
         public DbSet<Documentos> Documentos { get; set; }
         public DbSet<EstadosAccion> EstadosAccion { get; set; }
         public DbSet<EstadosIncidencia> EstadosIncidencia { get; set; }
-        public DbSet<Incidencias> Incidencias { get; set; }
         public DbSet<ModosDeteccion> ModosDeteccion { get; set; }
         public DbSet<Organizacion> Organizacion { get; set; }
         public DbSet<Provincias> Provincias { get; set; }
@@ -40,8 +38,10 @@ namespace ModulOtec.Entidades
         public DbSet<RolAcceso> RolAcceso { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<TiposIncidencias> TiposIncidencias { get; set; }
-        public DbSet<Tratamientos> Tratamientos { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<EvaluacionCumplimiento> EvaluacionCumplimiento { get; set; }
+        public DbSet<Tratamientos> Tratamientos { get; set; }
+        public DbSet<AnalisisCausa> AnalisisCausa { get; set; }
+        public DbSet<Incidencias> Incidencias { get; set; }
     }
 }

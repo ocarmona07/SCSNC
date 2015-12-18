@@ -30,7 +30,6 @@
           <Property Name="IdIncidencia" Type="int" Nullable="false" />
           <Property Name="CausasPotenciales" Type="varchar(max)" Nullable="false" />
           <Property Name="EfectosDeseados" Type="varchar(max)" Nullable="false" />
-          <Property Name="FechaLimite" Type="date" Nullable="false" />
           <Property Name="IdTratamiento" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Comunas">
@@ -80,6 +79,8 @@
           </Key>
           <Property Name="IdIncidencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RutCreador" Type="int" Nullable="false" />
+          <Property Name="EsExterno" Type="bit" Nullable="false" />
+          <Property Name="RutExterno" Type="int" />
           <Property Name="FechaIngreso" Type="date" Nullable="false" />
           <Property Name="IdTipoIncidencia" Type="int" Nullable="false" />
           <Property Name="IdModoDeteccion" Type="int" Nullable="false" />
@@ -156,6 +157,7 @@
           <Property Name="IdTratamiento" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="DiasPlazo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -491,12 +493,10 @@
         <EntityContainer Name="ModulOTECEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accesos" EntityType="ModulOTECModel.Accesos" />
           <EntitySet Name="Acciones" EntityType="ModulOTECModel.Acciones" />
-          <EntitySet Name="AnalisisCausa" EntityType="ModulOTECModel.AnalisisCausa" />
           <EntitySet Name="Comunas" EntityType="ModulOTECModel.Comunas" />
           <EntitySet Name="Documentos" EntityType="ModulOTECModel.Documentos" />
           <EntitySet Name="EstadosAccion" EntityType="ModulOTECModel.EstadosAccion" />
           <EntitySet Name="EstadosIncidencia" EntityType="ModulOTECModel.EstadosIncidencia" />
-          <EntitySet Name="Incidencias" EntityType="ModulOTECModel.Incidencias" />
           <EntitySet Name="ModosDeteccion" EntityType="ModulOTECModel.ModosDeteccion" />
           <EntitySet Name="Organizacion" EntityType="ModulOTECModel.Organizacion" />
           <EntitySet Name="Provincias" EntityType="ModulOTECModel.Provincias" />
@@ -504,27 +504,14 @@
           <EntitySet Name="RolAcceso" EntityType="ModulOTECModel.RolAcceso" />
           <EntitySet Name="Roles" EntityType="ModulOTECModel.Roles" />
           <EntitySet Name="TiposIncidencias" EntityType="ModulOTECModel.TiposIncidencias" />
-          <EntitySet Name="Tratamientos" EntityType="ModulOTECModel.Tratamientos" />
           <EntitySet Name="Usuarios" EntityType="ModulOTECModel.Usuarios" />
           <AssociationSet Name="FK_ROLACCES_REF_ROLAC_ACCESOS" Association="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ACCESOS">
             <End Role="Accesos" EntitySet="Accesos" />
             <End Role="RolAcceso" EntitySet="RolAcceso" />
           </AssociationSet>
-          <AssociationSet Name="FK_ACCIONES_REF_ACCIO_ANALISIS" Association="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS">
-            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
-            <End Role="Acciones" EntitySet="Acciones" />
-          </AssociationSet>
           <AssociationSet Name="FK_ACCIONES_REF_ACCIO_ESTADOSA" Association="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ESTADOSA">
             <End Role="EstadosAccion" EntitySet="EstadosAccion" />
             <End Role="Acciones" EntitySet="Acciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ANALISIS_REF_ANALI_INCIDENC" Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC">
-            <End Role="Incidencias" EntitySet="Incidencias" />
-            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ANALISIS_REF_ANALI_TRATAMIE" Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE">
-            <End Role="Tratamientos" EntitySet="Tratamientos" />
-            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
           </AssociationSet>
           <AssociationSet Name="FK_COMUNAS_REF_COMUN_PROVINCI" Association="ModulOTECModel.FK_COMUNAS_REF_COMUN_PROVINCI">
             <End Role="Provincias" EntitySet="Provincias" />
@@ -537,6 +524,42 @@
           <AssociationSet Name="FK_USUARIOS_REF_USUAR_COMUNAS" Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_COMUNAS">
             <End Role="Comunas" EntitySet="Comunas" />
             <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_REF_USUAR_ORGANIZA" Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_ORGANIZA">
+            <End Role="Organizacion" EntitySet="Organizacion" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVINCI_REF_PROVI_REGIONES" Association="ModulOTECModel.FK_PROVINCI_REF_PROVI_REGIONES">
+            <End Role="Regiones" EntitySet="Regiones" />
+            <End Role="Provincias" EntitySet="Provincias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLACCES_REF_ROLAC_ROLES" Association="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ROLES">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RolAcceso" EntitySet="RolAcceso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_REF_USUAR_ROLES" Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_ROLES">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <EntitySet Name="EvaluacionCumplimiento" EntityType="ModulOTECModel.EvaluacionCumplimiento" />
+          <EntitySet Name="Tratamientos" EntityType="ModulOTECModel.Tratamientos" />
+          <EntitySet Name="AnalisisCausa" EntityType="ModulOTECModel.AnalisisCausa" />
+          <AssociationSet Name="FK_ACCIONES_REF_ACCIO_ANALISIS" Association="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS">
+            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
+            <End Role="Acciones" EntitySet="Acciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ANALISIS_REF_ANALI_TRATAMIE" Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE">
+            <End Role="Tratamientos" EntitySet="Tratamientos" />
+            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EVALUACI_REF_EVALU_ANALISIS" Association="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS">
+            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
+            <End Role="EvaluacionCumplimiento" EntitySet="EvaluacionCumplimiento" />
+          </AssociationSet>
+          <EntitySet Name="Incidencias" EntityType="ModulOTECModel.Incidencias" />
+          <AssociationSet Name="FK_ANALISIS_REF_ANALI_INCIDENC" Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC">
+            <End Role="Incidencias" EntitySet="Incidencias" />
+            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
           </AssociationSet>
           <AssociationSet Name="FK_DOCUMENT_REF_DOCUM_INCIDENC" Association="ModulOTECModel.FK_DOCUMENT_REF_DOCUM_INCIDENC">
             <End Role="Incidencias" EntitySet="Incidencias" />
@@ -558,27 +581,6 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Incidencias" EntitySet="Incidencias" />
           </AssociationSet>
-          <AssociationSet Name="FK_USUARIOS_REF_USUAR_ORGANIZA" Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_ORGANIZA">
-            <End Role="Organizacion" EntitySet="Organizacion" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROVINCI_REF_PROVI_REGIONES" Association="ModulOTECModel.FK_PROVINCI_REF_PROVI_REGIONES">
-            <End Role="Regiones" EntitySet="Regiones" />
-            <End Role="Provincias" EntitySet="Provincias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ROLACCES_REF_ROLAC_ROLES" Association="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ROLES">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="RolAcceso" EntitySet="RolAcceso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USUARIOS_REF_USUAR_ROLES" Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_ROLES">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
-          </AssociationSet>
-          <EntitySet Name="EvaluacionCumplimiento" EntityType="ModulOTECModel.EvaluacionCumplimiento" />
-          <AssociationSet Name="FK_EVALUACI_REF_EVALU_ANALISIS" Association="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS">
-            <End Role="AnalisisCausa" EntitySet="AnalisisCausa" />
-            <End Role="EvaluacionCumplimiento" EntitySet="EvaluacionCumplimiento" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Accesos">
           <Key>
@@ -597,23 +599,8 @@
           <Property Name="IdAnalisisCausa" Type="Int32" Nullable="false" />
           <Property Name="DescAccion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IdEstado" Type="Int32" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS" FromRole="Acciones" ToRole="AnalisisCausa" />
           <NavigationProperty Name="EstadosAccion" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ESTADOSA" FromRole="Acciones" ToRole="EstadosAccion" />
-        </EntityType>
-        <EntityType Name="AnalisisCausa">
-          <Key>
-            <PropertyRef Name="IdAnalisisCausa" />
-          </Key>
-          <Property Name="IdAnalisisCausa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdIncidencia" Type="Int32" Nullable="false" />
-          <Property Name="CausasPotenciales" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="EfectosDeseados" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FechaLimite" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdTratamiento" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Acciones" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS" FromRole="AnalisisCausa" ToRole="Acciones" />
-          <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC" FromRole="AnalisisCausa" ToRole="Incidencias" />
-          <NavigationProperty Name="Tratamientos" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE" FromRole="AnalisisCausa" ToRole="Tratamientos" />
-          <NavigationProperty Name="EvaluacionCumplimiento" Relationship="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS" FromRole="AnalisisCausa" ToRole="EvaluacionCumplimiento" />
+          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS" FromRole="Acciones" ToRole="AnalisisCausa" />
         </EntityType>
         <EntityType Name="Comunas">
           <Key>
@@ -652,27 +639,6 @@
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_ESTADOSI" FromRole="EstadosIncidencia" ToRole="Incidencias" />
-        </EntityType>
-        <EntityType Name="Incidencias">
-          <Key>
-            <PropertyRef Name="IdIncidencia" />
-          </Key>
-          <Property Name="IdIncidencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RutCreador" Type="Int32" Nullable="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdTipoIncidencia" Type="Int32" Nullable="false" />
-          <Property Name="IdModoDeteccion" Type="Int32" Nullable="false" />
-          <Property Name="FechaIdentificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="AreaAfectada" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ProcesoAfectado" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IdEstadoIncidencia" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC" FromRole="Incidencias" ToRole="AnalisisCausa" />
-          <NavigationProperty Name="Documentos" Relationship="ModulOTECModel.FK_DOCUMENT_REF_DOCUM_INCIDENC" FromRole="Incidencias" ToRole="Documentos" />
-          <NavigationProperty Name="EstadosIncidencia" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_ESTADOSI" FromRole="Incidencias" ToRole="EstadosIncidencia" />
-          <NavigationProperty Name="ModosDeteccion" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_MODOSDET" FromRole="Incidencias" ToRole="ModosDeteccion" />
-          <NavigationProperty Name="TiposIncidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_TIPOSINC" FromRole="Incidencias" ToRole="TiposIncidencias" />
-          <NavigationProperty Name="Usuarios" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_USUARIOS" FromRole="Incidencias" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="ModosDeteccion">
           <Key>
@@ -745,15 +711,6 @@
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_TIPOSINC" FromRole="TiposIncidencias" ToRole="Incidencias" />
         </EntityType>
-        <EntityType Name="Tratamientos">
-          <Key>
-            <PropertyRef Name="IdTratamiento" />
-          </Key>
-          <Property Name="IdTratamiento" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE" FromRole="Tratamientos" ToRole="AnalisisCausa" />
-        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="RUT" />
@@ -773,9 +730,9 @@
           <Property Name="IdComuna" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Comunas" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_COMUNAS" FromRole="Usuarios" ToRole="Comunas" />
-          <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_USUARIOS" FromRole="Usuarios" ToRole="Incidencias" />
           <NavigationProperty Name="Organizacion" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_ORGANIZA" FromRole="Usuarios" ToRole="Organizacion" />
           <NavigationProperty Name="Roles" Relationship="ModulOTECModel.FK_USUARIOS_REF_USUAR_ROLES" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_USUARIOS" FromRole="Usuarios" ToRole="Incidencias" />
         </EntityType>
         <Association Name="FK_ROLACCES_REF_ROLAC_ACCESOS">
           <End Type="ModulOTECModel.Accesos" Role="Accesos" Multiplicity="0..1" />
@@ -789,18 +746,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ACCIONES_REF_ACCIO_ANALISIS">
-          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="1" />
-          <End Type="ModulOTECModel.Acciones" Role="Acciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AnalisisCausa">
-              <PropertyRef Name="IdAnalisisCausa" />
-            </Principal>
-            <Dependent Role="Acciones">
-              <PropertyRef Name="IdAnalisisCausa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ACCIONES_REF_ACCIO_ESTADOSA">
           <End Type="ModulOTECModel.EstadosAccion" Role="EstadosAccion" Multiplicity="0..1" />
           <End Type="ModulOTECModel.Acciones" Role="Acciones" Multiplicity="*" />
@@ -810,30 +755,6 @@
             </Principal>
             <Dependent Role="Acciones">
               <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ANALISIS_REF_ANALI_INCIDENC">
-          <End Type="ModulOTECModel.Incidencias" Role="Incidencias" Multiplicity="1" />
-          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Incidencias">
-              <PropertyRef Name="IdIncidencia" />
-            </Principal>
-            <Dependent Role="AnalisisCausa">
-              <PropertyRef Name="IdIncidencia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ANALISIS_REF_ANALI_TRATAMIE">
-          <End Type="ModulOTECModel.Tratamientos" Role="Tratamientos" Multiplicity="1" />
-          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tratamientos">
-              <PropertyRef Name="IdTratamiento" />
-            </Principal>
-            <Dependent Role="AnalisisCausa">
-              <PropertyRef Name="IdTratamiento" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -870,6 +791,159 @@
             </Principal>
             <Dependent Role="Usuarios">
               <PropertyRef Name="IdComuna" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_REF_USUAR_ORGANIZA">
+          <End Type="ModulOTECModel.Organizacion" Role="Organizacion" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="IdOrganizacion" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdOrganizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVINCI_REF_PROVI_REGIONES">
+          <End Type="ModulOTECModel.Regiones" Role="Regiones" Multiplicity="1" />
+          <End Type="ModulOTECModel.Provincias" Role="Provincias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="IdRegion" />
+            </Principal>
+            <Dependent Role="Provincias">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLACCES_REF_ROLAC_ROLES">
+          <End Type="ModulOTECModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="ModulOTECModel.RolAcceso" Role="RolAcceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="RolAcceso">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_REF_USUAR_ROLES">
+          <End Type="ModulOTECModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="ModulOTECModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EvaluacionCumplimiento">
+          <Key>
+            <PropertyRef Name="IdEvaluacion" />
+          </Key>
+          <Property Name="IdEvaluacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAnalisisCausa" Type="Int32" Nullable="false" />
+          <Property Name="Observacion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEv" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS" FromRole="EvaluacionCumplimiento" ToRole="AnalisisCausa" />
+        </EntityType>
+        <EntityType Name="Tratamientos">
+          <Key>
+            <PropertyRef Name="IdTratamiento" />
+          </Key>
+          <Property Name="IdTratamiento" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="DiasPlazo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE" FromRole="Tratamientos" ToRole="AnalisisCausa" />
+        </EntityType>
+        <EntityType Name="AnalisisCausa">
+          <Key>
+            <PropertyRef Name="IdAnalisisCausa" />
+          </Key>
+          <Property Name="IdAnalisisCausa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdIncidencia" Type="Int32" Nullable="false" />
+          <Property Name="CausasPotenciales" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EfectosDeseados" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdTratamiento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Acciones" Relationship="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS" FromRole="AnalisisCausa" ToRole="Acciones" />
+          <NavigationProperty Name="Tratamientos" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE" FromRole="AnalisisCausa" ToRole="Tratamientos" />
+          <NavigationProperty Name="EvaluacionCumplimiento" Relationship="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS" FromRole="AnalisisCausa" ToRole="EvaluacionCumplimiento" />
+          <NavigationProperty Name="Incidencias" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC" FromRole="AnalisisCausa" ToRole="Incidencias" />
+        </EntityType>
+        <Association Name="FK_ACCIONES_REF_ACCIO_ANALISIS">
+          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="1" />
+          <End Type="ModulOTECModel.Acciones" Role="Acciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalisisCausa">
+              <PropertyRef Name="IdAnalisisCausa" />
+            </Principal>
+            <Dependent Role="Acciones">
+              <PropertyRef Name="IdAnalisisCausa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ANALISIS_REF_ANALI_TRATAMIE">
+          <End Type="ModulOTECModel.Tratamientos" Role="Tratamientos" Multiplicity="1" />
+          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tratamientos">
+              <PropertyRef Name="IdTratamiento" />
+            </Principal>
+            <Dependent Role="AnalisisCausa">
+              <PropertyRef Name="IdTratamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EVALUACI_REF_EVALU_ANALISIS">
+          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="1" />
+          <End Type="ModulOTECModel.EvaluacionCumplimiento" Role="EvaluacionCumplimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnalisisCausa">
+              <PropertyRef Name="IdAnalisisCausa" />
+            </Principal>
+            <Dependent Role="EvaluacionCumplimiento">
+              <PropertyRef Name="IdAnalisisCausa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Incidencias">
+          <Key>
+            <PropertyRef Name="IdIncidencia" />
+          </Key>
+          <Property Name="IdIncidencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RutCreador" Type="Int32" Nullable="false" />
+          <Property Name="EsExterno" Type="Boolean" Nullable="false" />
+          <Property Name="RutExterno" Type="Int32" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdTipoIncidencia" Type="Int32" Nullable="false" />
+          <Property Name="IdModoDeteccion" Type="Int32" Nullable="false" />
+          <Property Name="FechaIdentificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AreaAfectada" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ProcesoAfectado" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstadoIncidencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC" FromRole="Incidencias" ToRole="AnalisisCausa" />
+          <NavigationProperty Name="Documentos" Relationship="ModulOTECModel.FK_DOCUMENT_REF_DOCUM_INCIDENC" FromRole="Incidencias" ToRole="Documentos" />
+          <NavigationProperty Name="EstadosIncidencia" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_ESTADOSI" FromRole="Incidencias" ToRole="EstadosIncidencia" />
+          <NavigationProperty Name="ModosDeteccion" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_MODOSDET" FromRole="Incidencias" ToRole="ModosDeteccion" />
+          <NavigationProperty Name="TiposIncidencias" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_TIPOSINC" FromRole="Incidencias" ToRole="TiposIncidencias" />
+          <NavigationProperty Name="Usuarios" Relationship="ModulOTECModel.FK_INCIDENC_REF_INCID_USUARIOS" FromRole="Incidencias" ToRole="Usuarios" />
+        </EntityType>
+        <Association Name="FK_ANALISIS_REF_ANALI_INCIDENC">
+          <End Type="ModulOTECModel.Incidencias" Role="Incidencias" Multiplicity="1" />
+          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Incidencias">
+              <PropertyRef Name="IdIncidencia" />
+            </Principal>
+            <Dependent Role="AnalisisCausa">
+              <PropertyRef Name="IdIncidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -933,76 +1007,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USUARIOS_REF_USUAR_ORGANIZA">
-          <End Type="ModulOTECModel.Organizacion" Role="Organizacion" Multiplicity="0..1" />
-          <End Type="ModulOTECModel.Usuarios" Role="Usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organizacion">
-              <PropertyRef Name="IdOrganizacion" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="IdOrganizacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PROVINCI_REF_PROVI_REGIONES">
-          <End Type="ModulOTECModel.Regiones" Role="Regiones" Multiplicity="1" />
-          <End Type="ModulOTECModel.Provincias" Role="Provincias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Regiones">
-              <PropertyRef Name="IdRegion" />
-            </Principal>
-            <Dependent Role="Provincias">
-              <PropertyRef Name="IdRegion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ROLACCES_REF_ROLAC_ROLES">
-          <End Type="ModulOTECModel.Roles" Role="Roles" Multiplicity="0..1" />
-          <End Type="ModulOTECModel.RolAcceso" Role="RolAcceso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="IdRol" />
-            </Principal>
-            <Dependent Role="RolAcceso">
-              <PropertyRef Name="IdRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_USUARIOS_REF_USUAR_ROLES">
-          <End Type="ModulOTECModel.Roles" Role="Roles" Multiplicity="1" />
-          <End Type="ModulOTECModel.Usuarios" Role="Usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="IdRol" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="IdRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="EvaluacionCumplimiento">
-          <Key>
-            <PropertyRef Name="IdEvaluacion" />
-          </Key>
-          <Property Name="IdEvaluacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdAnalisisCausa" Type="Int32" Nullable="false" />
-          <Property Name="Observacion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FechaEv" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="AnalisisCausa" Relationship="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS" FromRole="EvaluacionCumplimiento" ToRole="AnalisisCausa" />
-        </EntityType>
-        <Association Name="FK_EVALUACI_REF_EVALU_ANALISIS">
-          <End Type="ModulOTECModel.AnalisisCausa" Role="AnalisisCausa" Multiplicity="1" />
-          <End Type="ModulOTECModel.EvaluacionCumplimiento" Role="EvaluacionCumplimiento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AnalisisCausa">
-              <PropertyRef Name="IdAnalisisCausa" />
-            </Principal>
-            <Dependent Role="EvaluacionCumplimiento">
-              <PropertyRef Name="IdAnalisisCausa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1025,18 +1029,6 @@
                 <ScalarProperty Name="DescAccion" ColumnName="DescAccion" />
                 <ScalarProperty Name="IdAnalisisCausa" ColumnName="IdAnalisisCausa" />
                 <ScalarProperty Name="IdAccion" ColumnName="IdAccion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AnalisisCausa">
-            <EntityTypeMapping TypeName="ModulOTECModel.AnalisisCausa">
-              <MappingFragment StoreEntitySet="AnalisisCausa">
-                <ScalarProperty Name="IdTratamiento" ColumnName="IdTratamiento" />
-                <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
-                <ScalarProperty Name="EfectosDeseados" ColumnName="EfectosDeseados" />
-                <ScalarProperty Name="CausasPotenciales" ColumnName="CausasPotenciales" />
-                <ScalarProperty Name="IdIncidencia" ColumnName="IdIncidencia" />
-                <ScalarProperty Name="IdAnalisisCausa" ColumnName="IdAnalisisCausa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1073,22 +1065,6 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdEstadoIncidencia" ColumnName="IdEstadoIncidencia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Incidencias">
-            <EntityTypeMapping TypeName="ModulOTECModel.Incidencias">
-              <MappingFragment StoreEntitySet="Incidencias">
-                <ScalarProperty Name="IdEstadoIncidencia" ColumnName="IdEstadoIncidencia" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="ProcesoAfectado" ColumnName="ProcesoAfectado" />
-                <ScalarProperty Name="AreaAfectada" ColumnName="AreaAfectada" />
-                <ScalarProperty Name="FechaIdentificacion" ColumnName="FechaIdentificacion" />
-                <ScalarProperty Name="IdModoDeteccion" ColumnName="IdModoDeteccion" />
-                <ScalarProperty Name="IdTipoIncidencia" ColumnName="IdTipoIncidencia" />
-                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
-                <ScalarProperty Name="RutCreador" ColumnName="RutCreador" />
-                <ScalarProperty Name="IdIncidencia" ColumnName="IdIncidencia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1159,15 +1135,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tratamientos">
-            <EntityTypeMapping TypeName="ModulOTECModel.Tratamientos">
-              <MappingFragment StoreEntitySet="Tratamientos">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="IdTratamiento" ColumnName="IdTratamiento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="ModulOTECModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
@@ -1198,6 +1165,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tratamientos">
+            <EntityTypeMapping TypeName="ModulOTECModel.Tratamientos">
+              <MappingFragment StoreEntitySet="Tratamientos">
+                <ScalarProperty Name="DiasPlazo" ColumnName="DiasPlazo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdTratamiento" ColumnName="IdTratamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalisisCausa">
+            <EntityTypeMapping TypeName="ModulOTECModel.AnalisisCausa">
+              <MappingFragment StoreEntitySet="AnalisisCausa">
+                <ScalarProperty Name="IdTratamiento" ColumnName="IdTratamiento" />
+                <ScalarProperty Name="EfectosDeseados" ColumnName="EfectosDeseados" />
+                <ScalarProperty Name="CausasPotenciales" ColumnName="CausasPotenciales" />
+                <ScalarProperty Name="IdIncidencia" ColumnName="IdIncidencia" />
+                <ScalarProperty Name="IdAnalisisCausa" ColumnName="IdAnalisisCausa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Incidencias">
+            <EntityTypeMapping TypeName="ModulOTECModel.Incidencias">
+              <MappingFragment StoreEntitySet="Incidencias">
+                <ScalarProperty Name="IdEstadoIncidencia" ColumnName="IdEstadoIncidencia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ProcesoAfectado" ColumnName="ProcesoAfectado" />
+                <ScalarProperty Name="AreaAfectada" ColumnName="AreaAfectada" />
+                <ScalarProperty Name="FechaIdentificacion" ColumnName="FechaIdentificacion" />
+                <ScalarProperty Name="IdModoDeteccion" ColumnName="IdModoDeteccion" />
+                <ScalarProperty Name="IdTipoIncidencia" ColumnName="IdTipoIncidencia" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="RutExterno" ColumnName="RutExterno" />
+                <ScalarProperty Name="EsExterno" ColumnName="EsExterno" />
+                <ScalarProperty Name="RutCreador" ColumnName="RutCreador" />
+                <ScalarProperty Name="IdIncidencia" ColumnName="IdIncidencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1223,12 +1229,10 @@
       <Diagram DiagramId="54f5d6c1618c43159055aadd701229e2" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="ModulOTECModel.Accesos" Width="1.5" PointX="3.75" PointY="1.25" />
         <EntityTypeShape EntityType="ModulOTECModel.Acciones" Width="1.5" PointX="12.875" PointY="4.375" />
-        <EntityTypeShape EntityType="ModulOTECModel.AnalisisCausa" Width="1.5" PointX="10.625" PointY="4.625" />
         <EntityTypeShape EntityType="ModulOTECModel.Comunas" Width="1.5" PointX="1.25" PointY="5.875" />
         <EntityTypeShape EntityType="ModulOTECModel.Documentos" Width="1.5" PointX="7.875" PointY="9.5" />
         <EntityTypeShape EntityType="ModulOTECModel.EstadosAccion" Width="1.5" PointX="12.75" PointY="1.625" />
         <EntityTypeShape EntityType="ModulOTECModel.EstadosIncidencia" Width="1.5" PointX="5.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ModulOTECModel.Incidencias" Width="1.5" PointX="8.125" PointY="4.125" />
         <EntityTypeShape EntityType="ModulOTECModel.ModosDeteccion" Width="1.5" PointX="8.25" PointY="1.375" />
         <EntityTypeShape EntityType="ModulOTECModel.Organizacion" Width="1.5" PointX="1.125" PointY="8.625" />
         <EntityTypeShape EntityType="ModulOTECModel.Provincias" Width="1.5" PointX="1.125" PointY="3.25" />
@@ -1236,27 +1240,29 @@
         <EntityTypeShape EntityType="ModulOTECModel.RolAcceso" Width="1.5" PointX="6" PointY="1.375" />
         <EntityTypeShape EntityType="ModulOTECModel.Roles" Width="1.5" PointX="5.875" PointY="4.5" />
         <EntityTypeShape EntityType="ModulOTECModel.TiposIncidencias" Width="1.5" PointX="10.375" PointY="8.375" />
-        <EntityTypeShape EntityType="ModulOTECModel.Tratamientos" Width="1.5" PointX="10.5" PointY="1.625" />
         <EntityTypeShape EntityType="ModulOTECModel.Usuarios" Width="1.5" PointX="3.5" PointY="4" />
         <AssociationConnector Association="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ACCESOS" />
-        <AssociationConnector Association="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS" />
         <AssociationConnector Association="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ESTADOSA" />
-        <AssociationConnector Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC" />
-        <AssociationConnector Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE" />
         <AssociationConnector Association="ModulOTECModel.FK_COMUNAS_REF_COMUN_PROVINCI" />
         <AssociationConnector Association="ModulOTECModel.FK_ORGANIZA_REF_ORGAN_COMUNAS" />
         <AssociationConnector Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_COMUNAS" />
-        <AssociationConnector Association="ModulOTECModel.FK_DOCUMENT_REF_DOCUM_INCIDENC" />
-        <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_ESTADOSI" />
-        <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_MODOSDET" />
-        <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_TIPOSINC" />
-        <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_USUARIOS" />
         <AssociationConnector Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_ORGANIZA" />
         <AssociationConnector Association="ModulOTECModel.FK_PROVINCI_REF_PROVI_REGIONES" />
         <AssociationConnector Association="ModulOTECModel.FK_ROLACCES_REF_ROLAC_ROLES" />
         <AssociationConnector Association="ModulOTECModel.FK_USUARIOS_REF_USUAR_ROLES" />
         <EntityTypeShape EntityType="ModulOTECModel.EvaluacionCumplimiento" Width="1.5" PointX="12.875" PointY="8.125" />
+        <EntityTypeShape EntityType="ModulOTECModel.Tratamientos" Width="1.5" PointX="10.625" PointY="1.625" />
+        <EntityTypeShape EntityType="ModulOTECModel.AnalisisCausa" Width="1.5" PointX="10.5" PointY="4.5" />
+        <AssociationConnector Association="ModulOTECModel.FK_ACCIONES_REF_ACCIO_ANALISIS" />
+        <AssociationConnector Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_TRATAMIE" />
         <AssociationConnector Association="ModulOTECModel.FK_EVALUACI_REF_EVALU_ANALISIS" />
+        <EntityTypeShape EntityType="ModulOTECModel.Incidencias" Width="1.5" PointX="8.25" PointY="4" />
+        <AssociationConnector Association="ModulOTECModel.FK_ANALISIS_REF_ANALI_INCIDENC" />
+        <AssociationConnector Association="ModulOTECModel.FK_DOCUMENT_REF_DOCUM_INCIDENC" />
+        <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_ESTADOSI" />
+        <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_MODOSDET" />
+        <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_TIPOSINC" />
+        <AssociationConnector Association="ModulOTECModel.FK_INCIDENC_REF_INCID_USUARIOS" />
       </Diagram>
     </Diagrams>
   </Designer>

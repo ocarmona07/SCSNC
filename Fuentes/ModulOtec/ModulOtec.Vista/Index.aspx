@@ -32,7 +32,7 @@
                     <asp:TextBox ID="txtOrganizacion" runat="server" PlaceHolder="Organización" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>--%>
-            <div class="row espacio-tabla">
+            <div class="row espacio-tabla" style="margin-top: 50px;">
                 <div class="col-md-4 col-md-offset-4">
                     <asp:TextBox ID="txtUsuario" runat="server" PlaceHolder="Usuario" CssClass="form-control" min="1" MaxLength="8" required="required" type="number"></asp:TextBox>
                 </div>
@@ -45,6 +45,11 @@
             <div class="row espacio-tabla">
                 <div class="col-md-4 col-md-offset-4">
                     <asp:LinkButton ID="lnkIngresar" runat="server" CssClass="btn btn-primary col-lg-12" Text="Ingresar" type="submit" OnClick="IngresarOnClick" />
+                </div>
+            </div>
+            <div class="row" style="margin-top: 100px;">
+                <div class="col-md-4 col-md-offset-4">
+                    <asp:LinkButton ID="lnkIngreoExterno" runat="server" CssClass="btn btn-info col-lg-12" Text="Ingreso Usuario Externo" OnClick="IngreoExternoOnClick" />
                 </div>
             </div>
         </div>

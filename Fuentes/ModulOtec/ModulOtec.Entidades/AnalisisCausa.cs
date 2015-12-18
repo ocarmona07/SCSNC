@@ -24,12 +24,11 @@ namespace ModulOtec.Entidades
         public int IdIncidencia { get; set; }
         public string CausasPotenciales { get; set; }
         public string EfectosDeseados { get; set; }
-        public System.DateTime FechaLimite { get; set; }
         public int IdTratamiento { get; set; }
     
         public virtual ICollection<Acciones> Acciones { get; set; }
-        public virtual Incidencias Incidencias { get; set; }
         public virtual Tratamientos Tratamientos { get; set; }
         public virtual ICollection<EvaluacionCumplimiento> EvaluacionCumplimiento { get; set; }
+        public virtual Incidencias Incidencias { get; set; }
     }
 }

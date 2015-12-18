@@ -76,10 +76,6 @@
                         <ContentTemplate>
                             <asp:DropDownList runat="server" ID="ddlRegion" required="required" AutoPostBack="True" OnSelectedIndexChanged="RegionSelectedIndexChanged" />
                         </ContentTemplate>
-                        <Triggers>
-                            <asp:PostBackTrigger ControlID="ddlProvincia" />
-                            <asp:PostBackTrigger ControlID="ddlComuna" />
-                        </Triggers>
                     </asp:UpdatePanel>
                 </td>
             </tr>

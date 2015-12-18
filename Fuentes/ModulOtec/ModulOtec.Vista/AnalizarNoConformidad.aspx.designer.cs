@@ -175,15 +175,6 @@ namespace ModulOtec.Vista {
         protected global::System.Web.UI.WebControls.Button btnSubirArchivo;
         
         /// <summary>
-        /// Control txtFechaLimite.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaLimite;
-        
-        /// <summary>
         /// Control ddlTratamiento.
         /// </summary>
         /// <remarks>
@@ -191,6 +182,15 @@ namespace ModulOtec.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTratamiento;
+        
+        /// <summary>
+        /// Control lblFechaLimite.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaLimite;
         
         /// <summary>
         /// Control btnVolver.

@@ -29,32 +29,32 @@
 
             function AddValues() {
                 var txtValue = document.getElementById("<%= txtAnadirAccion.ClientID %>");
-            if (txtValue.value.trim() === "") return false;
-            var listBox = document.getElementById("<%= lbxAcciones.ClientID %>");
-            var option = document.createElement("OPTION");
-            option.innerHTML = txtValue.value;
-            option.value = txtValue.value;
-            listBox.appendChild(option);
-            txtValue.value = "";
-            return false;
-        }
-
-        function DeleteValues() {
-            var listBox = document.getElementById("<%= lbxAcciones.ClientID %>");
-            for (var i = listBox.options.length - 1; i >= 0; i--) {
-                if (listBox.options[i].selected) {
-                    listBox.removeChild(listBox.options[i]);
-                }
+                if (txtValue.value.trim() === "") return false;
+                var listBox = document.getElementById("<%= lbxAcciones.ClientID %>");
+                var option = document.createElement("OPTION");
+                option.innerHTML = txtValue.value;
+                option.value = txtValue.value;
+                listBox.appendChild(option);
+                txtValue.value = "";
+                return false;
             }
 
-            return false;
-        }
+            function DeleteValues() {
+                var listBox = document.getElementById("<%= lbxAcciones.ClientID %>");
+                for (var i = listBox.options.length - 1; i >= 0; i--) {
+                    if (listBox.options[i].selected) {
+                        listBox.removeChild(listBox.options[i]);
+                    }
+                }
 
-        function ObtenerItems() {
-            var items = $("#<%= lbxAcciones.ClientID %> option").map(function () { return $(this).val(); }).get().join("|");
-            $("#<%= hdnItems.ClientID %>").val(items);
-            return true;
-        }
+                return false;
+            }
+
+            function ObtenerItems() {
+                var items = $("#<%= lbxAcciones.ClientID %> option").map(function () { return $(this).val(); }).get().join("|");
+                $("#<%= hdnItems.ClientID %>").val(items);
+                return true;
+            }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
@@ -180,14 +180,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <p><strong>Fecha Límite:</strong></p>
-                            <asp:TextBox ID="txtFechaLimite" runat="server" CssClass="form-control" type="date" required="required" />
-                        </div>
-                        <div class="col-md-3">
-                            <p><strong>Tratamiento:</strong></p>
-                            <asp:DropDownList ID="ddlTratamiento" runat="server" CssClass="form-control" required="required" />
-                        </div>
+                        <asp:UpdatePanel runat="server" UpdateMode="Always">
+                            <ContentTemplate>
+                                <div class="col-md-3">
+                                    <p><strong>Tratamiento:</strong></p>
+                                    <asp:DropDownList ID="ddlTratamiento" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="TratamientoOnSelectedIndexChanged" required="required" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p><strong>Fecha Límite:</strong></p>
+                                    <asp:Label ID="lblFechaLimite" runat="server" CssClass="form-control" />
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
                 </div>
             </div>

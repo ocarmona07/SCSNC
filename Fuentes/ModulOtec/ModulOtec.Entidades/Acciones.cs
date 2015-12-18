@@ -19,7 +19,7 @@ namespace ModulOtec.Entidades
         public string DescAccion { get; set; }
         public Nullable<int> IdEstado { get; set; }
     
-        public virtual AnalisisCausa AnalisisCausa { get; set; }
         public virtual EstadosAccion EstadosAccion { get; set; }
+        public virtual AnalisisCausa AnalisisCausa { get; set; }
     }
 }

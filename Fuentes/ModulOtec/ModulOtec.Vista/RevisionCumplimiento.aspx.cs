@@ -42,7 +42,8 @@ namespace ModulOtec.Vista
             if (analisis == null) return;
             lblCausasPotenciales.Text = analisis.CausasPotenciales;
             lblEfectosDeseados.Text = analisis.EfectosDeseados;
-            lblFechaLimite.Text = analisis.FechaLimite.ToString("dd-MM-yyyy");
+            var dias = new GeneralBo().ObtenerTratamiento(analisis.IdTratamiento).DiasPlazo;
+            lblFechaLimite.Text = incidencia.FechaIngreso.AddDays(dias).ToString("dd-MM-yyyy");
             lblTratamiento.Text = new GeneralBo().ObtenerTratamiento(analisis.IdTratamiento).Descripcion;
             gvDocumentos.DataSource = new DocumentosBo().ObtenerDocumentosPorIncidencia(incidencia.IdIncidencia);
             gvDocumentos.DataBind();
@@ -54,7 +55,7 @@ namespace ModulOtec.Vista
             chklAcciones.DataBind();
 
             // Cálculo de días restantes
-            var diasRestantes = (analisis.FechaLimite - DateTime.Today).Days;
+            var diasRestantes = (incidencia.FechaIngreso.AddDays(dias) - DateTime.Today).Days;
             var classDias = "progress-bar progress-bar-striped";
             if (diasRestantes > 0)
             {

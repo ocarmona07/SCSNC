@@ -22,6 +22,7 @@ namespace ModulOtec.Entidades
         public int IdTratamiento { get; set; }
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
+        public int DiasPlazo { get; set; }
     
         public virtual ICollection<AnalisisCausa> AnalisisCausa { get; set; }
     }

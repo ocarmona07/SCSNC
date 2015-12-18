@@ -43,6 +43,7 @@
             btnIngresarAcciones.CommandArgument = incidencia.IdIncidencia + "";
             lblCodSNC.Text = string.Format("{0:00000}", incidencia.IdIncidencia);
             lblFechaIngreso.Text = incidencia.FechaIngreso.ToString("dd-MM-yyyy");
+            btnInvalidar.CommandArgument = incidencia.FechaIngreso.ToString("yyyy-MM-dd");
             lblFechaIdentificacion.Text = incidencia.FechaIdentificacion.ToString("dd-MM-yyyy");
             lblEstado.Text = new GeneralBo().ObtenerEstadoIncidencia(incidencia.IdEstadoIncidencia).Descripcion;
             lblTipo.Text = new GeneralBo().ObtenerTipoIncidencia(incidencia.IdEstadoIncidencia).Descripcion;
@@ -56,8 +57,9 @@
             {
                 txtCausas.Text = reanalisis.CausasPotenciales;
                 txtEfectosDeseados.Text = reanalisis.EfectosDeseados;
-                txtFechaLimite.Text = reanalisis.FechaLimite.ToString("yyy-MM-dd");
                 ddlTratamiento.SelectedValue = reanalisis.IdTratamiento.ToString();
+                var dias = generalBo.ObtenerTratamiento(reanalisis.IdTratamiento).DiasPlazo;
+                lblFechaLimite.Text = incidencia.FechaIngreso.AddDays(dias).ToString("dd-MM-yyyy");
                 lbxAcciones.DataSource = new AccionesBo().ObtenerAccionesPorAnalisis(reanalisis.IdAnalisisCausa);
                 lbxAcciones.DataTextField = "DescAccion";
                 lbxAcciones.DataValueField = "DescAccion";
@@ -167,7 +169,6 @@
                 IdIncidencia = incidencia.IdIncidencia,
                 CausasPotenciales = txtCausas.Text,
                 EfectosDeseados = txtEfectosDeseados.Text,
-                FechaLimite = DateTime.Parse(txtFechaLimite.Text),
                 IdTratamiento = int.Parse(ddlTratamiento.SelectedValue)
             };
             if (!string.IsNullOrEmpty(btnIngresarAcciones.CommandName))
@@ -192,8 +193,9 @@
                 var detalle = "<p><b>Se ha ingresado el análisis correctamente:</b></p>";
                 detalle += "<p><b>Causas de No Conformidad:</b> " + txtCausas.Text + "</p>";
                 detalle += "<p><b>Efectos deseados al finalizar el proceso:</b> " + txtEfectosDeseados.Text + "</p>";
-                detalle += "<p><b>Fecha Límite:</b> " + DateTime.Parse(txtFechaLimite.Text).ToString("dd-MM-yyyy") + "</p>";
                 detalle += "<p><b>Tratamiento:</b> " + ddlTratamiento.SelectedItem.Text + "</p>";
+                var dias = new GeneralBo().ObtenerTratamiento(int.Parse(ddlTratamiento.SelectedValue)).DiasPlazo;
+                detalle += "<p><b>Fecha Límite:</b> " + incidencia.FechaIngreso.AddDays(dias).ToString("dd-MM-yyyy") + "</p>";
                 detalle += "<p><b>Acciones Correctivas:</b> " + items + "</p>";
                 detalle += "<p><b>Expediente electrónico:</b> ";
                 var documentos = new DocumentosBo().ObtenerDocumentos()
@@ -255,6 +257,24 @@
 
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalAlerta", "$('#modalAlerta').modal();", true);
             upModal.Update();
+        }
+
+        /// <summary>
+        /// Método que calcula los días restantes para la solución de la incidencia
+        /// </summary>
+        /// <param name="sender">Objeto del evento</param>
+        /// <param name="e">Argumentos del evento</param>
+        protected void TratamientoOnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ddlTratamiento.SelectedValue))
+            {
+                lblFechaLimite.Text = string.Empty;
+            }
+            else
+            {
+                var dias = new GeneralBo().ObtenerTratamiento(int.Parse(ddlTratamiento.SelectedValue)).DiasPlazo;
+                lblFechaLimite.Text = DateTime.Parse(btnInvalidar.CommandArgument).AddDays(dias).ToString("dd-MM-yyyy");
+            }
         }
     }
 }

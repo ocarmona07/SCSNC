@@ -35,8 +35,8 @@ namespace ModulOtec.Entidades
         public bool Estado { get; set; }
     
         public virtual Comunas Comunas { get; set; }
-        public virtual ICollection<Incidencias> Incidencias { get; set; }
         public virtual Organizacion Organizacion { get; set; }
         public virtual Roles Roles { get; set; }
+        public virtual ICollection<Incidencias> Incidencias { get; set; }
     }
 }

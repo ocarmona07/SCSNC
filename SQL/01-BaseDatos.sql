@@ -359,7 +359,6 @@ CREATE TABLE AnalisisCausa
       IdIncidencia INT NOT NULL ,
       CausasPotenciales VARCHAR(MAX) NOT NULL ,
       EfectosDeseados VARCHAR(MAX) NOT NULL ,
-      FechaLimite DATE NOT NULL ,
       IdTratamiento INT NOT NULL ,
       CONSTRAINT PK_ANALISISCAUSA PRIMARY KEY ( IdAnalisisCausa )
     )
@@ -433,6 +432,8 @@ CREATE TABLE Incidencias
     (
       IdIncidencia INT IDENTITY ,
       RutCreador INT NOT NULL ,
+      EsExterno BIT NOT NULL ,
+      RutExterno INT NULL ,
       FechaIngreso DATE NOT NULL ,
       IdTipoIncidencia INT NOT NULL ,
       IdModoDeteccion INT NOT NULL ,
@@ -541,6 +542,7 @@ CREATE TABLE Tratamientos
       IdTratamiento INT NOT NULL ,
       Descripcion VARCHAR(150) NOT NULL ,
       Estado BIT NOT NULL ,
+      DiasPlazo INT NOT NULL ,
       CONSTRAINT PK_TRATAMIENTOS PRIMARY KEY ( IdTratamiento )
     )
 GO
