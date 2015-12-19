@@ -15,10 +15,21 @@
                 </div>
                 <div class="panel-body">
                     <!-- Área de desglose de la no conformidad ingresada desde "IngresarNoConformidad" -->
-                    <p>
-                        <strong>Código Servicio No Conforme:</strong>
-                        <asp:Label ID="lblCodSNC" runat="server" Text="00000"></asp:Label>
-                    </p>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>
+                                <strong>Código Servicio No Conforme:</strong>
+                                <asp:Label ID="lblCodSNC" runat="server" Text="00000"></asp:Label>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <strong>Ingresado por RUT:</strong>
+                                <asp:Label ID="lblRutIngreso" runat="server" Text="1-9" />
+                            </p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <p>
@@ -116,7 +127,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="progress">
-                                        <div runat="server" ID="divProgress" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                        <div runat="server" id="divProgress" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                                             <span class="sr-only">Faltan <%= lblDiasRestantes.Text %> Días</span>
                                         </div>
                                     </div>

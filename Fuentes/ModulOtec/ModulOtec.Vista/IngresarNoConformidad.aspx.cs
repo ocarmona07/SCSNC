@@ -59,6 +59,7 @@
             var incidencia = new Incidencias
             {
                 RutCreador = int.Parse(Session["RutUsuario"] + ""),
+                EsExterno = false,
                 FechaIngreso = DateTime.Today,
                 IdTipoIncidencia = int.Parse(ddlTipoConformidad.SelectedValue),
                 IdModoDeteccion = int.Parse(ddlModoDeteccion.SelectedValue),

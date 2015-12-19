@@ -71,10 +71,20 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                    <p>
-                        <strong>Código Servicio No Conforme:</strong>
-                        <asp:Label ID="lblCodSNC" runat="server" Text="00000" />
-                    </p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>
+                                <strong>Código Servicio No Conforme:</strong>
+                                <asp:Label ID="lblCodSNC" runat="server" Text="00000" />
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <strong>Ingresado por RUT:</strong>
+                                <asp:Label ID="lblRutIngreso" runat="server" Text="1-9" />
+                            </p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <p>

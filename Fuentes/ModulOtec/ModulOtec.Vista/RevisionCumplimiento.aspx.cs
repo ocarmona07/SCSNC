@@ -29,6 +29,8 @@ namespace ModulOtec.Vista
 
             btnFinalizar.CommandArgument = incidencia.IdIncidencia + "";
             lblCodSNC.Text = string.Format("{0:00000}", incidencia.IdIncidencia);
+            var rut = incidencia.EsExterno ? incidencia.RutExterno ?? 1 : incidencia.RutCreador;
+            lblRutIngreso.Text = string.Format("{0:N0}-", rut) + new GeneralBo().ObtenerDigitoVerificador(rut);
             lblFechaIngreso.Text = incidencia.FechaIngreso.ToString("dd-MM-yyyy");
             lblFechaIdentificacion.Text = incidencia.FechaIdentificacion.ToString("dd-MM-yyyy");
             lblEstado.Text = new GeneralBo().ObtenerEstadoIncidencia(incidencia.IdEstadoIncidencia).Descripcion;
